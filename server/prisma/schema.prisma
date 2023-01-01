@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                     String  @id @default(uuid())
+  name                   String
+  email                  String?
+  api_key                String
+  username               String
+  profile_picture        String?
+  password               String?
+  stripe_secret_key      String?
+  stripe_publishable_key String?
+}
+
+model Rickroll {
+  id                String  @id @default(uuid())
+  name              String  @db.LongText
+  description       String? @db.LongText
+  link              String  @db.LongText
+  rickroll_cta_link String  @db.LongText
+}
+
+model Subscriptions {
+  id          String  @id @default(uuid())
+  priceId     String? @db.LongText
+  productId   String? @db.LongText
+  name        String  @db.LongText
+  description String  @db.LongText
+  price       Int
+  image       String? @db.LongText
+}
