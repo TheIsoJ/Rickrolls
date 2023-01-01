@@ -11,7 +11,7 @@ const Account = () => {
       </Head>
 
       <div
-        className={`flex items-center justify-center flex-1 min-h-screen w-full py-32 lg:py-0 bg-teal-800`}
+        className={`flex items-center justify-center flex-1 min-h-[75.1vh] w-full py-32 lg:py-0 bg-teal-800`}
       >
         <div className="space-y-5 px-10 text-center">
           <h1 className="max-w-xl mx-auto font-[Poppins] font-extrabold text-5xl text-white">

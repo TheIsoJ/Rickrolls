@@ -9,58 +9,77 @@ import {
   RICKROLL_BASE_URL,
 } from "../../config"
 import ReactPlayer from "react-player"
+import { DotPulse } from "@uiball/loaders"
+import { useRickrollFetch } from "../hooks/useRickrollFetch"
 
 const Rickroll = () => {
   const router = useRouter()
   const { id } = router.query
 
-  const [rickrollResult, setRickrollResult] = useState<RickrollResponseData>()
+  if (!id) return
+  const { res, loading } = useRickrollFetch(id as string)
 
-  useEffect(() => {
-    if (!id) return
-    
-    axios.get(`${RICKROLL_BASE_URL}${id}?api_key=${API_KEY}`).then((res) => {
-      setRickrollResult(res.data)
-      console.log(id)
-    })
-  }, [id])
+  if (loading) {
+    return (
+      <>
+        <Head>
+          <title>Ladataan...</title>
+        </Head>
+        <div className="bg-teal-900 flex items-center justify-center min-h-[75.1vh]">
+          <DotPulse speed={0.75} size={96} color="white" />
+        </div>
+      </>
+    )
+  }
 
   return (
-    <>
+    <div className="bg-teal-900 text-white">
       <Head>
-        <title>{`${rickrollResult?.rickroll?.name}`} - Rickrolls</title>
+        <title>{`${res?.rickroll?.name}`} - Rickrolls</title>
       </Head>
 
-      <ReactPlayer
-        playsinline
-        playing={true}
-        width="100%"
-        height="48.89vh"
-        controls={true}
-        url={rickrollResult?.rickroll?.link}
-      />
-
-      <div
-        className={`flex items-center justify-between h-96 w-full py-32 lg:py-0 bg-[#002f6c]`}
-      >
-        <div className="space-y-5 px-10">
-          <h1 className="max-w-xl font-[Poppins] font-extrabold text-5xl text-white">
-            {rickrollResult?.rickroll?.name}
-          </h1>
-          <h2 className="max-w-xl whitespace-pre-wrap font-[Poppins] font-normal text-white">
-            {rickrollResult?.rickroll?.description}
-          </h2>
-        </div>
-
-        {rickrollResult?.rickroll?.rickroll_cta_link && (
-          <img
-            className="hidden m-32 md:inline md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-lg shadow-2xl object-cover"
-            src={`${rickrollResult?.rickroll?.rickroll_cta_link}`}
-            alt=""
-          />
-        )}
-      </div>
-    </>
+      {res && (
+        <>
+          <div className="flex items-center justify-center h-auto w-full py-16 lg:py-16">
+            <div className="space-y-3 px-10 flex flex-col items-center lg:items-center lg:justify-between text-center lg:text-start">
+              {res?.rickroll?.rickroll_cta_link ? (
+                <>
+                  <div className="w-48 h-48 bg-gray-400 m-8 md:inline rounded-[20%] shadow-xl shadow-gray-800">
+                    <img
+                      className={`${
+                        res && "fade"
+                      } w-48 h-48 bg-gray-400 transition-all duration-200 ease-in-out object-cover rounded-[20%]`}
+                      src={`${res?.rickroll?.rickroll_cta_link}`}
+                      alt=""
+                    />
+                  </div>
+                </>
+              ) : null}
+              <>
+                <h1 className="max-w-xl font-[Poppins] font-extrabold text-4xl">
+                  {res?.rickroll?.name}
+                </h1>
+                <h2 className="max-w-xl whitespace-pre-wrap font-[Poppins] text-xl font-normal">
+                  {res?.rickroll?.description}
+                </h2>
+              </>
+            </div>
+          </div>
+          <div
+            className={`bg-gray-500 mt-64 scale-90 rounded-xl overflow-hidden fade`}
+          >
+            <ReactPlayer
+              playsinline
+              playing={false}
+              width="100%"
+              height={"75.1vh"}
+              controls={true}
+              url={res?.rickroll?.link}
+            />
+          </div>
+        </>
+      )}
+    </div>
   )
 }
 export default Rickroll

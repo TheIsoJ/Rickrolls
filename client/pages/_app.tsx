@@ -7,6 +7,7 @@ import { UserProvider } from "@auth0/nextjs-auth0/client"
 import Footer from '../components/Footer'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import "../public/css/rickroll.styles.css"
 
 function MyApp({ Component, pageProps}: AppProps) {
   const router = useRouter()

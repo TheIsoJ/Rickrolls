@@ -47,6 +47,7 @@ type Rickroll = {
 
 type Product = {
     id: string
+    created: number
     name: string
     description: string
     default_price?: DefaultPrice
@@ -56,5 +57,9 @@ type Product = {
 type DefaultPrice = {
     id: string
     currency: string
+    recurring: {
+        interval: "day" | "week" | "month" | "year"
+    }
+    type: string
     unit_amount: number
 }

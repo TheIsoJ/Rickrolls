@@ -7,7 +7,7 @@ const Header = () => {
   const { user, error, isLoading } = useUser()
 
   return (
-    <header className="sticky top-0 z-10 bg-teal-700 flex justify-between p-5 shadow-lg">
+    <header className="sticky top-0 z-10 bg-teal-700 flex justify-between p-5">
       <div className="flex items-center space-x-5">
         <Link href="/">
           <img
@@ -38,11 +38,11 @@ const Header = () => {
       ) : (
         <a className="flex items-center" href="/api/auth/login">
           <div className="border rounded-lg transition-all duration-200 ease-in-out hover:bg-white px-4 py-2 flex items-center space-x-3 text-white hover:text-black cursor-pointer font-[Poppins]">
-            <UserCircleIcon className={`${isLoading && "hidden"} w-7 h-7 sm:inline-flex rounded-full hover:text-white`} />
+            <UserCircleIcon className={`${isLoading && "hidden"} w-7 h-7 sm:inline-flex rounded-full hover:text-black`} />
             {isLoading ? (
               <DotPulse speed={0.8} size={42} color="white" />
             ) : (
-              <p className="hidden sm:inline text-sm font-bold">Kirjaudu</p>
+              <p className="hidden sm:inline text-sm font-normal">Kirjaudu</p>
             )}
           </div>
         </a>
