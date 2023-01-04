@@ -1,4 +1,4 @@
-FROM node:lts AS builder
+FROM node:19-bullseye-slim AS builder
 WORKDIR /app
 
 COPY package*.json ./
@@ -9,7 +9,7 @@ RUN npm i
 
 COPY . .
 
-FROM node:lts
+FROM node:19-bullseye-slim
 
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package*.json ./
