@@ -1,4 +1,6 @@
 node_modules
-server.ps1
+dist
+test-to-see-if-the-server-works-properly
+
 # Keep environment variables out of version control
 .env

@@ -1,5 +1,6 @@
 import Head from "next/head"
 import { useRouter } from "next/router"
+import Header from "../../components/Header"
 import { API_KEY, CREATE_CUSTOMER_PORTAL_SESSION_BASE_URL } from "../../config"
 
 const Success = () => {
@@ -11,6 +12,8 @@ const Success = () => {
       <Head>
         <title>Maksu onnistui - Rickrolls</title>
       </Head>
+
+      <Header sticky />
 
       <div
         className={`flex items-center justify-center h-screen w-full py-32 lg:py-0 bg-[#002f6c]`}

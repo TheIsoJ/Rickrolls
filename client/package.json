@@ -8,6 +8,7 @@
   "dependencies": {
     "@auth0/nextjs-auth0": "^2.0.1",
     "@heroicons/react": "^2.0.13",
+    "@stripe/stripe-js": "^1.46.0",
     "@uiball/loaders": "^1.2.6",
     "axios": "^1.2.2",
     "next": "latest",

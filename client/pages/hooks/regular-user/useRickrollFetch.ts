@@ -1,20 +1,20 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { PRODUCTS_BASE_URL } from "../../config";
+import { API_KEY, RICKROLL_BASE_URL } from "../../../config";
 
-export const useProductsFetch = () => {
-  const [res, setRes] = useState<ProductsResponseData>();
+export const useRickrollFetch = (id: string) => {
+  const [res, setRes] = useState<RickrollResponseData>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
-  const fetchProducts = async () => {
+  const fetchRickroll = async () => {
     try {
       setLoading(true);
       setError(false);
 
-      const products = await axios.get<ProductsResponseData>(`${PRODUCTS_BASE_URL}`);
+      const rickroll = await axios.get<RickrollResponseData>(`${RICKROLL_BASE_URL}${id}?api_key=${API_KEY}`);
 
-      setRes(products.data);
+      setRes(rickroll.data);
     } catch (error) {
       setError(true);
     }
@@ -22,8 +22,8 @@ export const useProductsFetch = () => {
   };
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    fetchRickroll();
+  }, [id]);
 
   return { res, loading, error };
 };

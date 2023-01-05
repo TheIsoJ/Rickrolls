@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 const router = express.Router()
 
 import { PrismaClient } from "@prisma/client";
@@ -57,6 +57,12 @@ router.get("/rickrolls/:id", async (req, res) => {
         const rickroll = await prisma.rickroll.findFirst({
             where: {
                 id
+            },
+            select: {
+                name: true,
+                description: true,
+                link: true,
+                rickroll_cta_link: true
             }
         })
 
@@ -70,7 +76,7 @@ router.get("/rickrolls/:id", async (req, res) => {
     }
 })
 
-router.post("/rickrolls", async (req, res) => {
+router.post("/rickrolls", async (req: Request, res: Response) => {
     const apiKey: string = req.query.api_key as string
 
     const user = await prisma.user.findFirst({
@@ -80,7 +86,6 @@ router.post("/rickrolls", async (req, res) => {
     });
 
     if (apiKey === user.api_key) {
-
         try {
             const {
                 name,
@@ -88,6 +93,25 @@ router.post("/rickrolls", async (req, res) => {
                 videoId,
                 link
             }: RickrollBody = req.body
+
+            if (name === "" || name == null) {
+                res.status(400).json({
+                    message: "Nimi vaaditaan."
+                })
+                return
+            } else if (description === "" || description == null) {
+                res.status(400).json({
+                    message: "Kuvaus vaaditaan."
+                })
+            } else if (videoId === "" || videoId == null) {
+                res.status(400).json({
+                    message: "Videon ID vaaditaan."
+                })
+            } else if (link === "" || link == null) {
+                res.status(400).json({
+                    message: "Linkki vaaditaan."
+                })
+            }
 
             await prisma.rickroll.create({
                 data: {

@@ -1,7 +1,0 @@
-GET http://localhost:5000/api/v1/rickrolls?api_key=1A4mgi2rBHCJdqggsYVx
-###
-GET http://localhost:5000/api/v1/rickrolls/50996030-f78b-48db-9561-df533f350fa6?api_key=1A4mgi2rBHCJdqggsYVx
-###
-GET http://localhost:5000/api/v1/mobile-app/rickrolls?api_key=1A4mgi2rBHCJdqggsYVx
-###
-GET http://localhost:5000/api/v1/mobile-app/rickrolls/en-keksi-mitaan--saatana--android--kerro-sa?api_key=1A4mgi2rBHCJdqggsYVx

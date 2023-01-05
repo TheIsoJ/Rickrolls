@@ -5,6 +5,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient()
 
 import { Stripe } from "stripe"
+import { DefaultPrice } from "../../types/DefaultPriceProps.js";
 
 router.get("/products/:id", async (req, res) => {
   const id: string = req.params.id;
@@ -27,9 +28,24 @@ router.get("/products/:id", async (req, res) => {
       expand: ["default_price"]
     })
 
+    const {
+      id: priceId,
+      unit_amount: price,
+      recurring: {
+        interval
+      }
+    }: DefaultPrice = product.default_price as Stripe.Price
+
     return res.status(200).json({
       statusCode: res.statusCode,
-      product,
+      product: {
+        name: product.name,
+        description: product.description,
+        priceId: priceId,
+        price: price,
+        images: product.images,
+        interval: "month"
+      },
     })
   } else {
     res.status(401).json({

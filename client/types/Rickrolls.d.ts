@@ -38,28 +38,40 @@ type Products = {
 }
 
 type Rickroll = {
-    id: string
+    id?: string
     name: string
     description: string
     link: string
-    rickroll_cta_link: string
+    videoId: string
+    rickroll_cta_link?: string
+}
+
+type StripeConfigProps = {
+    stripePublicKey: string
+}
+
+type SessionProps = {
+    id: string
 }
 
 type Product = {
     id: string
+    priceId: string
     created: number
     name: string
     description: string
-    default_price?: DefaultPrice
+    price: number
+    interval: "day" | "week" | "month" | "year"
+    type: string
     images?: string[]
+    default_price: DefaultPrice
 }
 
 type DefaultPrice = {
     id: string
-    currency: string
+    unit_amount: number
     recurring: {
         interval: "day" | "week" | "month" | "year"
     }
     type: string
-    unit_amount: number
 }

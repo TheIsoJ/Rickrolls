@@ -1,8 +1,8 @@
 import { DotPulse } from "@uiball/loaders"
 import Head from "next/head"
 import Link from "next/link"
-import { useRouter } from "next/router"
-import { useProductsFetch } from "./hooks/useProductsFetch"
+import Header from "../components/Header"
+import { useProductsFetch } from "./hooks/regular-user/useProductsFetch"
 
 const Plus = () => {
   // const router = useRouter()
@@ -14,6 +14,7 @@ const Plus = () => {
         <Head>
           <title>Ladataan...</title>
         </Head>
+        <Header sticky />
         <h1 className="text-3xl font-bold text-center mx-4 my-5 font-[Poppins] whitespace-pre-wrap">
           Eiköhän pistetä vielä paremmaksi?
         </h1>
@@ -29,6 +30,8 @@ const Plus = () => {
       <Head>
         <title>Tilaa - Rickrolls</title>
       </Head>
+
+      <Header sticky />
 
       <h1 className="text-3xl font-bold text-center mx-4 my-5 font-[Poppins] whitespace-pre-wrap">
         Eiköhän pistetä vielä paremmaksi?
@@ -46,7 +49,7 @@ const Plus = () => {
               <div className="rounded-lg overflow-hidden shadow-lg shadow-gray-400">
                 {images![0] ? (
                   <img
-                    className="w-full h-full object-contain"
+                    className="w-full h-full bg-gray-400 fade-semifast object-contain"
                     src={images![0]}
                     alt=""
                   />
@@ -61,7 +64,7 @@ const Plus = () => {
                         (default_price?.unit_amount as number) / 100
                       ).toLocaleString(undefined, {
                         style: "currency",
-                        currency: default_price?.currency,
+                        currency: "eur",
                       })}
                       /
                       {default_price?.recurring?.interval === "day"

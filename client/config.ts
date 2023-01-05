@@ -5,6 +5,7 @@ const HOME_BASE_URL: string = `${API_URL}rickrolls?api_key=${API_KEY}`;
 const RICKROLL_BASE_URL: string = `${API_URL}rickrolls/`;
 const PRODUCTS_BASE_URL: string = `${API_URL}products?api_key=${API_KEY}`
 const PRODUCT_BASE_URL: string = `${API_URL}products/`
+const GET_STRIPE_CONFIG_BASE_URL: string = `${API_URL}config/get-stripe-config?api_key=${API_KEY}`
 const CREATE_CHECKOUT_SESSION_BASE_URL: string = `${API_URL}luo-uusi-sessio?api_key=${API_KEY}`
 const CREATE_CUSTOMER_PORTAL_SESSION_BASE_URL: string = `${API_URL}luo-uusi-itsepalvelu-sessio?session_id=`
 const CUSTOMERS_BASE_URL: string = `${API_URL}customers?api_key=${API_KEY}`
@@ -15,6 +16,7 @@ export {
   RICKROLL_BASE_URL,
   PRODUCTS_BASE_URL,
   PRODUCT_BASE_URL,
+  GET_STRIPE_CONFIG_BASE_URL,
   CREATE_CHECKOUT_SESSION_BASE_URL,
   CREATE_CUSTOMER_PORTAL_SESSION_BASE_URL,
   CUSTOMERS_BASE_URL,

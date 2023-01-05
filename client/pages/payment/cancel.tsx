@@ -1,9 +1,17 @@
 import { useRouter } from "next/router"
+import Header from "../../components/Header"
+import Head from "next/head"
 
 const Canceled = () => {
   const router = useRouter()
   return (
     <>
+      <Head>
+        <title>Maksu peruutettu - Rickrolls</title>
+      </Head>
+
+      <Header sticky />
+      
       <div className="flex items-center justify-center min-h-[75.1vh] w-full py-16 lg:py-16">
         <div className="space-y-5 px-10 flex flex-col items-center lg:items-center lg:justify-between text-center lg:text-start">
           <h1 className="max-w-xl font-[Poppins] font-bold text-4xl">

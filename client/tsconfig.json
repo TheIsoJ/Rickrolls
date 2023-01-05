@@ -15,6 +15,13 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/auth/[...nextauth].ts", "tailwind.config.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/hooks/**/*.ts",
+    "pages/api/auth/[...nextauth].ts",
+    "tailwind.config.js"
+, "contexts/RickrollsContext.ts"  ],
   "exclude": ["node_modules"]
 }

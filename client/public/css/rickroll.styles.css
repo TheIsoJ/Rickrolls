@@ -1,13 +1,33 @@
 .fade {
-    animation: fade 500ms ease-in-out;
+  animation: fade 500ms ease-in-out;
 }
 
 @keyframes fade {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 1;
-    }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-semifast {
+  opacity: 0;
+  animation: fade 450ms 1s ease-in-out forwards;
+}
+
+.fade-semifast-text {
+  opacity: 0;
+  animation: fade 450ms 2.5s ease-in-out forwards;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

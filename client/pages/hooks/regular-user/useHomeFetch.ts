@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { HOME_BASE_URL } from "../../config";
+import { HOME_BASE_URL } from "../../../config";
 
 export const useHomeFetch = () => {
   const [res, setRes] = useState<RickrollsResponseData>();

@@ -2,7 +2,8 @@ import Head from "next/head"
 import { useRouter } from "next/router"
 import ReactPlayer from "react-player"
 import { DotPulse } from "@uiball/loaders"
-import { useRickrollFetch } from "../hooks/useRickrollFetch"
+import { useRickrollFetch } from "../hooks/regular-user/useRickrollFetch"
+import Header from "../../components/Header"
 
 const Rickroll = () => {
   const router = useRouter()
@@ -17,6 +18,7 @@ const Rickroll = () => {
         <Head>
           <title>Ladataan...</title>
         </Head>
+        <Header sticky />
         <div className="bg-teal-900 flex items-center justify-center min-h-[75.1vh]">
           <DotPulse speed={1} size={96} color="white" />
         </div>
@@ -29,6 +31,8 @@ const Rickroll = () => {
       <Head>
         <title>{`${res?.rickroll?.name}`} - Rickrolls</title>
       </Head>
+
+      <Header sticky />
 
       {res && (
         <>
