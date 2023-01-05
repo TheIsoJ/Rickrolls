@@ -1,4 +1,4 @@
-const API_URL: string = `http://192.168.1.127:5000/api/v1/`;
+const API_URL: string = `http://localhost:5000/api/v1/`;
 const API_KEY: string = process.env.NEXT_PUBLIC_API_KEY as string;
 
 const HOME_BASE_URL: string = `${API_URL}rickrolls?api_key=${API_KEY}`;

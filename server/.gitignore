@@ -1,4 +1,4 @@
 node_modules
-docker-compose.yaml
+server.ps1
 # Keep environment variables out of version control
 .env

@@ -18,7 +18,7 @@ const Plus = () => {
           Eiköhän pistetä vielä paremmaksi?
         </h1>
         <div className="flex items-center justify-center min-h-[25vh]">
-          <DotPulse speed={0.75} size={96} color="black" />
+          <DotPulse speed={1} size={96} color="black" />
         </div>
       </>
     )

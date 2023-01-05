@@ -1,13 +1,5 @@
-import axios from "axios"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
-import {
-  API_KEY,
-  CREATE_CHECKOUT_SESSION_BASE_URL,
-  PRODUCT_BASE_URL,
-  RICKROLL_BASE_URL,
-} from "../../config"
 import ReactPlayer from "react-player"
 import { DotPulse } from "@uiball/loaders"
 import { useRickrollFetch } from "../hooks/useRickrollFetch"
@@ -26,7 +18,7 @@ const Rickroll = () => {
           <title>Ladataan...</title>
         </Head>
         <div className="bg-teal-900 flex items-center justify-center min-h-[75.1vh]">
-          <DotPulse speed={0.75} size={96} color="white" />
+          <DotPulse speed={1} size={96} color="white" />
         </div>
       </>
     )
@@ -41,10 +33,10 @@ const Rickroll = () => {
       {res && (
         <>
           <div className="flex items-center justify-center h-auto w-full py-16 lg:py-16">
-            <div className="space-y-3 px-10 flex flex-col items-center lg:items-center lg:justify-between text-center lg:text-start">
+            <div className="space-y-3 px-10 flex flex-col items-center lg:items-center lg:justify-between text-center">
               {res?.rickroll?.rickroll_cta_link ? (
                 <>
-                  <div className="w-48 h-48 bg-gray-400 m-8 md:inline rounded-[20%] shadow-xl shadow-gray-800">
+                  <div className="w-48 h-48 bg-gray-400 m-4 md:inline rounded-[20%] shadow-xl shadow-gray-800">
                     <img
                       className={`${
                         res && "fade"

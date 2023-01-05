@@ -31,7 +31,7 @@ const Home: NextPage = () => {
           <a href={res.rickrolls[0].link} target="_blank">
             <div
               key={res.rickrolls[0].id}
-              className={`flex items-center justify-between h-auto w-full py-32 lg:py-0 bg-gray-700 transition-all duration-500 ease-in-out rounded-2xl scale-90 hover:scale-95 hover:rounded-none hover:shadow-xl hover:shadow-gray-500 hover:bg-gray-600`}
+              className={`flex items-center justify-between h-auto w-full py-32 lg:py-0 bg-gray-700 transition-all duration-500 ease-in-out rounded-2xl scale-90 hover:scale-95 hover:rounded-none hover:shadow-xl hover:shadow-gray-500 hover:bg-gray-600 cursor-pointer`}
             >
               <div className="space-y-5 px-10">
                 <h1 className="max-w-xl font-[Poppins] font-extrabold text-5xl text-white">
@@ -52,11 +52,11 @@ const Home: NextPage = () => {
         </>
       ) : null}
 
+      <h1 className="max-w-xl font-[Poppins] font-extrabold text-3xl my-6 m-4">
+        Rickrollit
+      </h1>
       {res?.rickrolls.map(({ id, name, description, rickroll_cta_link }) => (
         <>
-          <h1 className="max-w-xl font-[Poppins] font-extrabold text-3xl my-6 m-4">
-            Rickrollit
-          </h1>
           <div className="grid grid-cols-1 gap-3 p-4 sm:grid-cols-2 md:gap-6 md:p-6 lg:grid-cols-3">
             <div className="hover:scale-90 hover:shadow-xl hover:shadow-gray-400 transition-all duration-500 ease-in-out cursor-pointer overflow-hidden rounded-xl border shadow-md">
               <Link key={id} href={`/rickroll/${id}`}>

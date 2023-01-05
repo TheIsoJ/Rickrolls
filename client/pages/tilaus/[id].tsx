@@ -22,7 +22,7 @@ const Product = () => {
           Tuote
         </h1>
         <div className="flex items-center justify-center min-h-[25vh]">
-          <DotPulse speed={0.75} size={96} color="black" />
+          <DotPulse speed={1} size={96} color="black" />
         </div>
       </>
     )
@@ -32,10 +32,8 @@ const Product = () => {
     <>
       <Head>
         <title>
-          {res?.product?.name
-            ? `Tilaa ${res?.product?.name}`
-            : "Tilaus"}{" "}
-          - Rickrolls
+          {res?.product?.name ? `Tilaa ${res?.product?.name}` : "Tilaus"} -
+          Rickrolls
         </title>
       </Head>
 
@@ -61,19 +59,18 @@ const Product = () => {
                   style: "currency",
                   currency: "eur",
                 }).format(
-                  (res?.product?.default_price
-                    ?.unit_amount as number) / 100
+                  (res?.product?.default_price?.unit_amount as number) / 100
                 )}
                 /
                 {res?.product?.default_price?.recurring?.interval === "day"
-                        ? "pv"
-                        : res?.product?.default_price?.recurring?.interval === "week"
-                        ? "kk"
-                        : res?.product?.default_price?.recurring?.interval === "month"
-                        ? "kk"
-                        : res?.product?.default_price?.recurring?.interval === "year"
-                        ? "vuodessa"
-                        : "kk"}
+                  ? "pv"
+                  : res?.product?.default_price?.recurring?.interval === "week"
+                  ? "kk"
+                  : res?.product?.default_price?.recurring?.interval === "month"
+                  ? "kk"
+                  : res?.product?.default_price?.recurring?.interval === "year"
+                  ? "vuodessa"
+                  : "kk"}
               </p>
               <h2 className="max-w-xl whitespace-pre-wrap font-[Poppins] font-normal">
                 {res?.product?.description}

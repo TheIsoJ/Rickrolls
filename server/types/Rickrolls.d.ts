@@ -1,13 +1,14 @@
 type RickrollBody = {
-    name: string,
-    description: string,
+    name: string
+    description: string
+    videoId: string
     link: string
 }
 
 type SubscriptionBody = {
-    name: string,
-    description?: string,
-    price: number,
+    name: string
+    description?: string
+    price: number
     isActive?: boolean
     images?: string[]
 }
@@ -18,6 +19,6 @@ type CreateCheckoutSessionBody = {
 }
 
 type UsersBody = {
-    name: string,
+    name: string
     email: string
 }
