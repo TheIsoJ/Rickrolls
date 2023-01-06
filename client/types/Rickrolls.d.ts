@@ -4,6 +4,7 @@ type RickrollsResponseData = {
 
 type RickrollResponseData = {
     rickroll: Rickroll
+    error: RickrollError
 }
 
 type ProductsResponseData = {
@@ -44,6 +45,10 @@ type Rickroll = {
     link: string
     videoId: string
     rickroll_cta_link?: string
+}
+
+type RickrollError = {
+    message: string
 }
 
 type StripeConfigProps = {

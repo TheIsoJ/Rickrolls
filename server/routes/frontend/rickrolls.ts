@@ -98,7 +98,6 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                 res.status(400).json({
                     message: "Nimi vaaditaan."
                 })
-                return
             } else if (description === "" || description == null) {
                 res.status(400).json({
                     message: "Kuvaus vaaditaan."
