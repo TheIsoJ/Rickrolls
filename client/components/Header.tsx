@@ -33,18 +33,18 @@ const Header = ({ sticky }: Props) => {
       {user ? (
           <Link className="flex items-center space-x-3" href="/tili">
             <div className="border rounded-lg transition-all duration-200 ease-in-out hover:bg-white px-6 py-2 flex items-center space-x-3 text-white hover:text-black cursor-pointer font-[Poppins]">
-              <p className="text-sm sm:truncate font-bold text-center">
+              <p className="text-lg sm:truncate text-center">
                 {user?.name?.split(" ")[0]}
               </p>
             </div>
           </Link>
       ) : (
-        <Link className="flex items-center" href="/tili">
-          <div className="border rounded-lg transition-all duration-200 ease-in-out hover:bg-white px-4 py-2 flex items-center space-x-3 text-white hover:text-black cursor-pointer font-[Poppins]">
+        <Link className="flex items-center space-x-3" href="/tili">
+          <div className="border rounded-lg transition-all duration-200 ease-in-out hover:bg-white px-6 py-4 flex items-center space-x-3 text-white hover:text-black cursor-pointer font-[Poppins]">
             {isLoading ? (
-              <DotPulse speed={0.8} size={42} color="white" />
+              <DotPulse speed={0.8} size={60} color="white" />
             ) : (
-              <p className="hidden sm:inline text-sm font-normal">Tili</p>
+              <p className="hidden sm:inline text-sm font-normal">Kirjaudu sisään</p>
             )}
           </div>
         </Link>
