@@ -51,8 +51,7 @@ app.use(`/api/${API_VERSION}/mobile-app`, mobileAppGetStripeConfigRoute)
 
 app.get("/", (req, res) => {
   res.json({
-    title: "Tietoa",
-
+    message: printAbout(port)
   });
 })
 
