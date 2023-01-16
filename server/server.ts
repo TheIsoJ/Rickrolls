@@ -51,7 +51,7 @@ app.use(`/api/${API_VERSION}/mobile-app`, mobileAppGetStripeConfigRoute)
 
 app.get("/", (req, res) => {
   res.json({
-    message: printAbout(port, false)
+    message: printAbout(false)
   });
 })
 
