@@ -11,6 +11,6 @@ export function printAbout(port?: string = 5000, isConsole: boolean = false) {
   if (isConsole) {
     return console.log(`\n------- Tietoa -------\n\nTämä on Jesun Maailman virallinen API Rickrolls-palvelua varten.\n\nTietoa tästä APIsta:\n\nPortti: ${port}\nVersio: ${API_VERSION}\n\nKansion rakenne kehittäjille:\n=>  routes\n    => frontend   = Rickrolls-verkkopalvelun reitit\n    => mobile-app = Android-sovelluksen reitit\n\nKiitos, kun luit tämän tietoviestin.\n\nAPI on nyt toiminnassa.`)
   } else {
-    return `\n------- Tietoa -------\n\nTämä on Jesun Maailman virallinen API Rickrolls-palvelua varten.\n\nTietoa tästä APIsta:\n\nPortti: ${port || 5000}\nVersio: ${API_VERSION}\n\nKansion rakenne kehittäjille:\n=>  routes\n    => frontend   = Rickrolls-verkkopalvelun reitit\n    => mobile-app = Android-sovelluksen reitit\n\nKiitos, kun luit tämän tietoviestin.\n\nAPI on nyt toiminnassa.`
+    return `\n------- Tietoa -------\n\nTämä on Jesun Maailman virallinen API Rickrolls-palvelua varten.\n\nTietoa tästä APIsta:\n\nPortti: ${port}\nVersio: ${API_VERSION}\n\nKansion rakenne kehittäjille:\n=>  routes\n    => frontend   = Rickrolls-verkkopalvelun reitit\n    => mobile-app = Android-sovelluksen reitit\n\nKiitos, kun luit tämän tietoviestin.\n\nAPI on nyt toiminnassa.`
   }
 } 
