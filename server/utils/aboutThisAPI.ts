@@ -8,5 +8,5 @@ import { API_VERSION } from "./apiVersion.js"
  */
 
 export function printAbout(port: string) {
-    return console.log(`\n------- Tietoa -------\n\nTämä on Jesun Maailman virallinen API Rickrolls-palvelua varten.\n\nTietoa tästä APIsta:\n\nPortti: ${port}\nVersio: ${API_VERSION}\n\nKansion rakenne kehittäjille:\n=>  routes\n    => frontend   = Rickrolls-verkkopalvelun reitit\n    => mobile-app = Android-sovelluksen reitit\n\nKiitos, kun luit tämän tietoviestin.\n\nAPI on nyt toiminnassa.`)
+    return console.log(`\n------- Tietoa -------\n\nTämä on Jesun Maailman virallinen API Rickrolls-palvelua varten.\n\nTietoa tästä APIsta:\n\nPortti: ${port || 5000}\nVersio: ${API_VERSION}\n\nKansion rakenne kehittäjille:\n=>  routes\n    => frontend   = Rickrolls-verkkopalvelun reitit\n    => mobile-app = Android-sovelluksen reitit\n\nKiitos, kun luit tämän tietoviestin.\n\nAPI on nyt toiminnassa.`)
 } 
