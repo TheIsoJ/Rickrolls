@@ -51,12 +51,12 @@ app.use(`/api/${API_VERSION}/mobile-app`, mobileAppGetStripeConfigRoute)
 
 app.get("/", (req, res) => {
   res.json({
-    message: printAbout(false)
+    message: printAbout({ port: port, isConsoleLogging: false })
   });
 })
 
 app.listen(port, () => {
-  printAbout(port, true)
+  printAbout({ port: port, isConsoleLogging: true })
 })
 
 export default app
