@@ -1,8 +1,6 @@
 import { API_KEY, RICKROLL_BASE_URL } from "../../../config";
 import { basicFetch } from "../fetchFunctions";
 
-// id: string, name: string, description: string, videoId: string, link: string
-
 export const useAdminRickrollEdit = async <returnType>(
   id: string,
   name: string,
