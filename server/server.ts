@@ -51,13 +51,12 @@ app.use(`/api/${API_VERSION}/mobile-app`, mobileAppGetStripeConfigRoute)
 
 app.get("/", (req, res) => {
   res.json({
-    title: "Tietoa",
-
+    message: printAbout({ port: port, isConsoleLogging: false })
   });
 })
 
 app.listen(port, () => {
-  printAbout(port)
+  printAbout({ port: port, isConsoleLogging: true })
 })
 
 export default app
