@@ -42,7 +42,7 @@ const NewRickroll = () => {
         </button>
       </div>
       {res && (
-        <InputBox initialValue={res} isEditing={true} />
+        <InputBox initialValue={res} isEditing />
       )}
     </div>
   )

@@ -4,6 +4,8 @@ const router = express.Router()
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient()
 
+import slugify from "slugify"
+
 type RickrollBody = {
     name: string
     description: string
@@ -116,12 +118,10 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                 data: {
                     name,
                     description,
-                    slug: name
-                        .replace(" ", "-")
-                        .replace("å", "a")
-                        .replace("ä", "a")
-                        .replace("ö", "o")
-                        .toLowerCase()
+                    slug: slugify.default(name, {
+                        lower: true,
+                        locale: "fi"
+                    })
                     ,
                     videoId,
                     link,
@@ -143,6 +143,76 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
         }
     } else {
         res.status(401).json({
+            message: "Et voi tehdä tätä toimintoa."
+        })
+    }
+})
+
+router.put("/rickrolls/:id", async (req, res) => {
+    const id: string = req.params.id
+    const apiKey: string = req.query.api_key as string
+
+    const user = await prisma.user.findFirst({
+        where: {
+            api_key: apiKey
+        }
+    });
+
+    if (apiKey === user.api_key) {
+
+        try {
+            const {
+                name,
+                description,
+                videoId,
+                link
+            }: RickrollBody = req.body
+
+            if (name === "" || name == null) {
+                res.status(400).json({
+                    message: "Nimi vaaditaan."
+                })
+            } else if (description === "" || description == null) {
+                res.status(400).json({
+                    message: "Kuvaus vaaditaan."
+                })
+            } else if (videoId === "" || videoId == null) {
+                res.status(400).json({
+                    message: "Videon ID vaaditaan."
+                })
+            } else if (link === "" || link == null) {
+                res.status(400).json({
+                    message: "Linkki vaaditaan."
+                })
+            }
+
+            const rickroll = await prisma.rickroll.update({
+                where: { id },
+                data: { name, description, videoId, link },
+                select: {
+                    name: true,
+                    description: true,
+                    videoId: true,
+                    link: true
+                }
+            })
+
+            return res.status(200).json({
+                success: true,
+                statusCode: res.statusCode,
+                rickroll
+            })
+        } catch (error) {
+            return res.status(500).json({
+                success: false,
+                statusCode: res.statusCode,
+                message: error
+            })
+        }
+    } else {
+        res.status(401).json({
+            success: false,
+            statusCode: res.statusCode,
             message: "Et voi tehdä tätä toimintoa."
         })
     }

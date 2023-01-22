@@ -40,10 +40,18 @@ type Products = {
 
 type Rickroll = {
     id?: string
+    name?: string
+    description?: string
+    link?: string
+    videoId?: string
+    rickroll_cta_link?: string
+}
+
+type RickrollDataBody = {
     name: string
-    description: string
-    link: string
+    description?: string
     videoId: string
+    link: string
     rickroll_cta_link?: string
 }
 

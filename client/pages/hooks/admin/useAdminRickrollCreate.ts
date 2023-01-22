@@ -1,35 +1,26 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
 import { API_KEY, HOME_BASE_URL } from "../../../config"
+import { basicFetch } from "../fetchFunctions"
 
-export const useAdminRickrollCreate = (name: string, description: string, link: string) => {
-    const [loading, setLoading] = useState<boolean>(false)
-    const [error, setError] = useState<boolean>(false)
-
-    const onRickrollCreate = async () => {
-        try {
-            setError(false)
-            setLoading(true)
-
-            await axios.post(HOME_BASE_URL, {
+export const useAdminRickrollCreate = async <returnType>(
+    name: string,
+    description: string,
+    videoId: string,
+    link: string
+): Promise<returnType> => {
+    return await basicFetch<returnType>({
+        endpoint: HOME_BASE_URL,
+        options: {
+            method: "POST",
+            data: {
                 name,
                 description,
-                link
+                link,
+                videoId,
+                rickroll_cta_link: "https://images.jesunmaailma.ml/rickrolls-api-images/risitas.jpg"
             },
-                {
-                    params: {
-                        api_key: API_KEY
-                    }
-                })
-        } catch (e) {
-            setLoading(true)
+            params: {
+                api_key: API_KEY
+            }
         }
-        setLoading(false)
-    }
-
-    useEffect(() => {
-        onRickrollCreate()
-    }, [])
-
-    return { loading, error }
+    })
 }

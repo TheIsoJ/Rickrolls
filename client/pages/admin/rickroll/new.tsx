@@ -6,19 +6,6 @@ import InputBox from "../../../components/InputBox"
 const NewRickroll = () => {
   const router = useRouter()
 
-  /* if (loading) {
-    return (
-      <>
-        <Head>
-          <title>Ladataan...</title>
-        </Head>
-        <div className="bg-teal-900 flex items-center justify-center min-h-[75.1vh]">
-          <DotPulse speed={1} size={96} color="white" />
-        </div>
-      </>
-    )
-  } */
-
   return (
     <div className="bg-teal-800 text-white min-h-screen">
       <Head>
@@ -37,7 +24,7 @@ const NewRickroll = () => {
         </button>
       </div>
 
-      <InputBox isEditing={false} />
+      <InputBox />
     </div>
   )
 }
