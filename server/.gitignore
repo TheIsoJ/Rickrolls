@@ -1,5 +1,6 @@
 node_modules
 dist
+.env
 test-to-see-if-the-server-works-properly
 
 # Keep environment variables out of version control
