@@ -23,7 +23,7 @@ const basicFetch = async <returnType>({
     return data;
   };
 
-  export default {
+  export {
     makeRequest,
     basicFetch
   }
