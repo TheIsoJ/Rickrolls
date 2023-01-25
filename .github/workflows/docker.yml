@@ -26,10 +26,3 @@ jobs:
           context: ./server/
           push: true
           tags: ghcr.io/theisoj/rickrolls-backend
-
-      - name: Build and push frontend Docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: ./client/
-          push: true
-          tags: ghcr.io/theisoj/rickrolls-frontend
