@@ -11,9 +11,6 @@ services:
       - rickrolls_db
     env_file:
       - .env
-    environment:
-      DATABASE_URL: salasana
-      POSTGRES_DB: rickrolls
     ports:
       - "8080:5000"
     links:
