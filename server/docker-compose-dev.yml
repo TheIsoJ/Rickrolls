@@ -24,20 +24,8 @@ services:
     restart: unless-stopped
     ports:
       - "5433:5432"
-    depends_on:
-      - pgadmin
     volumes:
       - ./data:/data/db
     environment:
       - POSTGRES_PASSWORD=salasana
       - POSTGRES_DB=rickrolls
-
-  pgadmin:
-    container_name: pgadmin4
-    image: dpage/pgadmin4
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: juiceneblueyt@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: salasana
-    ports:
-      - "5051:80"

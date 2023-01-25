@@ -2,14 +2,14 @@ import { DotPulse } from "@uiball/loaders"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import Header from "../../../../components/Header"
-import { useAdminRickrollFetch } from "../../../hooks/admin/useAdminRickrollFetch"
+import useAdminRickrollUpdate from "../../../hooks/admin/useAdminRickrollUpdate"
 import InputBox from "../../../../components/InputBox"
 
 const NewRickroll = () => {
   const router = useRouter()
   const { id } = router.query
 
-  const { res, loading } = useAdminRickrollFetch(id as string)
+  const { res, loading } = useAdminRickrollUpdate(id as string)
 
   if (loading) {
     return (

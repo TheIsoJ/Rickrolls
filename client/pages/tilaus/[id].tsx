@@ -1,7 +1,6 @@
-import axios, { AxiosError } from "axios"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import { useProductFetch } from "../hooks/regular-user/useProductFetch"
+import useProductFetch from "../hooks/regular-user/useProductFetch"
 import { DotPulse } from "@uiball/loaders"
 import { CREATE_CHECKOUT_SESSION_BASE_URL } from "../../config"
 import Header from "../../components/Header"

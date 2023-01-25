@@ -3,7 +3,7 @@ import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import Header from "../components/Header"
-import { useAdminRickrollsFetch } from "./hooks/admin/useAdminRickrollsFetch"
+import useAdminRickrollsFetch from "./hooks/admin/useAdminRickrollsFetch"
 
 const Admin = () => {
   const router = useRouter()

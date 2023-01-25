@@ -1,8 +1,7 @@
-import { DotPulse } from "@uiball/loaders"
 import { useRouter } from "next/router"
 import { LegacyRef, useEffect, useRef, useState } from "react"
-import { useAdminRickrollCreate } from "../pages/hooks/admin/useAdminRickrollCreate"
-import { useAdminRickrollEdit } from "../pages/hooks/admin/useAdminRickrollEdit"
+import useAdminRickrollCreate from "../pages/hooks/admin/useAdminRickrollCreate"
+import useAdminRickrollEdit from "../pages/hooks/admin/useAdminRickrollEdit"
 
 type Props = {
   initialValue?: RickrollResponseData

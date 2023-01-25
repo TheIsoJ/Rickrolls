@@ -1,16 +1,17 @@
 import { API_VERSION } from "./apiVersion.js"
 
+
+type Props = {
+  port?: string
+  isConsoleLogging?: boolean
+}
+
 /**
  * This method prints about message when the Express app is up and running.
  * 
  * @param port
  * @returns void
  */
-
-type Props = {
-  port?: string
-  isConsoleLogging: boolean
-}
 
 export function printAbout({ port, isConsoleLogging }: Props) {
   if (isConsoleLogging) {

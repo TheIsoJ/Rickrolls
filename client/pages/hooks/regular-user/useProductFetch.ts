@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { API_KEY, PRODUCT_BASE_URL } from "../../../config";
 
-export const useProductFetch = (id: string) => {
+const useProductFetch = (id: string) => {
   const [res, setRes] = useState<ProductResponseData>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -27,3 +27,6 @@ export const useProductFetch = (id: string) => {
 
   return { res, loading, error };
 };
+
+
+export default useProductFetch

@@ -23,6 +23,6 @@ jobs:
       - name: Build and push backend Docker image
         uses: docker/build-push-action@v2
         with:
-          context: ./server/
+          context: ../../server/
           push: true
           tags: ghcr.io/theisoj/rickrolls-backend

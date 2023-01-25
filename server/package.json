@@ -10,8 +10,9 @@
     "seed": "prisma db seed",
     "start:migrate:dev": "prisma migrate dev --name init && npm run start:dev",
     "start:migrate:prod": "prisma migrate dev --name init && npm run start:prod",
-    "start:dev": "npm run build && npm run seed && nodemon dist/server.js",
-    "start:prod": "npm run build && node dist/server.js"
+    "start:dev": "npm run deleteDist && npm run build && npm run seed && nodemon dist/server.js",
+    "start:prod": "npm run deleteDist && npm run build && node dist/server.js",
+    "deleteDist": "node utils/deleteDistFolder.js"
   },
   "prisma": {
     "seed": "node prisma/seed.js"

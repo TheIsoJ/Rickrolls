@@ -2,7 +2,7 @@ import { DotPulse } from "@uiball/loaders"
 import Head from "next/head"
 import Link from "next/link"
 import Header from "../components/Header"
-import { useProductsFetch } from "./hooks/regular-user/useProductsFetch"
+import useProductsFetch from "./hooks/regular-user/useProductsFetch"
 
 const Plus = () => {
   // const router = useRouter()

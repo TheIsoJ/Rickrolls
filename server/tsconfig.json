@@ -7,6 +7,6 @@
     "sourceMap": true,
     "outDir": "dist"
   },
-  "include": ["**/*", "routes/**/*"],
+  "include": ["**/*", "routes/**/*", "utils/**/*"],
   "exclude": ["node_modules"]
 }
