@@ -1,8 +1,8 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { API_KEY, RICKROLL_BASE_URL } from "../../../config";
+import { useEffect, useState } from "react";
+import { API_KEY, RICKROLL_BASE_URL } from "../../config";
 
-const useRickrollFetch = (id: string) => {
+const useAdminRickrollUpdate = (id: string) => {
   const [res, setRes] = useState<RickrollResponseData>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -12,7 +12,9 @@ const useRickrollFetch = (id: string) => {
       setLoading(true);
       setError(false);
 
-      const rickroll = await axios.get<RickrollResponseData>(`${RICKROLL_BASE_URL}${id}?api_key=${API_KEY}`);
+      const rickroll = await axios.put<RickrollResponseData>(`${RICKROLL_BASE_URL}${id}?api_key=${API_KEY}`, {
+        id
+      });
 
       setRes(rickroll.data);
     } catch (error) {
@@ -28,4 +30,4 @@ const useRickrollFetch = (id: string) => {
   return { res, loading, error };
 };
 
-export default useRickrollFetch
+export default useAdminRickrollUpdate

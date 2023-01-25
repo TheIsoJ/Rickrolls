@@ -3,7 +3,7 @@ import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import Header from "../components/Header"
-import useAdminRickrollsFetch from "./hooks/admin/useAdminRickrollsFetch"
+import useAdminRickrollsFetch from "../hooks/admin/useAdminRickrollsFetch"
 
 const Admin = () => {
   const router = useRouter()
@@ -37,20 +37,20 @@ const Admin = () => {
         <h1 className="max-w-xl font-[Poppins] font-extrabold text-3xl pt-6">
           Ylläpito
         </h1>
-          <button
-            onClick={() => router.push("/admin/rickroll/new")}
-            className="flex items-center uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[0.75rem] transition-all duration-500 ease-in-out hover:bg-teal-700"
-            type="button"
-          >
-            Lisää uusi
-          </button>
-          <button
-            onClick={() => router.replace("/")}
-            className="flex items-center uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[0.75rem] transition-all duration-500 ease-in-out hover:bg-teal-700"
-            type="button"
-          >
-            Takaisin
-          </button>
+        <button
+          onClick={() => router.push("/admin/rickroll/new")}
+          className="flex items-center uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[0.75rem] transition-all duration-500 ease-in-out hover:bg-teal-700"
+          type="button"
+        >
+          Lisää uusi
+        </button>
+        <button
+          onClick={() => router.replace("/")}
+          className="flex items-center uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[0.75rem] transition-all duration-500 ease-in-out hover:bg-teal-700"
+          type="button"
+        >
+          Takaisin
+        </button>
       </div>
       <h1 className="max-w-xl font-[Poppins] font-extrabold text-3xl ml-6 pt-6">
         Rickrollit
@@ -67,9 +67,7 @@ const Admin = () => {
               <div>
                 <div className="flex items-center fade-semifast justify-start space-x-2 bg-white text-black p-5">
                   <div>
-                    <h1 className="text-xl font-[Poppins] font-bold">
-                      {name}
-                    </h1>
+                    <h1 className="text-xl font-[Poppins] font-bold">{name}</h1>
                     <p className="mt-2 text-sm whitespace-pre-wrap font-[Poppins] fade-semifast">
                       {description}
                     </p>

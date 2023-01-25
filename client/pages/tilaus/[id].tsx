@@ -1,6 +1,6 @@
 import Head from "next/head"
 import { useRouter } from "next/router"
-import useProductFetch from "../hooks/regular-user/useProductFetch"
+import useProductFetch from "../../hooks/regular-user/useProductFetch"
 import { DotPulse } from "@uiball/loaders"
 import { CREATE_CHECKOUT_SESSION_BASE_URL } from "../../config"
 import Header from "../../components/Header"
@@ -64,8 +64,7 @@ const Product = () => {
                   style: "currency",
                   currency: "eur",
                 }).format((res?.product?.price as number) / 100)}
-                /
-                {res?.product?.interval === "month" && "kk"}
+                /{res?.product?.interval === "month" && "kk"}
               </p>
               <h2 className="max-w-xl whitespace-pre-wrap font-[Poppins] font-normal">
                 {res?.product?.description}

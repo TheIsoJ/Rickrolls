@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { API_KEY, HOME_BASE_URL } from "../../../config"
+import { API_KEY, HOME_BASE_URL } from "../../config"
 
 const useAdminRickrollDelete = (name: string, description: string, link: string) => {
     const [loading, setLoading] = useState<boolean>(false)

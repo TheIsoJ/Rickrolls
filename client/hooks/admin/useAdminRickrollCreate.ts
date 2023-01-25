@@ -1,4 +1,4 @@
-import { API_KEY, HOME_BASE_URL } from "../../../config"
+import { API_KEY, HOME_BASE_URL } from "../../config"
 import { basicFetch } from "../fetchFunctions"
 
 const useAdminRickrollCreate = async <returnType>(

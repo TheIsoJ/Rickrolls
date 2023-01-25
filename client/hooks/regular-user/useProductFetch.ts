@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { API_KEY, PRODUCT_BASE_URL } from "../../../config";
+import { API_KEY, PRODUCT_BASE_URL } from "../../config";
 
 const useProductFetch = (id: string) => {
   const [res, setRes] = useState<ProductResponseData>();

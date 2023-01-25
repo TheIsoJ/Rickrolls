@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
 import { LegacyRef, useEffect, useRef, useState } from "react"
-import useAdminRickrollCreate from "../pages/hooks/admin/useAdminRickrollCreate"
-import useAdminRickrollEdit from "../pages/hooks/admin/useAdminRickrollEdit"
+import useAdminRickrollCreate from "../hooks/admin/useAdminRickrollCreate"
+import useAdminRickrollEdit from "../hooks/admin/useAdminRickrollEdit"
 
 type Props = {
   initialValue?: RickrollResponseData
@@ -44,11 +44,10 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
           nameRef.current!.value,
           descriptionRef.current!.value,
           videoIdRef.current!.value,
-          linkRef.current!.value,
-        ).then(res => {
+          linkRef.current!.value
+        ).then((res) => {
           if (res) return router.replace("/admin")
         })
-
       } catch (error) {
         console.log(error)
       }
@@ -67,8 +66,8 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
           nameRef.current!.value,
           descriptionRef.current!.value,
           videoIdRef.current!.value,
-          linkRef.current!.value,
-        ).then(res => {
+          linkRef.current!.value
+        ).then((res) => {
           if (res) return router.replace("/admin")
         })
       } catch (error) {

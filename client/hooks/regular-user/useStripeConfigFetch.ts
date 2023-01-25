@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { GET_STRIPE_CONFIG_BASE_URL } from "../../../config";
+import { GET_STRIPE_CONFIG_BASE_URL } from "../../config";
 
 const useStripeConfigFetch = () => {
     const [res, setRes] = useState<StripeConfigProps>();

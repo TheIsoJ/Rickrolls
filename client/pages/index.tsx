@@ -1,7 +1,7 @@
 import type { NextPage } from "next"
 import Head from "next/head"
 import Link from "next/link"
-import useHomeFetch from "./hooks/regular-user/useHomeFetch"
+import useHomeFetch from "../hooks/regular-user/useHomeFetch"
 import { DotPulse } from "@uiball/loaders"
 import Header from "../components/Header"
 

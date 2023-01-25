@@ -1,4 +1,4 @@
-import { API_KEY, RICKROLL_BASE_URL } from "../../../config";
+import { API_KEY, RICKROLL_BASE_URL } from "../../config";
 import { basicFetch } from "../fetchFunctions";
 
 const useAdminRickrollEdit = async <returnType>(

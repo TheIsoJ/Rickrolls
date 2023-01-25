@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { HOME_BASE_URL } from "../../../config";
+import { HOME_BASE_URL } from "../../config";
 
-const useAdminRickrollsFetch = () => {
+const useHomeFetch = () => {
   const [res, setRes] = useState<RickrollsResponseData>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
-  const getAdminRickrolls = async () => {
+  const fetchRickrolls = async () => {
     try {
       setError(false);
       setLoading(true);
@@ -23,10 +23,10 @@ const useAdminRickrollsFetch = () => {
 
   // Initial
   useEffect(() => {
-    getAdminRickrolls();
+    fetchRickrolls();
   }, []);
 
   return { res, loading, error };
 };
 
-export default useAdminRickrollsFetch
+export default useHomeFetch
