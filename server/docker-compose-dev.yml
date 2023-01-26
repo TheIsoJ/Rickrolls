@@ -2,9 +2,9 @@ version: "3.9"
 
 services:
   rickrolls-backend:
+    hostname: rickrolls-backend
     build:
       context: .
-      network: host
       dockerfile: ./Dockerfile.dev
     restart: unless-stopped
     depends_on:

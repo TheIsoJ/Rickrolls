@@ -10,6 +10,8 @@ type Props = {
 const Header = ({ sticky }: Props) => {
   const { user, error, isLoading } = useUser()
 
+  if (error) console.log(error.message)
+
   return (
     <header className={`${sticky && "sticky top-0 z-10"} bg-teal-700 flex justify-between p-5`}>
       <div className="flex items-center space-x-5">

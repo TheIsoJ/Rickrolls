@@ -2,9 +2,9 @@ version: "3.9"
 
 services:
   rickrolls-backend:
+    hostname: rickrolls-backend
     build:
       context: .
-      network: host
     image: ghcr.io/theisoj/rickrolls-backend
     restart: unless-stopped
     depends_on:
@@ -24,20 +24,8 @@ services:
     restart: unless-stopped
     ports:
       - "5432:5432"
-    depends_on:
-      - pgadmin
     volumes:
       - ./data:/data/db
     environment:
       - POSTGRES_PASSWORD=salasana
       - POSTGRES_DB=rickrolls
-
-  pgadmin:
-    container_name: pgadmin4
-    image: dpage/pgadmin4
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: juiceneblueyt@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: salasana
-    ports:
-      - "5050:80"

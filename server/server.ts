@@ -29,7 +29,9 @@ import mobileAppProductsRoute from "./routes/mobile-app/products.js"
 import mobileAppProductRoute from "./routes/mobile-app/product.js"
 
 app.use(express.urlencoded({ extended: true }));
-app.use(cors())
+app.use(cors({
+  origin: "https://theisoj-glorious-system-95jwwrqr59rf9rqr-3000.preview.app.github.dev/"
+}))
 app.use(express.json());
 
 // Verkkosivua varten
@@ -49,7 +51,7 @@ app.use(`/api/${API_VERSION}/mobile-app`, mobileAppProductRoute)
 app.use(`/api/${API_VERSION}/mobile-app`, mobileAppPaymentSheetRoute)
 app.use(`/api/${API_VERSION}/mobile-app`, mobileAppGetStripeConfigRoute)
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.json({
     message: printAbout({ port: port, isConsoleLogging: false })
   });
