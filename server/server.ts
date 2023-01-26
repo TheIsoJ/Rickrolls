@@ -30,7 +30,7 @@ import mobileAppProductRoute from "./routes/mobile-app/product.js"
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: "https://theisoj-glorious-system-95jwwrqr59rf9rqr-3000.preview.app.github.dev/"
+  origin: "*"
 }))
 app.use(express.json());
 

@@ -7,6 +7,9 @@ RUN apk add jq curl bash
 COPY package.json .
 COPY package-lock.json .
 
+RUN npm i --save-dev prisma@latest
+RUN npm i @prisma/client@latest
+
 RUN npm ci
 
 ENV TZ=Europe/Helsinki
