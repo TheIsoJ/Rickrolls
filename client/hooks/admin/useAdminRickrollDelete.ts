@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { API_KEY, HOME_BASE_URL } from "../../config"
 
-const useAdminRickrollDelete = (name: string, description: string, link: string) => {
+export const useAdminRickrollDelete = (name: string, description: string, link: string) => {
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<boolean>(false)
 
@@ -33,5 +33,3 @@ const useAdminRickrollDelete = (name: string, description: string, link: string)
 
     return { loading, error }
 }
-
-export default useAdminRickrollDelete

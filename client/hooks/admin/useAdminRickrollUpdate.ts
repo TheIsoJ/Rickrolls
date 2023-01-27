@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { API_KEY, RICKROLL_BASE_URL } from "../../config";
 
-const useAdminRickrollUpdate = (id: string) => {
+export const useAdminRickrollUpdate = (id: string) => {
   const [res, setRes] = useState<RickrollResponseData>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -29,5 +29,3 @@ const useAdminRickrollUpdate = (id: string) => {
 
   return { res, loading, error };
 };
-
-export default useAdminRickrollUpdate

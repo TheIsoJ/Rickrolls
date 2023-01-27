@@ -2,7 +2,7 @@ import Head from "next/head"
 import { useRouter } from "next/router"
 import ReactPlayer from "react-player"
 import { DotPulse } from "@uiball/loaders"
-import useRickrollFetch from "../../hooks/regular-user/useRickrollFetch"
+import {useRickrollFetch} from "../../hooks/regular-user/useRickrollFetch"
 import Header from "../../components/Header"
 
 const Rickroll = () => {

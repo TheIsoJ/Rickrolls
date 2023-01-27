@@ -15,15 +15,10 @@ const makeRequest = <T>(endpoint: string, options: AxiosRequestConfig) => {
         .catch(({ error }: RickrollResponseData) => Promise.reject(error.message))
 }
 
-const basicFetch = async <returnType>({
+export const basicFetch = async <returnType>({
     endpoint,
     options = {}
 }: Props): Promise<returnType> => {
     const data = await makeRequest<returnType>(endpoint, options)
     return data;
-  };
-
-  export {
-    makeRequest,
-    basicFetch
-  }
+};

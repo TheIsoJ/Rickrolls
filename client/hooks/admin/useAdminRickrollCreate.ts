@@ -1,7 +1,7 @@
 import { API_KEY, HOME_BASE_URL } from "../../config"
 import { basicFetch } from "../fetchFunctions"
 
-const useAdminRickrollCreate = async <returnType>(
+export const useAdminRickrollCreate = async <returnType>(
     name: string,
     description: string,
     videoId: string,
@@ -24,5 +24,3 @@ const useAdminRickrollCreate = async <returnType>(
         }
     })
 }
-
-export default useAdminRickrollCreate

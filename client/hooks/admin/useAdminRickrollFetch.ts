@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { API_KEY, RICKROLL_BASE_URL } from "../../config";
 
-const useAdminRickrollFetch = (id: string) => {
+export const useAdminRickrollFetch = (id: string) => {
   const [res, setRes] = useState<RickrollResponseData>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -31,5 +31,3 @@ const useAdminRickrollFetch = (id: string) => {
 
   return { res, loading, error };
 };
-
-export default useAdminRickrollFetch

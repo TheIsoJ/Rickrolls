@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { API_KEY, RICKROLL_BASE_URL } from "../../config";
 
-const useRickrollFetch = (id: string) => {
+export const useRickrollFetch = (id: string) => {
   const [res, setRes] = useState<RickrollResponseData>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -27,5 +27,3 @@ const useRickrollFetch = (id: string) => {
 
   return { res, loading, error };
 };
-
-export default useRickrollFetch

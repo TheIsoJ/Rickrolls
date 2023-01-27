@@ -1,7 +1,7 @@
 import { API_KEY, RICKROLL_BASE_URL } from "../../config";
 import { basicFetch } from "../fetchFunctions";
 
-const useAdminRickrollEdit = async <returnType>(
+export const useAdminRickrollEdit = async <returnType>(
   id: string,
   name: string,
   description: string,
@@ -24,5 +24,3 @@ const useAdminRickrollEdit = async <returnType>(
     }
   })
 }
-
-export default useAdminRickrollEdit

@@ -2,7 +2,7 @@ import { DotPulse } from "@uiball/loaders"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import Header from "../../../../components/Header"
-import useAdminRickrollUpdate from "../../../../hooks/admin/useAdminRickrollUpdate"
+import { useAdminRickrollUpdate } from "../../../../hooks/admin/useAdminRickrollUpdate"
 import InputBox from "../../../../components/InputBox"
 
 const NewRickroll = () => {

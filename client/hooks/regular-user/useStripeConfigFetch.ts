@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { GET_STRIPE_CONFIG_BASE_URL } from "../../config";
 
-const useStripeConfigFetch = () => {
+export const useStripeConfigFetch = () => {
     const [res, setRes] = useState<StripeConfigProps>();
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<boolean>(false);
@@ -27,5 +27,3 @@ const useStripeConfigFetch = () => {
 
     return { res, loading, error };
 };
-
-export default useStripeConfigFetch
