@@ -1,14 +1,24 @@
 import Head from "next/head"
 import Header from "../../../../components/Header"
 import { useRouter } from "next/router"
+import { useAdminRickrollDelete } from "../../../../hooks/admin/useAdminRickrollDelete"
 
 const DeleteRickroll = () => {
     const router = useRouter()
     const { id } = router.query
 
-    /* function onRickrollDelete(id: string) {
+    function onRickrollDelete(id: string) {
+      try {
+        useAdminRickrollDelete<void>(
+          id
+        ).then(() => {
+          return router.replace("/admin")
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
-    } */
   return (
     <>
       <Head>
@@ -31,7 +41,7 @@ const DeleteRickroll = () => {
           Ei
         </button>
         <button
-        //   onClick={onRickrollDelete}
+          onClick={() => onRickrollDelete(id as string)}
           className="flex items-center uppercase justify-center bg-teal-600 text-white hover:shadow-md hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[0.75rem] transition-all duration-500 ease-in-out hover:bg-red-600"
           type="button"
         >

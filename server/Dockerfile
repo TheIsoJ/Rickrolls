@@ -18,4 +18,4 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 COPY . .
 
 EXPOSE 5000
-CMD [ "npm", "run", "start:migrate:prod" ]
+CMD [ "npm", "run", "start:migrate:dev:docker" ]

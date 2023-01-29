@@ -55,9 +55,9 @@ const Admin = () => {
       <h1 className="max-w-xl font-[Poppins] font-extrabold text-3xl ml-6 pt-6">
         Rickrollit
       </h1>
-      {res?.rickrolls.map(({ id, name, description, rickroll_cta_link }) => (
+      {res?.rickrolls.map(({ id, slug, name, description, rickroll_cta_link }) => (
         <>
-          <div className="flex items-center justify-center p-6">
+          <div key={id} className="flex items-center justify-center p-6">
             <div className="overflow-hidden rounded-xl border shadow-md bg-gray-400 fade">
               <img
                 className="w-full h-full object-contain fade-semifast"

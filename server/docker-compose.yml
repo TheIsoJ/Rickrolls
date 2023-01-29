@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  rickrolls-backend:
+    hostname: rickrolls-api.jesunmaailma.tk
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "80:5000"
+    volumes:
+      - ./:/usr/src/app
+    links:
+      - rickrolls_db
+    stdin_open: true
+    tty: true
+
+  rickrolls_db:
+    container_name: rickrolls_db
+    image: mysql:latest
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=salasana
+      - MYSQL_DATABASE=rickrolls
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin:latest
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=rickrolls_db
+      - MYSQL_ROOT_PASSWORD=salasana

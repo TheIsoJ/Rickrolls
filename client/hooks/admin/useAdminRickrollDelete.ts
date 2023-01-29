@@ -1,35 +1,16 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { API_KEY, HOME_BASE_URL } from "../../config"
+import { API_KEY, RICKROLL_BASE_URL } from "../../config";
+import { basicFetch } from "../fetchFunctions";
 
-export const useAdminRickrollDelete = (name: string, description: string, link: string) => {
-    const [loading, setLoading] = useState<boolean>(false)
-    const [error, setError] = useState<boolean>(false)
-
-    const deleteRickroll = async () => {
-        try {
-            setError(false)
-            setLoading(true)
-
-            await axios.post(HOME_BASE_URL, {
-                name,
-                description,
-                link
-            },
-                {
-                    params: {
-                        api_key: API_KEY
-                    }
-                })
-        } catch (e) {
-            setLoading(true)
-        }
-        setLoading(false)
+export const useAdminRickrollDelete = async <returnType>(
+  id: string
+): Promise<returnType> => {
+  return await basicFetch<returnType>({
+    endpoint: `${RICKROLL_BASE_URL}${id}`,
+    options: {
+      method: "DELETE",
+      params: {
+        api_key: API_KEY
+      }
     }
-
-    useEffect(() => {
-        deleteRickroll()
-    }, [])
-
-    return { loading, error }
+  })
 }

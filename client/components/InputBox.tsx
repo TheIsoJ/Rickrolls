@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
 import { LegacyRef, useEffect, useRef, useState } from "react"
-import useAdminRickrollCreate from "../hooks/admin/useAdminRickrollCreate"
-import useAdminRickrollEdit from "../hooks/admin/useAdminRickrollEdit"
+import { useAdminRickrollCreate } from "../hooks/admin/useAdminRickrollCreate"
+import { useAdminRickrollEdit } from "../hooks/admin/useAdminRickrollEdit"
 
 type Props = {
   initialValue?: RickrollResponseData
@@ -9,10 +9,10 @@ type Props = {
 }
 
 const InputBox = ({ initialValue, isEditing }: Props) => {
-  const nameRef = useRef<HTMLInputElement>()
-  const descriptionRef = useRef<HTMLTextAreaElement>()
-  const linkRef = useRef<HTMLInputElement>()
-  const videoIdRef = useRef<HTMLInputElement>()
+  const nameRef = useRef<HTMLInputElement>(null)
+  const descriptionRef = useRef<HTMLTextAreaElement>(null)
+  const linkRef = useRef<HTMLInputElement>(null)
+  const videoIdRef = useRef<HTMLInputElement>(null)
 
   const router = useRouter()
 
@@ -35,23 +35,21 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
     }
   }
 
-  const onRickrollCreate = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onRickrollCreate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    useEffect(() => {
-      try {
-        useAdminRickrollCreate<Rickroll>(
-          nameRef.current!.value,
-          descriptionRef.current!.value,
-          videoIdRef.current!.value,
-          linkRef.current!.value
-        ).then((res) => {
-          if (res) return router.replace("/admin")
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }, [])
+    try {
+      useAdminRickrollCreate<void>(
+        nameRef.current!.value,
+        descriptionRef.current!.value,
+        videoIdRef.current!.value,
+        linkRef.current!.value
+      ).then(() => {
+        return router.replace("/admin")
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const onRickrollEdit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -59,21 +57,19 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
 
     const id: string = initialValue?.rickroll.id as string
 
-    useEffect(() => {
-      try {
-        useAdminRickrollEdit<Rickroll>(
-          id,
-          nameRef.current!.value,
-          descriptionRef.current!.value,
-          videoIdRef.current!.value,
-          linkRef.current!.value
-        ).then((res) => {
-          if (res) return router.replace("/admin")
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }, [])
+    try {
+      useAdminRickrollEdit<void>(
+        id,
+        nameRef.current!.value,
+        descriptionRef.current!.value,
+        videoIdRef.current!.value,
+        linkRef.current!.value
+      ).then(() => {
+        return router.replace("/admin")
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -88,7 +84,7 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
               </h1>
 
               <input
-                ref={nameRef as LegacyRef<HTMLInputElement>}
+                ref={nameRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
                 type="text"
                 placeholder="Rickrollin nimi"
@@ -97,7 +93,7 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
                 Rickrollin kuvaus
               </h1>
               <textarea
-                ref={descriptionRef as LegacyRef<HTMLTextAreaElement>}
+                ref={descriptionRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2 resize-none"
                 placeholder="Rickrollin kuvaus"
               />
@@ -105,7 +101,7 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
                 Rickrollin videon tunniste
               </h1>
               <input
-                ref={videoIdRef as LegacyRef<HTMLInputElement>}
+                ref={videoIdRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
                 type="text"
                 placeholder="Rickrollin videon tunniste"
@@ -114,7 +110,7 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
                 Rickrollin linkki
               </h1>
               <input
-                ref={linkRef as LegacyRef<HTMLInputElement>}
+                ref={linkRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
                 type="text"
                 placeholder="Rickrollin linkki"
@@ -139,7 +135,7 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
               </h1>
 
               <input
-                ref={nameRef as LegacyRef<HTMLInputElement>}
+                ref={nameRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
                 type="text"
                 placeholder="Rickrollin nimi"
@@ -148,7 +144,7 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
                 Rickrollin kuvaus
               </h1>
               <textarea
-                ref={descriptionRef as LegacyRef<HTMLTextAreaElement>}
+                ref={descriptionRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2 resize-none"
                 placeholder="Rickrollin kuvaus"
               />
@@ -156,7 +152,7 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
                 Rickrollin videon tunniste
               </h1>
               <input
-                ref={videoIdRef as LegacyRef<HTMLInputElement>}
+                ref={videoIdRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
                 type="text"
                 placeholder="Rickrollin linkki"
@@ -165,7 +161,7 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
                 Rickrollin linkki
               </h1>
               <input
-                ref={linkRef as LegacyRef<HTMLInputElement>}
+                ref={linkRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
                 type="text"
                 placeholder="Rickrollin linkki"

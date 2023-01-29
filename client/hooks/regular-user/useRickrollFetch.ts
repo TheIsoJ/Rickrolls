@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { API_KEY, RICKROLL_BASE_URL } from "../../config";
 
-export const useRickrollFetch = (id: string) => {
+export const useRickrollFetch = (slug: string) => {
   const [res, setRes] = useState<RickrollResponseData>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -12,7 +12,7 @@ export const useRickrollFetch = (id: string) => {
       setLoading(true);
       setError(false);
 
-      const rickroll = await axios.get<RickrollResponseData>(`${RICKROLL_BASE_URL}${id}?api_key=${API_KEY}`);
+      const rickroll = await axios.get<RickrollResponseData>(`${RICKROLL_BASE_URL}${slug}?api_key=${API_KEY}`);
 
       setRes(rickroll.data);
     } catch (error) {
@@ -23,7 +23,7 @@ export const useRickrollFetch = (id: string) => {
 
   useEffect(() => {
     fetchRickroll();
-  }, [id]);
+  }, [slug]);
 
   return { res, loading, error };
 };

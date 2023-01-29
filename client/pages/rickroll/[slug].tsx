@@ -7,10 +7,10 @@ import Header from "../../components/Header"
 
 const Rickroll = () => {
   const router = useRouter()
-  const { id } = router.query
+  const { slug } = router.query
 
-  if (!id) return
-  const { res, loading } = useRickrollFetch(id as string)
+  if (!slug) return
+  const { res, loading } = useRickrollFetch(slug as string)
 
   if (loading) {
     return (

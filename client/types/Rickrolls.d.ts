@@ -43,6 +43,7 @@ type Rickroll = {
     name?: string
     description?: string
     link?: string
+    slug?: string
     videoId?: string
     rickroll_cta_link?: string
 }

@@ -6,14 +6,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc -p ./",
+    "build": "npm run deleteDist && tsc -p ./",
     "seed": "prisma db seed",
-    "start:migrate:dev": "prisma migrate dev --name init && npm run start:dev:docker",
-    "start:migrate:prod": "prisma migrate dev --name init && npm run start:prod:docker",
-    "start:dev:docker": "npm run deleteDist && npm run build && npm run seed && nodemon dist/server.js",
-    "start:prod:docker": "npm run deleteDist && npm run build && node dist/server.js",
-    "start:dev": "npm run deleteDist && npm run build && nodemon dist/server.js",
-    "deleteDist": "node utils/deleteDistFolder.js"
+    "deleteDist": "node utils/deleteDistFolder.js",
+    "start:migrate:dev": "prisma migrate dev --name init && npm run start:dev",
+    "start:migrate:dev:docker": "prisma migrate dev --name init && npm run start:dev:docker",
+    "start:dev:docker": "npm run build && npm run seed && nodemon dist/server.js",
+    "start:dev": "npm run build && nodemon dist/server.js",
+    "start:pm2-instance": "npm run build"
   },
   "prisma": {
     "seed": "node prisma/seed.js"

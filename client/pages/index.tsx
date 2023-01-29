@@ -61,11 +61,11 @@ const Home: NextPage = () => {
       <h1 className="max-w-xl font-[Poppins] font-extrabold text-3xl my-6 m-4">
         Rickrollit
       </h1>
-      {res?.rickrolls.map(({ id, name, description, rickroll_cta_link }) => (
+      {res?.rickrolls.map(({ id, slug, name, description, rickroll_cta_link }) => (
         <>
           <div className="grid grid-cols-1 gap-3 p-4 sm:grid-cols-2 md:gap-6 md:p-6 lg:grid-cols-3">
             <div className="hover:scale-95 hover:shadow-xl hover:shadow-gray-400 transition-all duration-500 ease-in-out cursor-pointer overflow-hidden rounded-xl border shadow-md bg-gray-400 fade">
-              <Link key={id} href={`/rickroll/${id}`}>
+              <Link key={id} href={`/rickroll/${slug}`}>
                 <img
                   className="w-full object-contain fade-semifast"
                   src={rickroll_cta_link}

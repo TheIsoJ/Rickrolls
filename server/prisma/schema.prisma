@@ -3,28 +3,28 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model Rickroll {
   id                String  @id @default(uuid())
-  name              String  @db.Text
-  description       String? @db.Text
-  link              String  @db.Text
-  videoId           String  @db.Text
-  rickroll_cta_link String  @db.Text
-  slug              String  @db.Text
+  name              String  @db.LongText
+  description       String? @db.LongText
+  link              String  @db.LongText
+  videoId           String  @db.LongText
+  rickroll_cta_link String  @db.LongText
+  slug              String  @db.LongText
 }
 
 model User {
   id                     String  @id @default(uuid())
-  name                   String  @db.Text
-  email                  String? @db.Text
-  api_key                String  @db.Text
-  username               String  @db.Text
-  profile_picture        String? @db.Text
-  password               String? @db.Text
-  stripe_secret_key      String? @db.Text
-  stripe_publishable_key String? @db.Text
+  name                   String  @db.LongText
+  email                  String? @db.LongText
+  api_key                String  @db.LongText
+  username               String  @db.LongText
+  profile_picture        String? @db.LongText
+  password               String? @db.LongText
+  stripe_secret_key      String? @db.LongText
+  stripe_publishable_key String? @db.LongText
 }

@@ -2,6 +2,7 @@ const API_URL: string = `http://localhost:5000/api/v1/`;
 const API_KEY: string = process.env.NEXT_PUBLIC_API_KEY as string;
 
 const HOME_BASE_URL: string = `${API_URL}rickrolls?api_key=${API_KEY}`;
+const NEW_RICKROLL_BASE_URL: string = `${API_URL}rickrolls`;
 const RICKROLL_BASE_URL: string = `${API_URL}rickrolls/`;
 const PRODUCTS_BASE_URL: string = `${API_URL}products?api_key=${API_KEY}`
 const PRODUCT_BASE_URL: string = `${API_URL}products/`
@@ -13,6 +14,7 @@ const CUSTOMER_BASE_URL: string = `${API_URL}customers/`
 
 export {
   HOME_BASE_URL,
+  NEW_RICKROLL_BASE_URL,
   RICKROLL_BASE_URL,
   PRODUCTS_BASE_URL,
   PRODUCT_BASE_URL,

@@ -1,6 +1,5 @@
 node_modules
 dist
-.env
 data
 test-to-see-if-the-server-works-properly
 

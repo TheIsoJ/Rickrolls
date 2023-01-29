@@ -26,6 +26,7 @@ router.get("/rickrolls", async (req, res) => {
         const rickrolls = await prisma.rickroll.findMany({
             select: {
                 id: true,
+                slug: true,
                 name: true,
                 description: true,
                 rickroll_cta_link: true
@@ -45,8 +46,8 @@ router.get("/rickrolls", async (req, res) => {
     }
 })
 
-router.get("/rickrolls/:id", async (req, res) => {
-    const id: string = req.params.id
+router.get("/rickrolls/:slug", async (req, res) => {
+    const slug: string = req.params.slug
     const apiKey: string = req.query.api_key as string
 
     const user = await prisma.user.findFirst({
@@ -58,12 +59,14 @@ router.get("/rickrolls/:id", async (req, res) => {
     if (apiKey === user.api_key) {
         const rickroll = await prisma.rickroll.findFirst({
             where: {
-                id
+                slug
             },
             select: {
+                id: true,
                 name: true,
                 description: true,
                 link: true,
+                videoId: true,
                 rickroll_cta_link: true
             }
         })
@@ -120,7 +123,8 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                     description,
                     slug: slugify.default(name, {
                         lower: true,
-                        locale: "fi"
+                        locale: "fi",
+                        trim: true
                     })
                     ,
                     videoId,
@@ -188,7 +192,17 @@ router.put("/rickrolls/:id", async (req, res) => {
 
             const rickroll = await prisma.rickroll.update({
                 where: { id },
-                data: { name, description, videoId, link },
+                data: {
+                    name,
+                    slug: slugify.default(name, {
+                        locale: "fi",
+                        trim: true,
+                        lower: true,
+                    }),
+                    description,
+                    videoId,
+                    link
+                },
                 select: {
                     name: true,
                     description: true,
@@ -234,6 +248,9 @@ router.delete("/rickrolls/:id", async (req, res) => {
             await prisma.rickroll.delete({
                 where: {
                     id
+                },
+                select: {
+                    id: true
                 }
             })
 
