@@ -38,7 +38,7 @@ async function main() {
         slug: slugify.default(slug1, {
           locale: "fi",
           lower: true,
-          trim: true
+          trim: true,
         }),
         link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
         videoId: "dQw4w9WgXcQ",

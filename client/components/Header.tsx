@@ -22,6 +22,12 @@ const Header = ({ sticky }: Props) => {
             alt=""
           />
         </Link>
+        <Link
+          href="/admin"
+          className="bg-white rounded-full font-[Poppins] font-bold w-32 px-4 py-4 transition-all duration-200 ease-in-out hover:opacity-60"
+        >
+          Hallinta
+        </Link>
       </div>
 
       <div className="flex items-center justify-center">
@@ -41,13 +47,14 @@ const Header = ({ sticky }: Props) => {
             </div>
           </Link>
       ) : (
+        
         <Link className="flex items-center space-x-3" href="/tili">
           <div className="border rounded-lg transition-all duration-200 ease-in-out hover:bg-white px-6 py-4 flex items-center space-x-3 text-white hover:text-black cursor-pointer font-[Poppins]">
             {isLoading ? (
               <DotPulse speed={0.8} size={60} color="white" />
-            ) : (
-              <p className="hidden sm:inline text-sm font-normal">Kirjaudu sisään</p>
-            )}
+              ) : (
+                <p className="hidden sm:inline text-sm font-normal">Kirjaudu sisään</p>
+                )}
           </div>
         </Link>
       )}
