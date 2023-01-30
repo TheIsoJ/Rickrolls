@@ -32,8 +32,8 @@ router.post("/luo-uusi-sessio", async (req, res) => {
                 ],
                 payment_method_types: ["card"],
                 mode: "subscription",
-                success_url: "http://localhost:3000/payment/success?session_id={CHECKOUT_SESSION_ID}",
-                cancel_url: "http://localhost:3000/payment/cancel"
+                success_url: `${process.env.CLIENT_URL}/payment/success?session_id={CHECKOUT_SESSION_ID}`,
+                cancel_url: `${process.env.CLIENT_URL}/payment/cancel`
             })
             res.redirect(303, session.url)
         } catch (err) {

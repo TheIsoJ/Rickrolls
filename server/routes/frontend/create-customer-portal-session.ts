@@ -27,7 +27,7 @@ router.post("/luo-uusi-itsepalvelu-sessio", async (req: Request, res: Response) 
             const checkoutSession = await stripe.checkout.sessions.retrieve(sessionId as any)
             const billingPortalSession = await stripe.billingPortal.sessions.create({
                 customer: checkoutSession.customer as string,
-                return_url: "http://localhost:3000/tili"
+                return_url: `${process.env.CLIENT_URL}/tili`
             })
 
             res.redirect(billingPortalSession.url)

@@ -11,8 +11,6 @@ services:
       - .env
     ports:
       - "80:5000"
-    volumes:
-      - ./:/usr/src/app
     links:
       - rickrolls_db
     stdin_open: true
@@ -39,3 +37,7 @@ services:
     environment:
       - PMA_HOST=rickrolls_db
       - MYSQL_ROOT_PASSWORD=salasana
+
+networks:
+  default:
+    driver: bridge

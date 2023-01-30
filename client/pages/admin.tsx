@@ -75,14 +75,14 @@ const Admin = () => {
                 </div>
                 <div className="flex items-center fade-semifast justify-center space-x-2 bg-white text-black p-5">
                   <button
-                    onClick={() => router.push(`/admin/rickroll/edit/${id}`)}
+                    onClick={() => router.push(`/admin/rickroll/${id}/edit`)}
                     className="flex items-center uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[0.75rem] transition-all duration-500 ease-in-out hover:bg-teal-600"
                     type="button"
                   >
                     Päivitä
                   </button>
                   <button
-                    onClick={() => router.push(`/admin/rickroll/delete/${id}`)}
+                    onClick={() => router.push(`/admin/rickroll/${id}/delete`)}
                     className="flex items-center uppercase justify-center shadow-sm shadow-gray-500 bg-white text-black hover:shadow-none rounded-full font-[Poppins] font-bold px-12 py-[0.75rem] transition-all duration-500 ease-in-out hover:bg-red-600 hover:text-white"
                     type="button"
                   >

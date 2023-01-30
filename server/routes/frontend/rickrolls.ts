@@ -46,8 +46,8 @@ router.get("/rickrolls", async (req, res) => {
     }
 })
 
-router.get("/rickrolls/:slug", async (req, res) => {
-    const slug: string = req.params.slug
+router.get("/rickrolls/:id", async (req, res) => {
+    const id: string = req.params.id
     const apiKey: string = req.query.api_key as string
 
     const user = await prisma.user.findFirst({
@@ -59,7 +59,7 @@ router.get("/rickrolls/:slug", async (req, res) => {
     if (apiKey === user.api_key) {
         const rickroll = await prisma.rickroll.findFirst({
             where: {
-                slug
+                id
             },
             select: {
                 id: true,

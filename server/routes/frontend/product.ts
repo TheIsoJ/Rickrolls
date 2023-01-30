@@ -44,7 +44,7 @@ router.get("/products/:id", async (req, res) => {
         priceId: priceId,
         price: price,
         images: product.images,
-        interval: "month"
+        interval
       },
     })
   } else {
