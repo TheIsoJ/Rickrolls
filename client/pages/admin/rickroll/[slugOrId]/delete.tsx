@@ -5,15 +5,12 @@ import { useAdminRickrollDelete } from "../../../../hooks/admin/useAdminRickroll
 
 const DeleteRickroll = () => {
     const router = useRouter()
-    const { id } = router.query
+    const { slugOrId: id } = router.query
 
-    function onRickrollDelete(id: string) {
+    async function onRickrollDelete(id: string) {
       try {
-        useAdminRickrollDelete<void>(
-          id
-        ).then(() => {
-          return router.replace("/admin")
-        })
+        await useAdminRickrollDelete<void>(id)
+        router.replace("/admin")
       } catch (error) {
         console.log(error)
       }

@@ -5,7 +5,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient()
 
 import { Stripe } from "stripe"
-import { DefaultPrice } from "../../types/DefaultPriceProps.js";
+import { DefaultPrice } from "../../../types/DefaultPriceProps.js";
 
 router.get("/products/:id", async (req, res) => {
   const id: string = req.params.id;

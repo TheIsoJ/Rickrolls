@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { HOME_BASE_URL } from "../../config";
+import { ADMIN_RICKROLLS_BASE_URL } from "../../config";
 
 export const useAdminRickrollsFetch = () => {
   const [res, setRes] = useState<RickrollsResponseData>();
@@ -12,7 +12,7 @@ export const useAdminRickrollsFetch = () => {
       setError(false);
       setLoading(true);
 
-      const rickrolls = await axios.get<RickrollsResponseData>(HOME_BASE_URL)
+      const rickrolls = await axios.get<RickrollsResponseData>(ADMIN_RICKROLLS_BASE_URL)
 
       setRes(rickrolls.data);
     } catch (error) {

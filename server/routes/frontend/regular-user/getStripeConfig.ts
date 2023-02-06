@@ -4,7 +4,7 @@ const router = express.Router()
 import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
-router.get("/config/get-stripe-config", async (req: Request, res: Response) => {
+router.get("/get-stripe-config", async (req: Request, res: Response) => {
     const apiKey: string = req.query.api_key as string
 
     const user = await prisma.user.findFirst({

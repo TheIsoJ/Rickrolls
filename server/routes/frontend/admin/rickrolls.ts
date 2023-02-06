@@ -46,8 +46,8 @@ router.get("/rickrolls", async (req, res) => {
     }
 })
 
-router.get("/rickrolls/:id", async (req, res) => {
-    const id: string = req.params.id
+router.get("/rickrolls/:slug", async (req, res) => {
+    const slug: string = req.params.slug
     const apiKey: string = req.query.api_key as string
 
     const user = await prisma.user.findFirst({
@@ -59,7 +59,7 @@ router.get("/rickrolls/:id", async (req, res) => {
     if (apiKey === user.api_key) {
         const rickroll = await prisma.rickroll.findFirst({
             where: {
-                id
+                slug
             },
             select: {
                 id: true,
@@ -124,7 +124,8 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                     slug: slugify.default(name, {
                         lower: true,
                         locale: "fi",
-                        trim: true
+                        trim: true,
+                        strict: true
                     })
                     ,
                     videoId,
@@ -198,6 +199,7 @@ router.put("/rickrolls/:id", async (req, res) => {
                         locale: "fi",
                         trim: true,
                         lower: true,
+                        strict: true
                     }),
                     description,
                     videoId,

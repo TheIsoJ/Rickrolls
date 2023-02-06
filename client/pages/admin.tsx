@@ -57,7 +57,7 @@ const Admin = () => {
       </h1>
       {res?.rickrolls.map(({ id, slug, name, description, rickroll_cta_link }) => (
         <>
-          <div key={id} className="flex items-center justify-center p-6">
+          <div key={slug} className="flex items-center justify-center p-6">
             <div className="overflow-hidden rounded-xl border shadow-md bg-gray-400 fade">
               <img
                 className="w-full h-full object-contain fade-semifast"
@@ -75,7 +75,7 @@ const Admin = () => {
                 </div>
                 <div className="flex items-center fade-semifast justify-center space-x-2 bg-white text-black p-5">
                   <button
-                    onClick={() => router.push(`/admin/rickroll/${id}/edit`)}
+                    onClick={() => router.push(`/admin/rickroll/${slug}/edit`)}
                     className="flex items-center uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[0.75rem] transition-all duration-500 ease-in-out hover:bg-teal-600"
                     type="button"
                   >

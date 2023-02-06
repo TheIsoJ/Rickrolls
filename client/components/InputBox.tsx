@@ -1,5 +1,6 @@
 import { useRouter } from "next/router"
-import { LegacyRef, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import ReactPlayer from "react-player"
 import { useAdminRickrollCreate } from "../hooks/admin/useAdminRickrollCreate"
 import { useAdminRickrollEdit } from "../hooks/admin/useAdminRickrollEdit"
 
@@ -14,6 +15,8 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
   const linkRef = useRef<HTMLInputElement>(null)
   const videoIdRef = useRef<HTMLInputElement>(null)
 
+  const [isPreviewing, setIsPreviewing] = useState(false)
+
   const router = useRouter()
 
   const checkIfEditing = (initialValue: RickrollResponseData | undefined) => {
@@ -24,7 +27,9 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
           ?.description as string
         videoIdRef.current!.value = initialValue?.rickroll?.videoId as string
         linkRef.current!.value = initialValue?.rickroll?.link as string
+        setIsPreviewing(!!linkRef.current?.value)
       }, [initialValue])
+
     } else {
       useEffect(() => {
         nameRef.current!.value = ""
@@ -77,7 +82,7 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
       {isEditing || initialValue ? (
         <>
           {checkIfEditing(initialValue)}
-          <div className="flex flex-col items-center justify-center max-w-lg mx-auto my-16 bg-white text-black rounded-md px-10 py-2 sm:shadow-sm">
+          <div className="flex flex-col items-center justify-center max-w-7xl mx-auto my-16 bg-white text-black rounded-md px-16 py-2 sm:shadow-sm">
             <form onSubmit={onRickrollEdit} className="px-5 py-4">
               <h1 className="font-[Poppins] mt-6 text-md font-bold">
                 Rickrollin nimi
@@ -115,6 +120,18 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
                 type="text"
                 placeholder="Rickrollin linkki"
               />
+              {isPreviewing && linkRef?.current?.value.startsWith("https://www.youtube.com") && (
+                <div
+                className={`${isPreviewing && "-mx-16"} max-w-md mx-auto scale-90 rounded-xl overflow-hidden fade`}
+              >
+                <ReactPlayer
+                  playsinline
+                  playing={false}
+                  controls={true}
+                  url={linkRef.current!.value}
+                />
+              </div>
+              )}
               <div className="flex items-center justify-center">
                 <button
                   className="flex items-center flex-1 uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[1rem] transition-all duration-500 ease-in-out hover:bg-teal-600 disabled:bg-gray-500 disabled:text-black mt-6"

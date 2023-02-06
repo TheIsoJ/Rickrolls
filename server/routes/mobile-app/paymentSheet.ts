@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 
 import { Stripe } from "stripe"
 
-router.post("/payments/payment-sheet/:id", async (req: Request, res: Response) => {
+router.post("/payment-sheet/:id", async (req: Request, res: Response) => {
     const apiKey: string = req.query.api_key as string
     const id: string = req.params.id
 

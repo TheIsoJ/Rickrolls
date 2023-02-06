@@ -32,7 +32,7 @@ const Home: NextPage = () => {
 
       {res?.rickrolls[0] ? (
         <>
-          <a href={res.rickrolls[0].link} target="_blank">
+          <a key={res.rickrolls[0].slug} href={`/rickroll/${res.rickrolls[0].slug}`} target="_blank">
             <div
               key={res.rickrolls[0].id}
               className={`flex items-center justify-between h-auto w-full py-32 lg:py-0 bg-gray-700 transition-all duration-500 ease-in-out rounded-2xl scale-90 hover:scale-95 hover:rounded-none hover:shadow-xl hover:shadow-gray-500 hover:bg-gray-600 cursor-pointer fade-semifast`}
@@ -61,11 +61,11 @@ const Home: NextPage = () => {
       <h1 className="max-w-xl font-[Poppins] font-extrabold text-3xl my-6 m-4">
         Rickrollit
       </h1>
-      {res?.rickrolls.map(({ id, slug, name, description, rickroll_cta_link }) => (
+      {res?.rickrolls.map(({ slug, name, description, rickroll_cta_link }) => (
         <>
-          <div className="grid grid-cols-1 gap-3 p-4 sm:grid-cols-2 md:gap-6 md:p-6 lg:grid-cols-3">
+          <div key={slug} className="grid grid-cols-1 gap-3 p-4 sm:grid-cols-2 md:gap-6 md:p-6 lg:grid-cols-3">
             <div className="hover:scale-95 hover:shadow-xl hover:shadow-gray-400 transition-all duration-500 ease-in-out cursor-pointer overflow-hidden rounded-xl border shadow-md bg-gray-400 fade">
-              <Link key={id} href={`/rickroll/${id}`}>
+              <Link href={`/rickroll/${slug}`}>
                 <img
                   className="w-full object-contain fade-semifast"
                   src={rickroll_cta_link}

@@ -7,9 +7,9 @@ import InputBox from "../../../../components/InputBox"
 
 const EditRickroll = () => {
   const router = useRouter()
-  const { id } = router.query
+  const { slugOrId: slug } = router.query
 
-  const { res, loading } = useAdminRickrollFetch(id as string)
+  const { res, loading } = useAdminRickrollFetch(slug as string)
 
   if (loading) {
     return (
@@ -17,8 +17,7 @@ const EditRickroll = () => {
         <Head>
           <title>Ladataan...</title>
         </Head>
-        <Header sticky />
-        <div className="bg-teal-900 flex items-center justify-center min-h-[75.1vh]">
+        <div className="bg-teal-900 flex items-center justify-center min-h-screen overflow-hidden">
           <DotPulse speed={1} size={96} color="white" />
         </div>
       </>
@@ -26,13 +25,14 @@ const EditRickroll = () => {
   }
 
   return (
-    <div className="bg-teal-800 text-white min-h-screen">
+    <div className="flex flex-col flex-1 bg-teal-800 text-white h-full z-20">
       <Head>
         <title>Päivitä rickrollia - Rickrolls</title>
       </Head>
 
       <Header sticky />
-      <div className="h-auto flex flex-col items-center justify-center mt-8">
+
+      <div className="flex flex-col items-center justify-center mt-8">
         <button
           onClick={() => router.push("/admin")}
           className="flex items-center uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[0.75rem] transition-all duration-500 ease-in-out hover:bg-teal-600"
