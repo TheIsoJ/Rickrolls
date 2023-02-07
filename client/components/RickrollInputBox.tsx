@@ -1,6 +1,5 @@
 import { useRouter } from "next/router"
-import { useEffect, useRef, useState } from "react"
-import ReactPlayer from "react-player"
+import { useEffect, useRef } from "react"
 import { useAdminRickrollCreate } from "../hooks/admin/useAdminRickrollCreate"
 import { useAdminRickrollEdit } from "../hooks/admin/useAdminRickrollEdit"
 
@@ -9,13 +8,11 @@ type Props = {
   isEditing?: boolean
 }
 
-const InputBox = ({ initialValue, isEditing }: Props) => {
+const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
   const nameRef = useRef<HTMLInputElement>(null)
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
   const linkRef = useRef<HTMLInputElement>(null)
   const videoIdRef = useRef<HTMLInputElement>(null)
-
-  const [isPreviewing, setIsPreviewing] = useState(false)
 
   const router = useRouter()
 
@@ -27,9 +24,7 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
           ?.description as string
         videoIdRef.current!.value = initialValue?.rickroll?.videoId as string
         linkRef.current!.value = initialValue?.rickroll?.link as string
-        setIsPreviewing(!!linkRef.current?.value)
       }, [initialValue])
-
     } else {
       useEffect(() => {
         nameRef.current!.value = ""
@@ -57,7 +52,7 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
     }
   }
 
-  const onRickrollEdit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onRickrollUpdate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     const id: string = initialValue?.rickroll.id as string
@@ -82,8 +77,8 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
       {isEditing || initialValue ? (
         <>
           {checkIfEditing(initialValue)}
-          <div className="flex flex-col items-center justify-center max-w-7xl mx-auto my-16 bg-white text-black rounded-md px-16 py-2 sm:shadow-sm">
-            <form onSubmit={onRickrollEdit} className="px-5 py-4">
+          <div className="flex flex-col items-center justify-center max-w-lg mx-auto mt-16 mb-32 bg-white text-black rounded-md px-10 py-2 sm:shadow-sm">
+            <form onSubmit={onRickrollUpdate} className="px-5 py-4">
               <h1 className="font-[Poppins] mt-6 text-md font-bold">
                 Rickrollin nimi
               </h1>
@@ -92,7 +87,6 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
                 ref={nameRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
                 type="text"
-                placeholder="Rickrollin nimi"
               />
               <h1 className="font-[Poppins] mt-6 text-md font-bold">
                 Rickrollin kuvaus
@@ -100,16 +94,14 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
               <textarea
                 ref={descriptionRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2 resize-none"
-                placeholder="Rickrollin kuvaus"
               />
               <h1 className="font-[Poppins] mt-6 text-md font-bold">
-                Rickrollin videon tunniste
+                Rickrollin videotunniste
               </h1>
               <input
                 ref={videoIdRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
                 type="text"
-                placeholder="Rickrollin videon tunniste"
               />
               <h1 className="font-[Poppins] mt-6 text-md font-bold">
                 Rickrollin linkki
@@ -118,20 +110,7 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
                 ref={linkRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
                 type="text"
-                placeholder="Rickrollin linkki"
               />
-              {isPreviewing && linkRef?.current?.value.startsWith("https://www.youtube.com") && (
-                <div
-                className={`${isPreviewing && "-mx-16"} max-w-md mx-auto scale-90 rounded-xl overflow-hidden fade`}
-              >
-                <ReactPlayer
-                  playsinline
-                  playing={false}
-                  controls={true}
-                  url={linkRef.current!.value}
-                />
-              </div>
-              )}
               <div className="flex items-center justify-center">
                 <button
                   className="flex items-center flex-1 uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[1rem] transition-all duration-500 ease-in-out hover:bg-teal-600 disabled:bg-gray-500 disabled:text-black mt-6"
@@ -155,7 +134,6 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
                 ref={nameRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
                 type="text"
-                placeholder="Rickrollin nimi"
               />
               <h1 className="font-[Poppins] mt-6 text-md font-bold">
                 Rickrollin kuvaus
@@ -163,7 +141,6 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
               <textarea
                 ref={descriptionRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2 resize-none"
-                placeholder="Rickrollin kuvaus"
               />
               <h1 className="font-[Poppins] mt-6 text-md font-bold">
                 Rickrollin videon tunniste
@@ -172,7 +149,6 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
                 ref={videoIdRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
                 type="text"
-                placeholder="Rickrollin linkki"
               />
               <h1 className="font-[Poppins] mt-6 text-md font-bold">
                 Rickrollin linkki
@@ -181,7 +157,6 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
                 ref={linkRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
                 type="text"
-                placeholder="Rickrollin linkki"
               />
               <div className="flex items-center justify-center">
                 <button
@@ -198,4 +173,4 @@ const InputBox = ({ initialValue, isEditing }: Props) => {
     </>
   )
 }
-export default InputBox
+export default RickrollInputBox

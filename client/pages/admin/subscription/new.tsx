@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
 import Head from "next/head"
 import Header from "../../../components/Header"
-import RickrollInputBox from "../../../components/RickrollInputBox"
+import SubscriptionInputBox from "../../../components/SubscriptionInputBox"
 
 const NewRickroll = () => {
   const router = useRouter()
@@ -9,7 +9,7 @@ const NewRickroll = () => {
   return (
     <div className="bg-teal-800 text-white min-h-screen flex flex-col flex-1">
       <Head>
-        <title>Lisää uusi rickroll - Rickrolls</title>
+        <title>Lisää uusi tilaus - Rickrolls</title>
       </Head>
 
       <Header sticky isDeveloping />
@@ -24,7 +24,7 @@ const NewRickroll = () => {
         </button>
       </div>
 
-      <RickrollInputBox />
+      <SubscriptionInputBox />
     </div>
   )
 }

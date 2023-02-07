@@ -2,14 +2,14 @@ import { DotPulse } from "@uiball/loaders"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import Header from "../../../../components/Header"
-import { useAdminRickrollFetch } from "../../../../hooks/admin/useAdminRickrollFetch"
-import RickrollInputBox from "../../../../components/RickrollInputBox"
+import SubscriptionInputBox from "../../../../components/SubscriptionInputBox"
+import { useAdminProductFetch } from "../../../../hooks/admin/useAdminProductFetch"
 
 const EditRickroll = () => {
   const router = useRouter()
-  const { slugOrId: slug } = router.query
+  const { id } = router.query
 
-  const { res, loading } = useAdminRickrollFetch(slug as string)
+  const { res, loading } = useAdminProductFetch(id as string)
 
   if (loading) {
     return (
@@ -25,7 +25,7 @@ const EditRickroll = () => {
   }
 
   return (
-    <div className="flex flex-col bg-teal-800 text-white h-full z-20">
+    <div className="flex flex-col flex-1 bg-teal-800 text-white h-screen">
       <Head>
         <title>Päivitä rickrollia - Rickrolls</title>
       </Head>
@@ -41,7 +41,7 @@ const EditRickroll = () => {
           Takaisin
         </button>
       </div>
-      {res && <RickrollInputBox initialValue={res} isEditing />}
+      {res && <SubscriptionInputBox id={res?.product?.id} initialValue={res} isEditing />}
     </div>
   )
 }

@@ -49,11 +49,18 @@ type Rickroll = {
 }
 
 type RickrollDataBody = {
-    name: string
+    name?: string
     description?: string
-    videoId: string
-    link: string
+    videoId?: string
+    link?: string
     rickroll_cta_link?: string
+}
+
+type SubscriptionBody = {
+    name?: string
+    description?: string
+    price?: string
+    active?: boolean
 }
 
 type RickrollError = {
@@ -74,6 +81,7 @@ type Product = {
     created: number
     name: string
     description: string
+    active?: boolean
     price: number
     interval: "day" | "week" | "month" | "year"
     type: string

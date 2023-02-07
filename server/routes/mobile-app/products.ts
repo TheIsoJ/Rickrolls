@@ -37,14 +37,15 @@ router.get("/products", async (req, res) => {
   }
 })
 
-router.post("/products", async (req: Request, res: Response) => {
-  const apiKey: string = req.query.api_key as string
+router.get("/products/:id", async (req, res) => {
+  const id: string = req.params.id;
+  const apiKey: any = req.query.api_key
 
   const user = await prisma.user.findFirst({
     where: {
       api_key: apiKey
     }
-  })
+  });
 
   const stripeSecret = user.stripe_secret_key
 
@@ -53,52 +54,20 @@ router.post("/products", async (req: Request, res: Response) => {
       apiVersion: "2022-11-15"
     })
 
-    try {
-      const {
-        name,
-        description,
-        price,
-        images,
-        isActive
-      }: SubscriptionBody = req.body
+    const product = await stripe.products.retrieve(id, {
+      expand: ["default_price"]
+    })
 
-      await stripe.products.create({
-        name,
-        description: description ?? null,
-        images: images ?? null,
-        active: isActive,
-        default_price_data: {
-          currency: "eur",
-          recurring: {
-            interval: "month"
-          },
-          unit_amount: price,
-          unit_amount_decimal: price.toString()
-        },
-        
-      })
-
-      return res.status(200).json({
-        statusCode: res.statusCode,
-        message: "Onnistui, uusi tuote on nyt lisätty.",
-        status: "success"
-      })
-
-    } catch (err) {
-      res.status(500).json({
-        statusCode: res.statusCode,
-        message: "Pieleen meni.",
-        technical_info: {
-          errorMessage: err.message
-        },
-        status: "failure"
-      })
-    }
+    return res.status(200).json({
+      statusCode: res.statusCode,
+      product,
+    })
   } else {
     res.status(401).json({
       message: "Et voi tehdä tätä toimintoa."
     })
   }
+
 })
 
 export default router

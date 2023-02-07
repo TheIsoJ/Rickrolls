@@ -8,8 +8,8 @@ type RickrollBody = {
 type SubscriptionBody = {
     name: string
     description?: string
-    price: number
-    isActive?: boolean
+    price: string
+    active?: boolean
     images?: string[]
 }
 

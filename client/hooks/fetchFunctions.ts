@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 
 type Props = {
     endpoint: string,
-    options?: AxiosRequestConfig<RickrollDataBody>
+    options?: AxiosRequestConfig<SubscriptionBody | RickrollDataBody>
 }
 
 const api = axios.create({
@@ -12,7 +12,7 @@ const api = axios.create({
 const makeRequest = <T>(endpoint: string, options: AxiosRequestConfig) => {
     return api<T>(endpoint, options)
         .then(res => res.data)
-        .catch(({ error }: RickrollResponseData) => Promise.reject(error.message))
+        .catch((error) => Promise.reject(error.message))
 }
 
 export const basicFetch = async <returnType>({

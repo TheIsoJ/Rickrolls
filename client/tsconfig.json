@@ -22,6 +22,6 @@
     "**/hooks/**/*.ts",
     "pages/api/auth/[...nextauth].ts",
     "tailwind.config.js"
-, "contexts/RickrollsContext.ts"  ],
+  ],
   "exclude": ["node_modules"]
 }
