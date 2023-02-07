@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client"
+import slugify from "slugify"
 const prisma = new PrismaClient()
 
 async function seed() {
@@ -11,6 +12,11 @@ async function seed() {
             description: "Ei huvita.",
             link: "https://www.youtube.com/watch?v=UfUbBWIFdJs",
             videoId: "UfUbBWIFdJs",
+            slug: slugify.default("Ei jaksa", {
+                locale: "fi",
+                trim: true,
+                strict: true
+            }),
             rickroll_cta_link: "https://images.jesunmaailma.ml/rickrolls-api-images/risitas.jpg"
         }
     })

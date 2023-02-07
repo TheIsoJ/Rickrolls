@@ -14,7 +14,7 @@ model Rickroll {
   link              String  @db.Text
   videoId           String  @db.Text
   rickroll_cta_link String  @db.Text
-  slug              String  @db.Text
+  slug              String? @db.Text
 }
 
 model User {
