@@ -32,7 +32,7 @@ const Admin = () => {
         <title>Ylläpito - Rickrolls</title>
       </Head>
 
-      <Header sticky isDeveloping />
+      <Header sticky />
 
       <div className="flex flex-col space-y-3 items-center justify-between">
         <h1 className="max-w-xl font-[Poppins] font-extrabold text-3xl pt-6">
