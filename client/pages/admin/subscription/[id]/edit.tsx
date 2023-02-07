@@ -5,7 +5,7 @@ import Header from "../../../../components/Header"
 import SubscriptionInputBox from "../../../../components/SubscriptionInputBox"
 import { useAdminProductFetch } from "../../../../hooks/admin/useAdminProductFetch"
 
-const EditRickroll = () => {
+const EditSubscription = () => {
   const router = useRouter()
   const { id } = router.query
 
@@ -25,7 +25,7 @@ const EditRickroll = () => {
   }
 
   return (
-    <div className="flex flex-col flex-1 bg-teal-800 text-white h-screen">
+    <div className="flex flex-col flex-1 bg-teal-800 text-white min-h-screen">
       <Head>
         <title>Päivitä rickrollia - Rickrolls</title>
       </Head>
@@ -45,4 +45,4 @@ const EditRickroll = () => {
     </div>
   )
 }
-export default EditRickroll
+export default EditSubscription

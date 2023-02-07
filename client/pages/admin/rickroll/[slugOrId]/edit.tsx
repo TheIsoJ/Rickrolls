@@ -25,7 +25,7 @@ const EditRickroll = () => {
   }
 
   return (
-    <div className="flex flex-col bg-teal-800 text-white h-full z-20">
+    <div className="flex flex-col flex-1 bg-teal-800 text-white min-h-screen">
       <Head>
         <title>Päivitä rickrollia - Rickrolls</title>
       </Head>

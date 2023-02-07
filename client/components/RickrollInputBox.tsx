@@ -77,7 +77,7 @@ const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
       {isEditing || initialValue ? (
         <>
           {checkIfEditing(initialValue)}
-          <div className="flex flex-col items-center justify-center max-w-lg mx-auto mt-16 mb-32 bg-white text-black rounded-md px-10 py-2 sm:shadow-sm">
+          <div className="flex flex-col max-w-7xl mx-auto my-16 overflow-y-scroll scrollbar-none bg-white text-black rounded-3xl px-10 py-2 sm:shadow-sm">
             <form onSubmit={onRickrollUpdate} className="px-5 py-4">
               <h1 className="font-[Poppins] mt-6 text-md font-bold">
                 Rickrollin nimi
@@ -124,7 +124,7 @@ const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
         </>
       ) : (
         <>
-          <div className="flex flex-col items-center justify-center max-w-lg mx-auto mt-16 mb-32 bg-white text-black rounded-md px-10 py-2 sm:shadow-sm">
+          <div className="flex flex-col max-w-7xl mx-auto my-16 overflow-y-scroll scrollbar-none bg-white text-black rounded-3xl px-10 py-2 sm:shadow-sm">
             <form onSubmit={onRickrollCreate} className="px-5 py-4">
               <h1 className="font-[Poppins] mt-6 text-md font-bold">
                 Rickrollin nimi
