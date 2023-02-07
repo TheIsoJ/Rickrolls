@@ -38,7 +38,7 @@ const Header = ({ sticky, isDeveloping }: Props) => {
       <div className="flex items-center justify-center">
         {error && (
           <div className="bg-black text-white px-4 py-2 rounded-full">
-            Virhe on sattunut. {error.message}
+            Virhe on sattunut. {JSON.stringify(error.message, null, 2)}
           </div>
         )}
       </div>
