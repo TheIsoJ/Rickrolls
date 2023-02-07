@@ -13,7 +13,7 @@ const Success = () => {
         <title>Maksu onnistui - Rickrolls</title>
       </Head>
 
-      <Header sticky isDeveloping />
+      <Header sticky />
 
       <div
         className={`flex items-center justify-center h-screen w-full py-32 lg:py-0 bg-[#002f6c]`}
