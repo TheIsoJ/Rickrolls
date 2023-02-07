@@ -30,7 +30,7 @@ const EditRickroll = () => {
         <title>Päivitä rickrollia - Rickrolls</title>
       </Head>
 
-      <Header sticky />
+      <Header sticky isDeveloping />
 
       <div className="flex flex-col items-center justify-center mt-8">
         <button

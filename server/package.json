@@ -7,16 +7,12 @@
   "type": "module",
   "scripts": {
     "build": "npm run deleteDist && tsc -p ./",
-    "seed": "prisma db seed",
     "deleteDist": "node utils/deleteDistFolder.js",
     "start:migrate:dev": "prisma migrate dev --name init && npm run start:dev",
     "start:migrate:dev:docker": "prisma migrate dev --name init && npm run start:dev:docker",
-    "start:dev:docker": "npm run build && npm run seed && nodemon dist/server.js",
+    "start:dev:docker": "npm run build && nodemon dist/server.js",
     "start:dev": "npm run build && nodemon dist/server.js",
     "start:pm2-instance": "npm run build"
-  },
-  "prisma": {
-    "seed": "node prisma/seed.js"
   },
   "author": "Jesse Keskelä <juiceneblueyt@gmail.com>",
   "license": "MIT",

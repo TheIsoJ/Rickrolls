@@ -10,7 +10,7 @@ const Canceled = () => {
         <title>Maksu peruutettu - Rickrolls</title>
       </Head>
 
-      <Header sticky />
+      <Header sticky isDeveloping />
       
       <div className="flex items-center justify-center min-h-[75.1vh] w-full py-16 lg:py-16">
         <div className="space-y-5 px-10 flex flex-col items-center lg:items-center lg:justify-between text-center lg:text-start">

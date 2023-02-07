@@ -14,7 +14,7 @@ const Home: NextPage = () => {
         <Head>
           <title>Ladataan...</title>
         </Head>
-        <Header sticky />
+        <Header sticky isDeveloping />
         <div className="bg-teal-900 flex items-center justify-center min-h-[75.1vh]">
           <DotPulse speed={1} size={96} color="white" />
         </div>
@@ -28,7 +28,7 @@ const Home: NextPage = () => {
         <title>Etusivu - Rickrolls</title>
       </Head>
 
-      <Header sticky />
+      <Header sticky isDeveloping />
 
       {res?.rickrolls[0] ? (
         <>

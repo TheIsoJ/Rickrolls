@@ -5,9 +5,10 @@ import { DotPulse } from "@uiball/loaders"
 
 type Props = {
   sticky?: boolean
+  isDeveloping?: boolean
 }
 
-const Header = ({ sticky }: Props) => {
+const Header = ({ sticky, isDeveloping }: Props) => {
   const { user, error, isLoading } = useUser()
 
   if (error) console.log(error.message)
@@ -50,7 +51,7 @@ const Header = ({ sticky }: Props) => {
             </p>
           </div>
         </Link>
-      ) : (
+      ) : isDeveloping ? null : (
         <Link className="flex items-center space-x-3" href="/tili">
           <div className="border-2 rounded-full transition-all duration-200 ease-in-out hover:bg-white px-6 py-4 flex items-center space-x-3 text-white hover:text-black cursor-pointer font-[Poppins]">
             {isLoading ? (

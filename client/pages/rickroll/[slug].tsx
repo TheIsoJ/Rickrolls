@@ -18,7 +18,6 @@ const Rickroll = () => {
         <Head>
           <title>Ladataan...</title>
         </Head>
-        <Header sticky />
         <div className="bg-teal-900 flex items-center justify-center min-h-[75.1vh]">
           <DotPulse speed={1} size={96} color="white" />
         </div>
@@ -32,7 +31,7 @@ const Rickroll = () => {
         <title>{`${res?.rickroll?.name}`} - Rickrolls</title>
       </Head>
 
-      <Header sticky />
+      <Header sticky isDeveloping />
 
       {res && (
         <>

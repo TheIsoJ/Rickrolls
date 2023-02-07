@@ -16,8 +16,6 @@ const Admin = () => {
           <title>Ladataan...</title>
         </Head>
 
-        <Header sticky />
-
         <div className="bg-teal-900 flex items-center justify-center min-h-[75.1vh]">
           <DotPulse speed={1} size={96} color="white" />
         </div>
@@ -31,7 +29,7 @@ const Admin = () => {
         <title>Ylläpito - Rickrolls</title>
       </Head>
 
-      <Header sticky />
+      <Header sticky isDeveloping />
 
       <div className="flex flex-col space-y-3 items-center justify-between">
         <h1 className="max-w-xl font-[Poppins] font-extrabold text-3xl pt-6">

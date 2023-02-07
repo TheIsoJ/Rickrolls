@@ -14,7 +14,6 @@ const Plus = () => {
         <Head>
           <title>Ladataan...</title>
         </Head>
-        <Header sticky />
         <h1 className="text-3xl font-bold text-center mx-4 my-5 font-[Poppins] whitespace-pre-wrap">
           Eiköhän pistetä vielä paremmaksi?
         </h1>
@@ -31,7 +30,7 @@ const Plus = () => {
         <title>Tilaa - Rickrolls</title>
       </Head>
 
-      <Header sticky />
+      <Header sticky isDeveloping />
 
       <h1 className="text-3xl font-bold text-center mx-4 my-5 font-[Poppins] whitespace-pre-wrap">
         Eiköhän pistetä vielä paremmaksi?
