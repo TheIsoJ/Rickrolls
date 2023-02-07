@@ -31,7 +31,7 @@ const Rickroll = () => {
         <title>{`${res?.rickroll?.name}`} - Rickrolls</title>
       </Head>
 
-      <Header sticky isDeveloping />
+      <Header sticky />
 
       {res && (
         <>
