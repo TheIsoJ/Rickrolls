@@ -35,14 +35,6 @@ const Header = ({ sticky, isDeveloping }: Props) => {
         </Link>
       </div>
 
-      <div className="flex items-center justify-center">
-        {error && (
-          <div className="bg-black text-white px-4 py-2 rounded-full">
-            Virhe on sattunut. {JSON.stringify(error.message, null, 2)}
-          </div>
-        )}
-      </div>
-
       {user ? (
         <Link className="flex items-center space-x-3" href="/tili">
           <div className="border rounded-lg transition-all duration-200 ease-in-out hover:bg-white px-6 py-2 flex items-center space-x-3 text-white hover:text-black cursor-pointer font-[Poppins]">
