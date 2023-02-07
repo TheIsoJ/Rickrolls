@@ -30,7 +30,7 @@ const Plus = () => {
         <title>Tilaa - Rickrolls</title>
       </Head>
 
-      <Header sticky isDeveloping />
+      <Header sticky />
 
       <h1 className="text-3xl font-bold text-center mx-4 my-5 font-[Poppins] whitespace-pre-wrap">
         Eiköhän pistetä vielä paremmaksi?
