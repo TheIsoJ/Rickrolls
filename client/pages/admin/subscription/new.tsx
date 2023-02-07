@@ -12,7 +12,7 @@ const NewRickroll = () => {
         <title>Lisää uusi tilaus - Rickrolls</title>
       </Head>
 
-      <Header sticky isDeveloping />
+      <Header sticky />
 
       <div className="h-auto flex flex-col items-center justify-center mt-8">
         <button
