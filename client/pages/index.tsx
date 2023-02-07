@@ -28,7 +28,7 @@ const Home: NextPage = () => {
         <title>Etusivu - Rickrolls</title>
       </Head>
 
-      <Header sticky isDeveloping />
+      <Header sticky />
 
       {res?.rickrolls[0] ? (
         <>
