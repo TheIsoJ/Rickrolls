@@ -11,7 +11,7 @@ const Account = () => {
         <title>Tili - Rickrolls</title>
       </Head>
 
-      <Header sticky isDeveloping />
+      <Header sticky />
 
       <div
         className={`flex items-center justify-center flex-1 min-h-[75.1vh] w-full py-32 lg:py-0 bg-teal-800`}
