@@ -30,7 +30,7 @@ const EditSubscription = () => {
         <title>Päivitä rickrollia - Rickrolls</title>
       </Head>
 
-      <Header sticky isDeveloping />
+      <Header sticky />
 
       <div className="flex flex-col items-center justify-center mt-8">
         <button
