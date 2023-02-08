@@ -3,7 +3,7 @@ import slugify from "slugify"
 const prisma = new PrismaClient()
 
 async function seed() {
-    const name = "Tämä on yksi niistä harvoista tutoriaaleista, jota et ikinä ole katsonut."
+    const name = "Tutoriaali"
     
     await prisma.rickroll.deleteMany()
     await prisma.user.deleteMany()
@@ -15,6 +15,7 @@ async function seed() {
             link: "https://www.youtube.com/watch?v=UfUbBWIFdJs",
             videoId: "UfUbBWIFdJs",
             slug: slugify.default(name, {
+                lower: true,
                 locale: "fi",
                 trim: true,
                 strict: true
