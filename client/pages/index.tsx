@@ -95,7 +95,7 @@ const Home: NextPage = ({ res, loading }: Props) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = (context) => {
+export const getStaticProps: GetStaticProps<Props> = (context) => {
   const { res, loading } = useHomeFetch()
   return {
     props: {
