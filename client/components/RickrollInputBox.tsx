@@ -13,6 +13,7 @@ const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
   const linkRef = useRef<HTMLInputElement>(null)
   const videoIdRef = useRef<HTMLInputElement>(null)
+  const imageUrlRef = useRef<HTMLInputElement>(null)
 
   const router = useRouter()
 
@@ -24,6 +25,7 @@ const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
           ?.description as string
         videoIdRef.current!.value = initialValue?.rickroll?.videoId as string
         linkRef.current!.value = initialValue?.rickroll?.link as string
+        imageUrlRef.current!.value = initialValue?.rickroll?.rickroll_cta_link as string
       }, [initialValue])
     } else {
       useEffect(() => {
@@ -31,6 +33,7 @@ const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
         descriptionRef.current!.value = ""
         videoIdRef.current!.value = ""
         linkRef.current!.value = ""
+        imageUrlRef.current!.value = ""
       }, [])
     }
   }
@@ -43,7 +46,8 @@ const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
         nameRef.current!.value,
         descriptionRef.current!.value,
         videoIdRef.current!.value,
-        linkRef.current!.value
+        linkRef.current!.value,
+        imageUrlRef.current!.value
       ).then(() => {
         return router.replace("/admin")
       })
@@ -63,7 +67,8 @@ const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
         nameRef.current!.value,
         descriptionRef.current!.value,
         videoIdRef.current!.value,
-        linkRef.current!.value
+        linkRef.current!.value,
+        imageUrlRef.current!.value
       ).then(() => {
         return router.replace("/admin")
       })
@@ -111,6 +116,14 @@ const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
                 type="text"
               />
+              <h1 className="font-[Poppins] mt-6 text-md font-bold">
+                Rickrollin kuvan osoite
+              </h1>
+              <input
+                ref={imageUrlRef}
+                className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
+                type="url"
+              />
               <div className="flex items-center justify-center">
                 <button
                   className="flex items-center flex-1 uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[1rem] transition-all duration-500 ease-in-out hover:bg-teal-600 disabled:bg-gray-500 disabled:text-black mt-6"
@@ -156,7 +169,15 @@ const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
               <input
                 ref={linkRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
-                type="text"
+                type="url"
+              />
+              <h1 className="font-[Poppins] mt-6 text-md font-bold">
+                Rickrollin kuvan osoite
+              </h1>
+              <input
+                ref={imageUrlRef}
+                className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
+                type="url"
               />
               <div className="flex items-center justify-center">
                 <button
