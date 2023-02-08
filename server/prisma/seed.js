@@ -3,21 +3,23 @@ import slugify from "slugify"
 const prisma = new PrismaClient()
 
 async function seed() {
+    const name = "Tämä on yksi niistä harvoista tutoriaaleista, jota et ikinä ole katsonut."
+    
     await prisma.rickroll.deleteMany()
     await prisma.user.deleteMany()
 
     await prisma.rickroll.create({
         data: {
-            name: "Ei jaksa",
-            description: "Ei huvita.",
+            name,
+            description: "Tämä on yksi niistä harvoista tutoriaaleista, jota et ikinä ole katsonut.\n\nEhkä. Ehkä et. Emme tiedä. Mutta anna palaa, katso tämä tutoriaali, niin opit jotain uutta...",
             link: "https://www.youtube.com/watch?v=UfUbBWIFdJs",
             videoId: "UfUbBWIFdJs",
-            slug: slugify.default("Ei jaksa", {
+            slug: slugify.default(name, {
                 locale: "fi",
                 trim: true,
                 strict: true
             }),
-            rickroll_cta_link: "https://images.jesunmaailma.ml/rickrolls-api-images/risitas.jpg"
+            rickroll_cta_link: "https://i.ytimg.com/vi/UfUbBWIFdJs/maxresdefault.jpg"
         }
     })
 
