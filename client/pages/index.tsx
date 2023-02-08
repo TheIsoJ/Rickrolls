@@ -1,12 +1,17 @@
 import type { NextPage } from "next"
+import { GetStaticProps } from "next"
 import Head from "next/head"
 import Link from "next/link"
 import {useHomeFetch} from "../hooks/regular-user/useHomeFetch"
 import { DotPulse } from "@uiball/loaders"
 import Header from "../components/Header"
 
-const Home: NextPage = () => {
-  const { res, loading } = useHomeFetch()
+type Props = {
+  res: RickrollsResponseData
+  loading: boolean
+}
+
+const Home: NextPage = ({ res, loading }: Props) => {
 
   if (loading) {
     return (
@@ -88,6 +93,16 @@ const Home: NextPage = () => {
       ))}
     </div>
   )
+}
+
+export const getStaticProps: GetStaticProps = (context) => {
+  const { res, loading } = useHomeFetch()
+  return {
+    props: {
+      res,
+      loading
+    }
+  }
 }
 
 export default Home
