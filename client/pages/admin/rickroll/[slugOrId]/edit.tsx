@@ -2,17 +2,14 @@ import { DotPulse } from "@uiball/loaders"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import Header from "../../../../components/Header"
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import { useAdminRickrollFetch } from "../../../../hooks/admin/useAdminRickrollFetch"
 import RickrollInputBox from "../../../../components/RickrollInputBox"
 
-type Props = {
-  res: RickrollResponseData | undefined
-  loading: boolean
-}
-
-const EditRickroll: NextPage<Props> = ({ res, loading }) => {
+const EditRickroll = () => {
   const router = useRouter()
+  
+  const { slugOrId } = router.query
+  const { res, loading } = useAdminRickrollFetch(slugOrId as string)
 
   if (loading) {
     return (
@@ -47,25 +44,6 @@ const EditRickroll: NextPage<Props> = ({ res, loading }) => {
       {res && <RickrollInputBox initialValue={res} isEditing />}
     </div>
   )
-}
-
-export const getStaticProps: GetStaticProps = (context) => {
-  const slugOrId = context.params?.slugOrId as string
-  const { res, loading } = useAdminRickrollFetch(slugOrId as string)
-  return {
-    props: {
-      res,
-      loading
-    },
-    revalidate: 60 * 60 * 24,
-  }
-}
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: "blocking"
-  }
 }
 
 export default EditRickroll
