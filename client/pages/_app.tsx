@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <UserProvider>
+      <UserProvider loginUrl="/api/auth/login" profileUrl="/api/auth/me">
         <Component {...pageProps} />
         <Footer />
       </UserProvider>
