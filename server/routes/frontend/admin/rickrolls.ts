@@ -11,7 +11,7 @@ type RickrollBody = {
     description: string
     videoId: string
     link: string
-    rickroll_cta_link: string
+    imageUrl: string
 }
 
 router.get("/rickrolls", async (req, res) => {
@@ -98,7 +98,7 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                 description,
                 videoId,
                 link,
-                rickroll_cta_link
+                imageUrl
             }: RickrollBody = req.body
 
             if (name === "" || name == null) {
@@ -117,7 +117,7 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                 res.status(400).json({
                     message: "Linkki vaaditaan."
                 })
-            } else if (rickroll_cta_link === "" || rickroll_cta_link == null) {
+            } else if (imageUrl === "" || imageUrl == null) {
                 res.status(400).json({
                     message: "Kuva vaaditaan."
                 })
@@ -136,7 +136,7 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                     ,
                     videoId,
                     link,
-                    rickroll_cta_link
+                    rickroll_cta_link: imageUrl
                 }
             })
 
@@ -177,7 +177,7 @@ router.put("/rickrolls/:id", async (req, res) => {
                 description,
                 videoId,
                 link,
-                rickroll_cta_link
+                imageUrl
             }: RickrollBody = req.body
 
             if (name === "" || name == null) {
@@ -196,7 +196,7 @@ router.put("/rickrolls/:id", async (req, res) => {
                 res.status(400).json({
                     message: "Linkki vaaditaan."
                 })
-            } else if (rickroll_cta_link === "" || rickroll_cta_link == null) {
+            } else if (imageUrl === "" || imageUrl == null) {
                 res.status(400).json({
                     message: "Kuva vaaditaan."
                 })
@@ -215,7 +215,7 @@ router.put("/rickrolls/:id", async (req, res) => {
                     description,
                     videoId,
                     link,
-                    rickroll_cta_link
+                    rickroll_cta_link: imageUrl
                 },
                 select: {
                     name: true,
