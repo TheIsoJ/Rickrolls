@@ -18,7 +18,7 @@ export const useAdminRickrollEdit = async <returnType>(
         description,
         link,
         videoId,
-        rickroll_cta_link: imageUrl
+        imageUrl
       },
       params: {
         api_key: API_KEY
