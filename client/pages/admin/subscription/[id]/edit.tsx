@@ -2,14 +2,17 @@ import { DotPulse } from "@uiball/loaders"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import Header from "../../../../components/Header"
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import SubscriptionInputBox from "../../../../components/SubscriptionInputBox"
 import { useAdminProductFetch } from "../../../../hooks/admin/useAdminProductFetch"
 
-const EditSubscription = () => {
-  const router = useRouter()
-  const { id } = router.query
+type Props = {
+  res: ProductResponseData | undefined
+  loading: boolean
+}
 
-  const { res, loading } = useAdminProductFetch(id as string)
+const EditSubscription: NextPage<Props> = ({ res, loading }) => {
+  const router = useRouter()
 
   if (loading) {
     return (
@@ -45,4 +48,24 @@ const EditSubscription = () => {
     </div>
   )
 }
+
+export const getStaticProps: GetStaticProps = (context) => {
+  const id = context.params?.id as string
+  const { res, loading } = useAdminProductFetch(id as string)
+  return {
+    props: {
+      res,
+      loading
+    },
+    revalidate: 60 * 60 * 24,
+  }
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: "blocking"
+  }
+}
+
 export default EditSubscription
