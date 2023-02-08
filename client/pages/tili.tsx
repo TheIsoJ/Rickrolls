@@ -48,6 +48,17 @@ const Account = () => {
     <span className="font-[Poppins] font-bold text-white">
     {user.name}
     </span>
+    <a
+    href="/api/auth/logout"
+    className="bg-white rounded-full font-[Poppins] font-bold w-full px-4 py-4 transition-all duration-200 ease-in-out hover:opacity-60"
+    >
+    Kirjaudu ulos
+    </a>
+    <Link href="/plus">
+    <h3 className="bg-white rounded-full font-[Poppins] font-bold w-full px-4 py-4 transition-all duration-200 ease-in-out hover:opacity-60">
+    Tilaa Rickrolls+
+    </h3>
+    </Link>
     </>
     ) : null}
     
@@ -62,18 +73,7 @@ const Account = () => {
     </Link>
     </>
     )}
-    <a
-    href="/api/auth/logout"
-    className="bg-white rounded-full font-[Poppins] font-bold w-full px-4 py-4 transition-all duration-200 ease-in-out hover:opacity-60"
-    >
-    Kirjaudu ulos
-    </a>
     
-    <Link href="/plus">
-    <h3 className="bg-white rounded-full font-[Poppins] font-bold w-full px-4 py-4 transition-all duration-200 ease-in-out hover:opacity-60">
-    Tilaa Rickrolls+
-    </h3>
-    </Link>
     </div>
     </div>
     </div>
