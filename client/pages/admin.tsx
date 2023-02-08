@@ -1,16 +1,21 @@
 import { DotPulse } from "@uiball/loaders"
 import Head from "next/head"
 import Link from "next/link"
+import { GetStaticProps } from "next"
 import { useRouter } from "next/router"
 import Header from "../components/Header"
 import { useAdminProductsFetch } from "../hooks/admin/useAdminProductsFetch"
 import { useAdminRickrollsFetch } from "../hooks/admin/useAdminRickrollsFetch"
 
-const Admin = () => {
+type Props = {
+  resRickrolls: RickrollsResponseData
+  loadingRickrolls: boolean
+  resProducts: ProductsResponseData
+  loadingProducts: boolean
+}
+
+const Admin = ({ resRickrolls, resProducts, loadingRickrolls, loadingProducts }: Props) => {
   const router = useRouter()
-  const { res: resRickrolls, loading: loadingRickrolls } =
-    useAdminRickrollsFetch()
-  const { res: resProducts, loading: loadingProducts } = useAdminProductsFetch()
 
   if (loadingRickrolls) {
     return (
@@ -190,4 +195,18 @@ const Admin = () => {
     </div>
   )
 }
+export const getStaticProps: GetStaticProps = (context) => {
+  const { res: resRickrolls, loading: loadingRickrolls } =
+    useAdminRickrollsFetch()
+  const { res: resProducts, loading: loadingProducts } = useAdminProductsFetch()
+  return {
+    props: {
+      resRickrolls,
+      loadingRickrolls,
+      resProducts,
+      loadingProducts
+    }
+  }
+}
+
 export default Admin
