@@ -195,7 +195,7 @@ const Admin = ({ resRickrolls, resProducts, loadingRickrolls, loadingProducts }:
     </div>
   )
 }
-export const getStaticProps: GetStaticProps = (context) => {
+export const getStaticProps: GetStaticProps<Props> = (context) => {
   const { res: resRickrolls, loading: loadingRickrolls } =
     useAdminRickrollsFetch()
   const { res: resProducts, loading: loadingProducts } = useAdminProductsFetch()
