@@ -53,7 +53,7 @@ type RickrollDataBody = {
     description?: string
     videoId?: string
     link?: string
-    rickroll_cta_link?: string
+    imageUrl?: string
 }
 
 type SubscriptionBody = {
