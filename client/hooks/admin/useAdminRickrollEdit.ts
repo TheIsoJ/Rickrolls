@@ -6,7 +6,8 @@ export const useAdminRickrollEdit = async <returnType>(
   name: string,
   description: string,
   videoId: string,
-  link: string
+  link: string,
+  imageUrl: string
 ): Promise<returnType> => {
   return await basicFetch<returnType>({
     endpoint: `${ADMIN_RICKROLL_BASE_URL}${id}`,
@@ -16,7 +17,8 @@ export const useAdminRickrollEdit = async <returnType>(
         name,
         description,
         link,
-        videoId
+        videoId,
+        rickroll_cta_link: imageUrl
       },
       params: {
         api_key: API_KEY
