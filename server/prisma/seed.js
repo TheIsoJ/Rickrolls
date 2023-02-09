@@ -11,7 +11,7 @@ async function seed() {
     await prisma.rickroll.create({
         data: {
             name,
-            description: "Tämä on yksi niistä harvoista tutoriaaleista, jota et ikinä ole katsonut.\n\nEhkä. Ehkä et. Emme tiedä. Mutta anna palaa, katso tämä tutoriaali, niin opit jotain uutta...",
+            description: "Tämä on yksi niistä harvoista tutoriaaleista, jota et ikinä ole katsonut.\n\nEhkä. Ehkä et. Emme tiedä. Mutta anna palaa, katso tämä tutoriaali, niin opit jotain uutta.",
             link: "https://www.youtube.com/watch?v=UfUbBWIFdJs",
             videoId: "UfUbBWIFdJs",
             slug: slugify.default(name, {
