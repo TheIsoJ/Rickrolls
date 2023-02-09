@@ -13,7 +13,7 @@ const Footer = () => {
           alt=""
         />
       </Link>
-      <a href="https://github.com/TheIsoJ/Rickrolls/tree/main/client">
+      <a href="https://github.com/TheIsoJ/Rickrolls/tree/main/client" target="_blank" rel="noreferrer noopener">
         <div className="flex items-center text-white px-4 py-3 rounded-2xl transition-all duration-300 ease-in-out cursor-pointer hover:bg-gray-400/50 space-x-3">
           <img
             className="w-10 h-10 bg-white p-1 rounded-full object-cover"
