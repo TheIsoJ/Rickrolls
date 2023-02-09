@@ -27,12 +27,14 @@ const Header = ({ sticky, isDeveloping }: Props) => {
             alt=""
           />
         </Link>
-        <Link
-          href="/admin"
-          className=" flex items-center justify-center border-2 border-white rounded-full font-[Poppins] font-bold px-6 py-4 transition-all duration-200 ease-in-out hover:bg-white hover:text-black"
-        >
-          <p>Hallinta</p>
-        </Link>
+        {isDeveloping ? (
+          <Link
+            href="/admin"
+            className=" flex items-center justify-center border-2 border-white rounded-full font-[Poppins] font-bold px-6 py-4 transition-all duration-200 ease-in-out hover:bg-white hover:text-black"
+          >
+            <p>Hallinta</p>
+          </Link>
+        ) : null}
       </div>
 
       {user ? (

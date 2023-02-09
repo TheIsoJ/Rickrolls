@@ -7,9 +7,9 @@ import RickrollInputBox from "../../../../components/RickrollInputBox"
 
 const EditRickroll = () => {
   const router = useRouter()
-  const { slugOrId: slug } = router.query
-
-  const { res, loading } = useAdminRickrollFetch(slug as string)
+  
+  const { slugOrId } = router.query
+  const { res, loading } = useAdminRickrollFetch(slugOrId as string)
 
   if (loading) {
     return (
@@ -45,4 +45,5 @@ const EditRickroll = () => {
     </div>
   )
 }
+
 export default EditRickroll

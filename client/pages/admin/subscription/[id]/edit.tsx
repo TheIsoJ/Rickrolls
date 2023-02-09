@@ -7,8 +7,8 @@ import { useAdminProductFetch } from "../../../../hooks/admin/useAdminProductFet
 
 const EditSubscription = () => {
   const router = useRouter()
+  
   const { id } = router.query
-
   const { res, loading } = useAdminProductFetch(id as string)
 
   if (loading) {
@@ -45,4 +45,5 @@ const EditSubscription = () => {
     </div>
   )
 }
+
 export default EditSubscription

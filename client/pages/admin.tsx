@@ -91,7 +91,7 @@ const Admin = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center fade-semifast justify-center space-x-2 bg-white text-black p-5">
+                  <div className="flex flex-col items-center fade-semifast justify-center space-y-4 bg-white text-black p-5">
                     <button
                       onClick={() =>
                         router.push(`/admin/rickroll/${slug}/edit`)
@@ -161,7 +161,7 @@ const Admin = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center fade-semifast justify-center space-x-2 bg-white text-black p-5">
+                  <div className="flex flex-col items-center fade-semifast justify-center space-y-4 bg-white text-black p-5">
                     <button
                       onClick={() =>
                         router.push(`/admin/subscription/${id}/edit`)

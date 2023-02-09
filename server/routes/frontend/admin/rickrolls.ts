@@ -11,6 +11,7 @@ type RickrollBody = {
     description: string
     videoId: string
     link: string
+    imageUrl: string
 }
 
 router.get("/rickrolls", async (req, res) => {
@@ -96,7 +97,8 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                 name,
                 description,
                 videoId,
-                link
+                link,
+                imageUrl
             }: RickrollBody = req.body
 
             if (name === "" || name == null) {
@@ -115,6 +117,10 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                 res.status(400).json({
                     message: "Linkki vaaditaan."
                 })
+            } else if (imageUrl === "" || imageUrl == null) {
+                res.status(400).json({
+                    message: "Kuva vaaditaan."
+                })
             }
 
             await prisma.rickroll.create({
@@ -130,7 +136,7 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                     ,
                     videoId,
                     link,
-                    rickroll_cta_link: "https://images.jesunmaailma.ml/rickrolls-api-images/risitas.jpg"
+                    rickroll_cta_link: imageUrl
                 }
             })
 
@@ -170,7 +176,8 @@ router.put("/rickrolls/:id", async (req, res) => {
                 name,
                 description,
                 videoId,
-                link
+                link,
+                imageUrl
             }: RickrollBody = req.body
 
             if (name === "" || name == null) {
@@ -189,6 +196,10 @@ router.put("/rickrolls/:id", async (req, res) => {
                 res.status(400).json({
                     message: "Linkki vaaditaan."
                 })
+            } else if (imageUrl === "" || imageUrl == null) {
+                res.status(400).json({
+                    message: "Kuva vaaditaan."
+                })
             }
 
             const rickroll = await prisma.rickroll.update({
@@ -203,13 +214,15 @@ router.put("/rickrolls/:id", async (req, res) => {
                     }),
                     description,
                     videoId,
-                    link
+                    link,
+                    rickroll_cta_link: imageUrl
                 },
                 select: {
                     name: true,
                     description: true,
                     videoId: true,
-                    link: true
+                    link: true,
+                    rickroll_cta_link: true
                 }
             })
 

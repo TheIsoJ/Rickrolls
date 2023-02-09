@@ -14,7 +14,7 @@ const Home: NextPage = () => {
         <Head>
           <title>Ladataan...</title>
         </Head>
-        <Header sticky isDeveloping />
+        <Header sticky />
         <div className="bg-teal-900 flex items-center justify-center min-h-[75.1vh]">
           <DotPulse speed={1} size={96} color="white" />
         </div>
