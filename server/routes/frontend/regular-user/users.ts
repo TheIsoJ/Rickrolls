@@ -21,12 +21,12 @@ router.get("/users", async (req: Request, res: Response) => {
     })
 })
 
-router.get("/users/:id", async (req: Request, res: Response) => {
-    const id: string = req.params.id
+router.get("/users/:username", async (req: Request, res: Response) => {
+    const username: string = req.params.username
 
     const user = await prisma.user.findFirst({
         where: {
-            id
+            username
         },
         select: {
             id: true,
