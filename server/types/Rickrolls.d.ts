@@ -2,6 +2,7 @@ type RickrollBody = {
     name: string
     description: string
     videoId: string
+    imageUrl: string
     link: string
 }
 

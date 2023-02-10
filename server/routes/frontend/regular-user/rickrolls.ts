@@ -14,20 +14,27 @@ router.get("/rickrolls", async (req, res) => {
     });
 
     if (apiKey === user.api_key) {
-        const rickrolls = await prisma.rickroll.findMany({
+        const categories = await prisma.category.findMany({
             select: {
-                slug: true,
                 name: true,
                 description: true,
-                rickroll_cta_link: true
+                rickrolls: {
+                    select: {
+                        slug: true,
+                        name: true,
+                        description: true,
+                        rickroll_cta_link: true,
+                        tags: true
+                    }
+                }
             },
             orderBy: {
-                id: "desc"
+                id: "asc"
             }
         })
 
         res.status(200).json({
-            rickrolls
+            categories
         })
     } else {
         res.status(401).json({
@@ -55,8 +62,15 @@ router.get("/rickrolls/:slug", async (req, res) => {
                 name: true,
                 description: true,
                 link: true,
-                videoId: true,
-                rickroll_cta_link: true
+                video_id: true,
+                rickroll_cta_link: true,
+                categories: {
+                    select: {
+                        name: true,
+                        description: true
+                    }
+                },
+                tags: true
             }
         })
 

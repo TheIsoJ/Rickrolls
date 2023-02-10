@@ -67,57 +67,85 @@ const Admin = () => {
           Plus
         </button>
       </div>
-      <h1 className="max-w-xl font-[Poppins] font-extrabold text-3xl ml-6 pt-6">
-        Rickrollit
-      </h1>
-      {resRickrolls?.rickrolls.map(
-        ({ id, slug, name, description, rickroll_cta_link }) => (
-          <>
-            <div key={slug} className="flex items-center justify-center p-6">
-              <div className="overflow-hidden rounded-xl border shadow-md bg-gray-400 fade">
-                <img
-                  className="w-full h-full object-contain fade-semifast"
-                  src={rickroll_cta_link}
-                  alt=""
-                />
-                <div>
-                  <div className="flex items-center fade-semifast justify-start space-x-2 bg-white text-black p-5">
-                    <div>
-                      <h1 className="text-xl font-[Poppins] font-bold">
-                        {name}
-                      </h1>
-                      <p className="mt-2 text-sm whitespace-pre-wrap font-[Poppins] fade-semifast">
-                        {description}
-                      </p>
+      {resRickrolls?.categories?.map((category) => (
+        <>
+          <div className="flex flex-col px-8 my-4">
+            <h1 className="max-w-xl font-[Poppins] font-extrabold text-lg lg:text-3xl">
+              {category.name}
+            </h1>
+            <p className="max-w-xl font-[Poppins] text-sm md:text-lg mt-2">
+              {category.description}
+            </p>
+            <div className="flex items-center fade-semifast justify-center space-x-4 p-5">
+              <button
+                onClick={() => router.push(`/admin/rickroll/${category.id}/edit`)}
+                className="flex items-center uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] text-sm font-semibold px-5 py-2 transition-all duration-500 ease-in-out hover:bg-teal-600"
+                type="button"
+              >
+                Päivitä
+              </button>
+              <button
+                onClick={() => router.push(`/admin/rickroll/${category.id}/delete`)}
+                className="flex items-center uppercase justify-center shadow-sm shadow-gray-500 bg-white text-black hover:shadow-none rounded-full font-[Poppins] text-sm font-semibold px-5 py-2 transition-all duration-500 ease-in-out hover:bg-red-600 hover:text-white"
+                type="button"
+              >
+                Poista
+              </button>
+            </div>
+            {category.rickrolls.map(
+              ({ id, slug, name, description, rickroll_cta_link }) => (
+                <>
+                  <div
+                    key={slug}
+                    className="flex items-center justify-center p-6"
+                  >
+                    <div className="overflow-hidden rounded-xl border shadow-md bg-gray-400 fade">
+                      <img
+                        className="w-full h-full object-contain fade-semifast"
+                        src={rickroll_cta_link}
+                        alt=""
+                      />
+                      <div>
+                        <div className="flex items-center fade-semifast justify-start space-x-2 bg-white text-black p-5">
+                          <div>
+                            <h1 className="text-xl font-[Poppins] font-bold">
+                              {name}
+                            </h1>
+                            <p className="mt-2 text-sm whitespace-pre-wrap font-[Poppins] fade-semifast">
+                              {description}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-center fade-semifast justify-center space-y-4 bg-white text-black p-5">
+                          <button
+                            onClick={() =>
+                              router.push(`/admin/rickroll/${slug}/edit`)
+                            }
+                            className="flex items-center uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[0.75rem] transition-all duration-500 ease-in-out hover:bg-teal-600"
+                            type="button"
+                          >
+                            Päivitä
+                          </button>
+                          <button
+                            onClick={() =>
+                              router.push(`/admin/rickroll/${id}/delete`)
+                            }
+                            className="flex items-center uppercase justify-center shadow-sm shadow-gray-500 bg-white text-black hover:shadow-none rounded-full font-[Poppins] font-bold px-12 py-[0.75rem] transition-all duration-500 ease-in-out hover:bg-red-600 hover:text-white"
+                            type="button"
+                          >
+                            Poista
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex flex-col items-center fade-semifast justify-center space-y-4 bg-white text-black p-5">
-                    <button
-                      onClick={() =>
-                        router.push(`/admin/rickroll/${slug}/edit`)
-                      }
-                      className="flex items-center uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[0.75rem] transition-all duration-500 ease-in-out hover:bg-teal-600"
-                      type="button"
-                    >
-                      Päivitä
-                    </button>
-                    <button
-                      onClick={() =>
-                        router.push(`/admin/rickroll/${id}/delete`)
-                      }
-                      className="flex items-center uppercase justify-center shadow-sm shadow-gray-500 bg-white text-black hover:shadow-none rounded-full font-[Poppins] font-bold px-12 py-[0.75rem] transition-all duration-500 ease-in-out hover:bg-red-600 hover:text-white"
-                      type="button"
-                    >
-                      Poista
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </>
-        )
-      )}
-      <h1 className="max-w-xl font-[Poppins] font-extrabold text-3xl ml-6 pt-6">
+                </>
+              )
+            )}
+          </div>
+        </>
+      ))}
+      <h1 className="max-w-xl font-[Poppins] font-extrabold text-xl ml-6 pt-6">
         Tilaukset
       </h1>
       {resProducts?.products?.data?.map(

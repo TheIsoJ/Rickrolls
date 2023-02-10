@@ -2,7 +2,7 @@ import Head from "next/head"
 import { useRouter } from "next/router"
 import ReactPlayer from "react-player"
 import { DotPulse } from "@uiball/loaders"
-import {useRickrollFetch} from "../../hooks/regular-user/useRickrollFetch"
+import { useRickrollFetch } from "../../hooks/regular-user/useRickrollFetch"
 import Header from "../../components/Header"
 
 const Rickroll = () => {
@@ -51,17 +51,26 @@ const Rickroll = () => {
                 </>
               ) : null}
               <>
-                <h1 className="max-w-xl font-[Poppins] font-extrabold text-4xl">
-                  {res?.rickroll?.name}
-                </h1>
-                <h2 className="max-w-xl whitespace-pre-wrap font-[Poppins] text-xl font-normal">
-                  {res?.rickroll?.description}
-                </h2>
+                <div className="flex flex-col space-y-4">
+                  <h1 className="max-w-xl font-[Poppins] font-extrabold text-4xl">
+                    {res?.rickroll?.name}
+                  </h1>
+                  <p className="max-w-xl whitespace-pre-wrap font-[Poppins] text-sm font-normal">
+                    {res?.rickroll?.description}
+                  </p>
+                  <div className="flex items-center justify-center space-x-2">
+                    {res.rickroll.tags?.map((tag) => (
+                      <p className="bg-teal-400 my-2 px-4 py-2 rounded-full font-[Poppins] text-black text-xs uppercase">
+                        {tag}
+                      </p>
+                    ))}
+                  </div>
+                </div>
               </>
             </div>
           </div>
           <div
-            className={`bg-gray-500 mt-64 scale-90 rounded-xl overflow-hidden fade`}
+            className={`bg-gray-500 mt-8 scale-90 rounded-xl overflow-hidden fade`}
           >
             <ReactPlayer
               playsinline

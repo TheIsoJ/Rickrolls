@@ -7,24 +7,37 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Category {
+  id          String     @id @default(uuid())
+  name        String     @db.Text
+  description String?    @db.Text
+  rickrolls   Rickroll[]
+}
+
 model Rickroll {
-  id                String  @id @default(uuid())
-  name              String  @db.Text
-  description       String? @db.Text
-  link              String  @db.Text
-  videoId           String  @db.Text
-  rickroll_cta_link String  @db.Text
-  slug              String? @db.Text
+  id                String    @id @default(uuid())
+  name              String    @db.Text
+  description       String?   @db.Text
+  link              String    @db.Text
+  video_id          String    @db.Text
+  rickroll_cta_link String    @db.Text
+  slug              String?   @db.Text
+  categories        Category? @relation(fields: [categoryId], references: [id])
+  categoryId        String?
+  tags              String[]
+  likedBy           User?     @relation("LikedRickrolls", fields: [userId], references: [id])
+  userId            String?
 }
 
 model User {
-  id                     String  @id @default(uuid())
-  name                   String  @db.Text
-  email                  String? @db.Text
-  api_key                String  @db.Text
-  username               String  @db.Text
-  profile_picture        String? @db.Text
-  password               String? @db.Text
-  stripe_secret_key      String? @db.Text
-  stripe_publishable_key String? @db.Text
+  id                     String     @id @default(uuid())
+  name                   String     @db.Text
+  email                  String?    @db.Text
+  api_key                String     @db.Text
+  username               String     @db.Text
+  profile_picture        String?    @db.Text
+  password               String?    @db.Text
+  stripe_secret_key      String?    @db.Text
+  stripe_publishable_key String?    @db.Text
+  likedRickrolls         Rickroll[] @relation("LikedRickrolls")
 }

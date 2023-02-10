@@ -8,7 +8,7 @@ type Props = {
   isEditing?: boolean
 }
 
-const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
+const CategoryInputBox = ({ initialValue, isEditing }: Props) => {
   const nameRef = useRef<HTMLInputElement>(null)
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
   const linkRef = useRef<HTMLInputElement>(null)
@@ -194,4 +194,4 @@ const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
     </>
   )
 }
-export default RickrollInputBox
+export default CategoryInputBox

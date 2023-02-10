@@ -1,5 +1,5 @@
 type RickrollsResponseData = {
-    rickrolls: Rickroll[]
+    categories: Categories[]
 }
 
 type RickrollResponseData = {
@@ -38,14 +38,29 @@ type Products = {
     data: Product[]
 }
 
+type Categories = {
+    id?: string
+    name: string
+    description?: string
+    rickrolls: Rickroll[]
+}
+
+type Category = {
+    id?: string
+    name: string
+    description?: string
+}
+
 type Rickroll = {
     id?: string
     name?: string
     description?: string
     link?: string
     slug?: string
-    videoId?: string
+    video_id?: string
     rickroll_cta_link?: string
+    tags?: string[]
+    categories?: Category
 }
 
 type RickrollDataBody = {

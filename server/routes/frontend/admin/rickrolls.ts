@@ -24,13 +24,21 @@ router.get("/rickrolls", async (req, res) => {
     });
 
     if (apiKey === user.api_key) {
-        const rickrolls = await prisma.rickroll.findMany({
+        const categories = await prisma.category.findMany({
             select: {
                 id: true,
-                slug: true,
                 name: true,
                 description: true,
-                rickroll_cta_link: true
+                rickrolls: {
+                    select: {
+                        id: true,
+                        name: true,
+                        description: true,
+                        slug: true,
+                        rickroll_cta_link: true,
+                        tags: true
+                    }
+                }
             },
             orderBy: {
                 id: "desc"
@@ -38,7 +46,7 @@ router.get("/rickrolls", async (req, res) => {
         })
 
         res.status(200).json({
-            rickrolls
+            categories
         })
     } else {
         res.status(401).json({
@@ -67,7 +75,13 @@ router.get("/rickrolls/:slug", async (req, res) => {
                 name: true,
                 description: true,
                 link: true,
-                videoId: true,
+                video_id: true,
+                categories: {
+                    select: {
+                        name: true,
+                        description: true
+                    }
+                },
                 rickroll_cta_link: true
             }
         })
@@ -105,10 +119,6 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                 res.status(400).json({
                     message: "Nimi vaaditaan."
                 })
-            } else if (description === "" || description == null) {
-                res.status(400).json({
-                    message: "Kuvaus vaaditaan."
-                })
             } else if (videoId === "" || videoId == null) {
                 res.status(400).json({
                     message: "Videon ID vaaditaan."
@@ -134,7 +144,7 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                         strict: true
                     })
                     ,
-                    videoId,
+                    video_id: videoId,
                     link,
                     rickroll_cta_link: imageUrl
                 }
@@ -184,10 +194,6 @@ router.put("/rickrolls/:id", async (req, res) => {
                 res.status(400).json({
                     message: "Nimi vaaditaan."
                 })
-            } else if (description === "" || description == null) {
-                res.status(400).json({
-                    message: "Kuvaus vaaditaan."
-                })
             } else if (videoId === "" || videoId == null) {
                 res.status(400).json({
                     message: "Videon ID vaaditaan."
@@ -213,14 +219,14 @@ router.put("/rickrolls/:id", async (req, res) => {
                         strict: true
                     }),
                     description,
-                    videoId,
+                    video_id: videoId,
                     link,
                     rickroll_cta_link: imageUrl
                 },
                 select: {
                     name: true,
                     description: true,
-                    videoId: true,
+                    video_id: true,
                     link: true,
                     rickroll_cta_link: true
                 }

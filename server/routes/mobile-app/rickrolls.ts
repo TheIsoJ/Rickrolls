@@ -2,6 +2,7 @@ import express from "express"
 const router = express.Router()
 
 import { PrismaClient } from "@prisma/client"
+import slugify from "slugify"
 const prisma = new PrismaClient()
 
 // GET-pyynnöt
@@ -15,12 +16,19 @@ router.get("/rickrolls", async (req, res) => {
     });
 
     if (apiKey === user.api_key) {
-        const rickrolls = await prisma.rickroll.findMany({
+        const rickrolls = await prisma.category.findMany({
             select: {
                 name: true,
                 description: true,
-                rickroll_cta_link: true,
-                slug: true
+                rickrolls: {
+                    select: {
+                        name: true,
+                        description: true,
+                        rickroll_cta_link: true,
+                        slug: true,
+                        tags: true
+                    }
+                },
             }
         })
 
@@ -52,8 +60,15 @@ router.get("/rickrolls/:slug", async (req, res) => {
             select: {
                 name: true,
                 description: true,
-                videoId: true,
-                rickroll_cta_link: true
+                video_id: true,
+                rickroll_cta_link: true,
+                categories: {
+                    select: {
+                        name: true,
+                        description: true
+                    }
+                },
+                tags: true
             }
         })
 
@@ -85,23 +100,41 @@ router.post("/rickrolls", async (req, res) => {
                 name,
                 description,
                 videoId,
+                imageUrl,
                 link
             }: RickrollBody = req.body
 
-            const rickroll = await prisma.rickroll.create({
+            if (name === "" || name == null) {
+                res.status(400).json({
+                    message: "Nimi vaaditaan."
+                })
+            } else if (videoId === "" || videoId == null) {
+                res.status(400).json({
+                    message: "Videon ID vaaditaan."
+                })
+            } else if (link === "" || link == null) {
+                res.status(400).json({
+                    message: "Linkki vaaditaan."
+                })
+            } else if (imageUrl === "" || imageUrl == null) {
+                res.status(400).json({
+                    message: "Kuva vaaditaan."
+                })
+            }
+
+            await prisma.rickroll.create({
                 data: {
                     name,
                     description,
-                    slug: name
-                        .replace(" ", "-")
-                        .replace("å", "a")
-                        .replace("ä", "a")
-                        .replace("ö", "o")
-                        .toLowerCase()
-                    ,
+                    slug: slugify.default(name, {
+                        lower: true,
+                        locale: "fi",
+                        trim: true,
+                        strict: true
+                    }),
                     link,
-                    videoId,
-                    rickroll_cta_link: "https://images.jesunmaailma.ml/rickrolls-api-images/risitas.jpg"
+                    video_id: videoId,
+                    rickroll_cta_link: imageUrl
                 }
             })
 
