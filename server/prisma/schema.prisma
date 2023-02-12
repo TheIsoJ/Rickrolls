@@ -9,7 +9,7 @@ datasource db {
 
 model Category {
   id          String     @id @default(uuid())
-  name        String     @db.Text @default("Tutoriaalit")
+  name        String     @db.Text
   description String?    @db.Text
   rickrolls   Rickroll[]
 }
