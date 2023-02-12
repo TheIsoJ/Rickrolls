@@ -6,6 +6,11 @@ type RickrollBody = {
     link: string
 }
 
+type Tag = {
+    id: string
+    label: string
+}
+
 type SubscriptionBody = {
     name: string
     description?: string

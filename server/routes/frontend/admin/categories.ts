@@ -1,12 +1,16 @@
-import express from "express"
+import express, { Request, Response } from "express";
 const router = express.Router()
 
-import { PrismaClient } from "@prisma/client"
-import slugify from "slugify"
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient()
 
-// GET-pyynnöt
-router.get("/rickrolls", async (req, res) => {
+type CategoryBody = {
+    id: string
+    name: string
+    description: string
+}
+
+router.get("/categories", async (req, res) => {
     const apiKey: string = req.query.api_key as string
 
     const user = await prisma.user.findFirst({
@@ -16,24 +20,16 @@ router.get("/rickrolls", async (req, res) => {
     });
 
     if (apiKey === user.api_key) {
-        const rickrolls = await prisma.category.findMany({
+        const categories = await prisma.category.findMany({
             select: {
+                id: true,
                 name: true,
-                description: true,
-                rickrolls: {
-                    select: {
-                        name: true,
-                        description: true,
-                        rickroll_cta_link: true,
-                        slug: true,
-                        tags: true
-                    }
-                },
+                description: true
             }
         })
 
         res.status(200).json({
-            rickrolls
+            categories
         })
     } else {
         res.status(401).json({
@@ -42,8 +38,8 @@ router.get("/rickrolls", async (req, res) => {
     }
 })
 
-router.get("/rickrolls/:slug", async (req, res) => {
-    const slug: string = req.params.slug
+router.get("/categories/:id", async (req, res) => {
+    const id: string = req.params.id
     const apiKey: string = req.query.api_key as string
 
     const user = await prisma.user.findFirst({
@@ -53,27 +49,19 @@ router.get("/rickrolls/:slug", async (req, res) => {
     });
 
     if (apiKey === user.api_key) {
-        const rickroll = await prisma.rickroll.findFirst({
+        const category = await prisma.category.findFirst({
             where: {
-                slug
+                id
             },
             select: {
+                id: true,
                 name: true,
                 description: true,
-                video_id: true,
-                rickroll_cta_link: true,
-                category: {
-                    select: {
-                        name: true,
-                        description: true
-                    }
-                },
-                tags: true
             }
         })
 
         res.status(200).json({
-            rickroll
+            category
         })
     } else {
         res.status(401).json({
@@ -82,9 +70,7 @@ router.get("/rickrolls/:slug", async (req, res) => {
     }
 })
 
-// POST-pyynnöt
-
-router.post("/rickrolls", async (req, res) => {
+router.post("/categories", async (req: Request, res: Response) => {
     const apiKey: string = req.query.api_key as string
 
     const user = await prisma.user.findFirst({
@@ -94,54 +80,29 @@ router.post("/rickrolls", async (req, res) => {
     });
 
     if (apiKey === user.api_key) {
-
         try {
             const {
                 name,
-                description,
-                videoId,
-                imageUrl,
-                link
-            }: RickrollBody = req.body
+                description
+            }: CategoryBody = req.body
 
             if (name === "" || name == null) {
                 res.status(400).json({
                     message: "Nimi vaaditaan."
                 })
-            } else if (videoId === "" || videoId == null) {
-                res.status(400).json({
-                    message: "Videon ID vaaditaan."
-                })
-            } else if (link === "" || link == null) {
-                res.status(400).json({
-                    message: "Linkki vaaditaan."
-                })
-            } else if (imageUrl === "" || imageUrl == null) {
-                res.status(400).json({
-                    message: "Kuva vaaditaan."
-                })
             }
 
-            await prisma.rickroll.create({
+            await prisma.category.create({
                 data: {
                     name,
-                    description,
-                    slug: slugify.default(name, {
-                        lower: true,
-                        locale: "fi",
-                        trim: true,
-                        strict: true
-                    }),
-                    link,
-                    video_id: videoId,
-                    rickroll_cta_link: imageUrl
+                    description
                 }
             })
 
             return res.status(200).json({
                 success: true,
                 statusCode: res.statusCode,
-                message: "Onnistui, rickroll on nyt lisätty."
+                message: "Onnistui, kategoria on nyt lisätty."
             })
         } catch (error) {
             return res.status(500).json({
@@ -157,7 +118,7 @@ router.post("/rickrolls", async (req, res) => {
     }
 })
 
-router.delete("/rickrolls/:id", async (req, res) => {
+router.put("/categories/:id", async (req, res) => {
     const id: string = req.params.id
     const apiKey: string = req.query.api_key as string
 
@@ -170,16 +131,76 @@ router.delete("/rickrolls/:id", async (req, res) => {
     if (apiKey === user.api_key) {
 
         try {
-            await prisma.rickroll.delete({
-                where: {
-                    id
+            const {
+                name,
+                description,
+            }: CategoryBody = req.body
+
+            if (name === "" || name == null) {
+                res.status(400).json({
+                    message: "Nimi vaaditaan."
+                })
+            }
+
+            const category = await prisma.category.update({
+                where: { id },
+                data: {
+                    name,
+                    description,
+                },
+                select: {
+                    name: true,
+                    description: true,
                 }
             })
 
             return res.status(200).json({
                 success: true,
                 statusCode: res.statusCode,
-                message: "Onnistui, rickroll on nyt poistettu."
+                category
+            })
+        } catch (error) {
+            return res.status(500).json({
+                success: false,
+                statusCode: res.statusCode,
+                message: error
+            })
+        }
+    } else {
+        res.status(401).json({
+            success: false,
+            statusCode: res.statusCode,
+            message: "Et voi tehdä tätä toimintoa."
+        })
+    }
+})
+
+router.delete("/categories/:id", async (req, res) => {
+    const id: string = req.params.id
+    const apiKey: string = req.query.api_key as string
+
+    const user = await prisma.user.findFirst({
+        where: {
+            api_key: apiKey
+        }
+    });
+
+    if (apiKey === user.api_key) {
+
+        try {
+            await prisma.category.delete({
+                where: {
+                    id
+                },
+                select: {
+                    id: true
+                }
+            })
+
+            return res.status(200).json({
+                success: true,
+                statusCode: res.statusCode,
+                message: "Onnistui, kategoria on nyt poistettu."
             })
         } catch (error) {
             return res.status(500).json({

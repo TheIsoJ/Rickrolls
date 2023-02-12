@@ -13,8 +13,8 @@ async function seed() {
   const category1 = await prisma.category.create({
     data: {
       id: "7332da11-374d-4450-9ff5-85f4f29768b1",
-      name: "V***umaiset memet",
-      description: "Aika lailla v***umaiset memet niin kuin Sohvaperunoissa.",
+      name: "Vittumaiset memet",
+      description: "Aika lailla vittumaiset memet niin kuin Sohvaperunoissa.",
     },
   })
 
@@ -22,7 +22,7 @@ async function seed() {
     data: {
       id: "ef578ef4-c3b8-4df0-b0b7-84c9d4b452ed",
       name: "YouTube-memet",
-      description: "Aika lailla v***umaiset memet niin kuin YouTubessa.",
+      description: "Aika lailla vittumaiset memet niin kuin YouTubessa.",
     },
   })
 
@@ -41,7 +41,7 @@ async function seed() {
       }),
       rickroll_cta_link: "https://i.ytimg.com/vi/UfUbBWIFdJs/maxresdefault.jpg",
       tags: ["Meemi", "Ei jaksa"],
-      categories: {
+      category: {
         connect: {
           id: category1?.id
         }
@@ -64,7 +64,7 @@ async function seed() {
       }),
       rickroll_cta_link: "https://i.ytimg.com/vi/4m0XXBeH6Uk/maxresdefault.jpg",
       tags: ["Ei jaksa"],
-      categories: {
+      category: {
         connect: {
           id: category2?.id
         }

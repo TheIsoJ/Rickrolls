@@ -12,6 +12,9 @@ type RickrollBody = {
     videoId: string
     link: string
     imageUrl: string
+    category: string
+    categoryId: string
+    tags: string[]
 }
 
 router.get("/rickrolls", async (req, res) => {
@@ -76,12 +79,13 @@ router.get("/rickrolls/:slug", async (req, res) => {
                 description: true,
                 link: true,
                 video_id: true,
-                categories: {
+                category: {
                     select: {
                         name: true,
                         description: true
                     }
                 },
+                tags: true,
                 rickroll_cta_link: true
             }
         })
@@ -112,7 +116,9 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                 description,
                 videoId,
                 link,
-                imageUrl
+                imageUrl,
+                category,
+                tags
             }: RickrollBody = req.body
 
             if (name === "" || name == null) {
@@ -131,6 +137,14 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                 res.status(400).json({
                     message: "Kuva vaaditaan."
                 })
+            } else if (category === "" || category == null) {
+                res.status(400).json({
+                    message: "Kategoria vaaditaan."
+                })
+            } else if (tags.length === 0) {
+                res.status(400).json({
+                    message: "Tagejä ei ole. Laita ainakin yksi."
+                })
             }
 
             await prisma.rickroll.create({
@@ -142,11 +156,11 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                         locale: "fi",
                         trim: true,
                         strict: true
-                    })
-                    ,
+                    }),
                     video_id: videoId,
                     link,
-                    rickroll_cta_link: imageUrl
+                    rickroll_cta_link: imageUrl,
+                    tags
                 }
             })
 
@@ -187,7 +201,10 @@ router.put("/rickrolls/:id", async (req, res) => {
                 description,
                 videoId,
                 link,
-                imageUrl
+                imageUrl,
+                category,
+                categoryId,
+                tags
             }: RickrollBody = req.body
 
             if (name === "" || name == null) {
@@ -206,7 +223,20 @@ router.put("/rickrolls/:id", async (req, res) => {
                 res.status(400).json({
                     message: "Kuva vaaditaan."
                 })
+            } else if (tags.length === 0) {
+                res.status(400).json({
+                    message: "Tagejä ei ole. Laita ainakin yksi."
+                })
             }
+
+            const updateCategory = await prisma.category.update({
+                where: {
+                    id: categoryId
+                },
+                data: {
+                    name: category
+                }
+            })
 
             const rickroll = await prisma.rickroll.update({
                 where: { id },
@@ -221,14 +251,27 @@ router.put("/rickrolls/:id", async (req, res) => {
                     description,
                     video_id: videoId,
                     link,
-                    rickroll_cta_link: imageUrl
+                    rickroll_cta_link: imageUrl,
+                    tags,
+                    category: {
+                        connect: {
+                            id: updateCategory?.id
+                        }
+                    }
                 },
                 select: {
                     name: true,
                     description: true,
                     video_id: true,
                     link: true,
-                    rickroll_cta_link: true
+                    rickroll_cta_link: true,
+                    tags: true,
+                    category: {
+                        select: {
+                            name: true,
+                            description: true
+                        }
+                    }
                 }
             })
 

@@ -27,7 +27,7 @@ const EditSubscription = () => {
   return (
     <div className="flex flex-col flex-1 bg-teal-800 text-white min-h-screen">
       <Head>
-        <title>Päivitä rickrollia - Rickrolls</title>
+        <title>Päivitä tilausta - Rickrolls</title>
       </Head>
 
       <Header sticky />

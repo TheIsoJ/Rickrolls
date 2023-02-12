@@ -19,6 +19,7 @@ import frontendAdminProductsRoute from "./routes/frontend/admin/products.js"
 import frontendGetStripeConfigRoute from "./routes/frontend/regular-user/getStripeConfig.js"
 import frontendRickrollsRoute from "./routes/frontend/regular-user/rickrolls.js"
 import frontendAdminRickrollsRoute from "./routes/frontend/admin/rickrolls.js"
+import frontendAdminCategoriesRoute from "./routes/frontend/admin/categories.js"
 import frontendUsersRoute from "./routes/frontend/regular-user/users.js"
 import frontendCustomerRoute from "./routes/frontend/regular-user/customer.js"
 
@@ -40,6 +41,7 @@ app.use(`/api/${API_VERSION}/admin`, frontendAdminProductsRoute)
 app.use(`/api/${API_VERSION}/config`, frontendGetStripeConfigRoute)
 app.use(`/api/${API_VERSION}`, frontendRickrollsRoute)
 app.use(`/api/${API_VERSION}/admin`, frontendAdminRickrollsRoute)
+app.use(`/api/${API_VERSION}/admin`, frontendAdminCategoriesRoute)
 app.use(`/api/${API_VERSION}`, frontendUsersRoute)
 app.use(`/api/${API_VERSION}`, frontendCustomerRoute)
 

@@ -1,53 +1,41 @@
 import { useRouter } from "next/router"
 import { useEffect, useRef } from "react"
-import { useAdminRickrollCreate } from "../hooks/admin/useAdminRickrollCreate"
-import { useAdminRickrollEdit } from "../hooks/admin/useAdminRickrollEdit"
+import { useAdminCategoryCreate } from "../hooks/admin/useAdminCategoryCreate"
+import { useAdminCategoryEdit } from "../hooks/admin/useAdminCategoryEdit"
 
 type Props = {
-  initialValue?: RickrollResponseData
+  initialValue?: CategoryResponseData
   isEditing?: boolean
 }
 
 const CategoryInputBox = ({ initialValue, isEditing }: Props) => {
   const nameRef = useRef<HTMLInputElement>(null)
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
-  const linkRef = useRef<HTMLInputElement>(null)
-  const videoIdRef = useRef<HTMLInputElement>(null)
-  const imageUrlRef = useRef<HTMLInputElement>(null)
 
   const router = useRouter()
 
-  const checkIfEditing = (initialValue: RickrollResponseData | undefined) => {
+  const checkIfEditing = (initialValue: CategoryResponseData | undefined) => {
     if (isEditing) {
       useEffect(() => {
-        nameRef.current!.value = initialValue?.rickroll?.name as string
-        descriptionRef.current!.value = initialValue?.rickroll
+        nameRef.current!.value = initialValue?.category?.name as string
+        descriptionRef.current!.value = initialValue?.category
           ?.description as string
-        videoIdRef.current!.value = initialValue?.rickroll?.video_id as string
-        linkRef.current!.value = initialValue?.rickroll?.link as string
-        imageUrlRef.current!.value = initialValue?.rickroll?.rickroll_cta_link as string
       }, [initialValue])
     } else {
       useEffect(() => {
         nameRef.current!.value = ""
         descriptionRef.current!.value = ""
-        videoIdRef.current!.value = ""
-        linkRef.current!.value = ""
-        imageUrlRef.current!.value = ""
       }, [])
     }
   }
 
-  const onRickrollCreate = (e: React.FormEvent<HTMLFormElement>) => {
+  const onCategoryCreate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     try {
-      useAdminRickrollCreate<void>(
+      useAdminCategoryCreate<void>(
         nameRef.current!.value,
-        descriptionRef.current!.value,
-        videoIdRef.current!.value,
-        linkRef.current!.value,
-        imageUrlRef.current!.value
+        descriptionRef.current!.value
       ).then(() => {
         return router.replace("/admin")
       })
@@ -56,19 +44,16 @@ const CategoryInputBox = ({ initialValue, isEditing }: Props) => {
     }
   }
 
-  const onRickrollUpdate = (e: React.FormEvent<HTMLFormElement>) => {
+  const onCategoryUpdate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const id: string = initialValue?.rickroll.id as string
+    const id: string = initialValue?.category?.id as string
 
     try {
-      useAdminRickrollEdit<void>(
+      useAdminCategoryEdit<void>(
         id,
         nameRef.current!.value,
-        descriptionRef.current!.value,
-        videoIdRef.current!.value,
-        linkRef.current!.value,
-        imageUrlRef.current!.value
+        descriptionRef.current!.value
       ).then(() => {
         return router.replace("/admin")
       })
@@ -83,9 +68,9 @@ const CategoryInputBox = ({ initialValue, isEditing }: Props) => {
         <>
           {checkIfEditing(initialValue)}
           <div className="flex flex-col max-w-7xl mx-auto my-16 overflow-y-scroll scrollbar-none bg-white text-black rounded-3xl px-10 py-2 sm:shadow-sm">
-            <form onSubmit={onRickrollUpdate} className="px-5 py-4">
+            <form onSubmit={onCategoryUpdate} className="px-5 py-4">
               <h1 className="font-[Poppins] mt-6 text-md font-bold">
-                Rickrollin nimi
+                Kategorian nimi
               </h1>
 
               <input
@@ -94,42 +79,18 @@ const CategoryInputBox = ({ initialValue, isEditing }: Props) => {
                 type="text"
               />
               <h1 className="font-[Poppins] mt-6 text-md font-bold">
-                Rickrollin kuvaus
+                Kategorian kuvaus
               </h1>
               <textarea
                 ref={descriptionRef}
-                className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2 resize-none"
-              />
-              <h1 className="font-[Poppins] mt-6 text-md font-bold">
-                Rickrollin videotunniste
-              </h1>
-              <input
-                ref={videoIdRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
-                type="text"
-              />
-              <h1 className="font-[Poppins] mt-6 text-md font-bold">
-                Rickrollin linkki
-              </h1>
-              <input
-                ref={linkRef}
-                className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
-                type="text"
-              />
-              <h1 className="font-[Poppins] mt-6 text-md font-bold">
-                Rickrollin kuvan osoite
-              </h1>
-              <input
-                ref={imageUrlRef}
-                className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
-                type="url"
               />
               <div className="flex items-center justify-center">
                 <button
                   className="flex items-center flex-1 uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[1rem] transition-all duration-500 ease-in-out hover:bg-teal-600 disabled:bg-gray-500 disabled:text-black mt-6"
                   type="submit"
                 >
-                  Lähetä
+                  Päivitä kategoria
                 </button>
               </div>
             </form>
@@ -138,9 +99,9 @@ const CategoryInputBox = ({ initialValue, isEditing }: Props) => {
       ) : (
         <>
           <div className="flex flex-col max-w-7xl mx-auto my-16 overflow-y-scroll scrollbar-none bg-white text-black rounded-3xl px-10 py-2 sm:shadow-sm">
-            <form onSubmit={onRickrollCreate} className="px-5 py-4">
+            <form onSubmit={onCategoryCreate} className="px-5 py-4">
               <h1 className="font-[Poppins] mt-6 text-md font-bold">
-                Rickrollin nimi
+                Kategorian nimi
               </h1>
 
               <input
@@ -149,42 +110,18 @@ const CategoryInputBox = ({ initialValue, isEditing }: Props) => {
                 type="text"
               />
               <h1 className="font-[Poppins] mt-6 text-md font-bold">
-                Rickrollin kuvaus
+                Kategorian kuvaus
               </h1>
               <textarea
                 ref={descriptionRef}
-                className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2 resize-none"
-              />
-              <h1 className="font-[Poppins] mt-6 text-md font-bold">
-                Rickrollin videon tunniste
-              </h1>
-              <input
-                ref={videoIdRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
-                type="text"
-              />
-              <h1 className="font-[Poppins] mt-6 text-md font-bold">
-                Rickrollin linkki
-              </h1>
-              <input
-                ref={linkRef}
-                className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
-                type="url"
-              />
-              <h1 className="font-[Poppins] mt-6 text-md font-bold">
-                Rickrollin kuvan osoite
-              </h1>
-              <input
-                ref={imageUrlRef}
-                className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
-                type="url"
               />
               <div className="flex items-center justify-center">
                 <button
                   className="flex items-center flex-1 uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[1rem] transition-all duration-500 ease-in-out hover:bg-teal-600 mt-6"
                   type="submit"
                 >
-                  Lähetä
+                  Luo kategoria
                 </button>
               </div>
             </form>

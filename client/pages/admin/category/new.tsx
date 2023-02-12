@@ -1,18 +1,15 @@
 import { useRouter } from "next/router"
 import Head from "next/head"
 import Header from "../../../components/Header"
-import RickrollInputBox from "../../../components/RickrollInputBox"
-import { useAdminCategoriesFetch } from "../../../hooks/admin/useAdminCategoriesFetch"
+import CategoryInputBox from "../../../components/CategoryInputBox"
 
-const NewRickroll = () => {
+const NewCategory = () => {
   const router = useRouter()
-
-  const { res, loading } = useAdminCategoriesFetch()
 
   return (
     <div className="bg-teal-800 text-white min-h-screen flex flex-col flex-1">
       <Head>
-        <title>Lisää uusi rickroll - Rickrolls</title>
+        <title>Lisää uusi kategoria - Rickrolls</title>
       </Head>
 
       <Header sticky />
@@ -27,8 +24,8 @@ const NewRickroll = () => {
         </button>
       </div>
 
-      <RickrollInputBox categoryData={res} categoryLoading={loading} />
+      <CategoryInputBox />
     </div>
   )
 }
-export default NewRickroll
+export default NewCategory

@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 
 type Props = {
     endpoint: string,
-    options?: AxiosRequestConfig<SubscriptionBody | RickrollDataBody>
+    options?: AxiosRequestConfig<SubscriptionBody | RickrollDataBody | CategoryBody>
 }
 
 const api = axios.create({

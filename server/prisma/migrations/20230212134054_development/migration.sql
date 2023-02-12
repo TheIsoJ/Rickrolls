@@ -39,7 +39,7 @@ CREATE TABLE "User" (
 );
 
 -- AddForeignKey
-ALTER TABLE "Rickroll" ADD CONSTRAINT "Rickroll_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Rickroll" ADD CONSTRAINT "Rickroll_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Rickroll" ADD CONSTRAINT "Rickroll_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Rickroll" ADD CONSTRAINT "Rickroll_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

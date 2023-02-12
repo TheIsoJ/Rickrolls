@@ -1,19 +1,29 @@
 import { useRouter } from "next/router"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import ReactSelect from "react-select"
 import { useAdminRickrollCreate } from "../hooks/admin/useAdminRickrollCreate"
 import { useAdminRickrollEdit } from "../hooks/admin/useAdminRickrollEdit"
 
 type Props = {
   initialValue?: RickrollResponseData
+  categoryData?: CategoriesResponseData
+  categoryLoading?: boolean
   isEditing?: boolean
 }
 
-const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
+const RickrollInputBox = ({
+  initialValue,
+  categoryData,
+  categoryLoading,
+  isEditing,
+}: Props) => {
   const nameRef = useRef<HTMLInputElement>(null)
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
   const linkRef = useRef<HTMLInputElement>(null)
   const videoIdRef = useRef<HTMLInputElement>(null)
   const imageUrlRef = useRef<HTMLInputElement>(null)
+
+  const [category, setCategory] = useState("")
 
   const router = useRouter()
 
@@ -25,7 +35,8 @@ const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
           ?.description as string
         videoIdRef.current!.value = initialValue?.rickroll?.video_id as string
         linkRef.current!.value = initialValue?.rickroll?.link as string
-        imageUrlRef.current!.value = initialValue?.rickroll?.rickroll_cta_link as string
+        imageUrlRef.current!.value = initialValue?.rickroll
+          ?.rickroll_cta_link as string
       }, [initialValue])
     } else {
       useEffect(() => {
@@ -47,7 +58,8 @@ const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
         descriptionRef.current!.value,
         videoIdRef.current!.value,
         linkRef.current!.value,
-        imageUrlRef.current!.value
+        imageUrlRef.current!.value,
+        category
       ).then(() => {
         return router.replace("/admin")
       })
@@ -59,7 +71,8 @@ const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
   const onRickrollUpdate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const id: string = initialValue?.rickroll.id as string
+    const id: string = initialValue?.rickroll?.id as string
+    const categoryId: string = initialValue?.rickroll?.category?.id as string
 
     try {
       useAdminRickrollEdit<void>(
@@ -68,7 +81,9 @@ const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
         descriptionRef.current!.value,
         videoIdRef.current!.value,
         linkRef.current!.value,
-        imageUrlRef.current!.value
+        imageUrlRef.current!.value,
+        category,
+        categoryId
       ).then(() => {
         return router.replace("/admin")
       })
@@ -124,6 +139,17 @@ const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
                 type="url"
               />
+              <h1 className="font-[Poppins] mt-6 text-md font-bold">
+                Rickrollin kategoria
+              </h1>
+              <ReactSelect
+                className="mt-2"
+                isLoading={categoryLoading}
+                options={categoryData?.categoryOptions}
+                placeholder={categoryData?.categoryOptions?.at(0)?.label}
+                tabSelectsValue
+                onChange={(e) => setCategory(e?.label as string)}
+              />
               <div className="flex items-center justify-center">
                 <button
                   className="flex items-center flex-1 uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[1rem] transition-all duration-500 ease-in-out hover:bg-teal-600 disabled:bg-gray-500 disabled:text-black mt-6"
@@ -178,6 +204,18 @@ const RickrollInputBox = ({ initialValue, isEditing }: Props) => {
                 ref={imageUrlRef}
                 className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
                 type="url"
+              />
+              <h1 className="font-[Poppins] mt-6 text-md font-bold">
+                Rickrollin kategoria
+              </h1>
+              <ReactSelect
+                className="mt-2"
+                isSearchable
+                isLoading={categoryLoading}
+                options={categoryData?.categoryOptions}
+                defaultValue={categoryData?.categoryOptions}
+                placeholder={categoryData?.categoryOptions?.[0]?.label}
+                onChange={(e) => setCategory(e?.label as string)}
               />
               <div className="flex items-center justify-center">
                 <button

@@ -2,21 +2,16 @@ import { DotPulse } from "@uiball/loaders"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import Header from "../../../../components/Header"
-import { useAdminRickrollFetch } from "../../../../hooks/admin/useAdminRickrollFetch"
-import { useAdminCategoriesFetch } from "../../../../hooks/admin/useAdminCategoriesFetch"
-import RickrollInputBox from "../../../../components/RickrollInputBox"
+import { useAdminCategoryFetch } from "../../../../hooks/admin/useAdminCategoryFetch"
+import CategoryInputBox from "../../../../components/CategoryInputBox"
 
 const EditRickroll = () => {
   const router = useRouter()
+  
+  const { id } = router.query
+  const { res, loading } = useAdminCategoryFetch(id as string)
 
-  const { slugOrId } = router.query
-  const { res: resRickroll, loading: loadingRickroll } = useAdminRickrollFetch(
-    slugOrId as string
-  )
-  const { res: resCategories, loading: loadingCategories } =
-    useAdminCategoriesFetch()
-
-  if (loadingRickroll && loadingCategories) {
+  if (loading) {
     return (
       <>
         <Head>
@@ -32,7 +27,7 @@ const EditRickroll = () => {
   return (
     <div className="flex flex-col flex-1 bg-teal-800 text-white min-h-screen">
       <Head>
-        <title>Päivitä rickrollia - Rickrolls</title>
+        <title>Päivitä kategoriaa - Rickrolls</title>
       </Head>
 
       <Header sticky />
@@ -46,14 +41,7 @@ const EditRickroll = () => {
           Takaisin
         </button>
       </div>
-      {resRickroll && resCategories && (
-        <RickrollInputBox
-          initialValue={resRickroll}
-          categoryData={resCategories}
-          categoryLoading={loadingCategories}
-          isEditing
-        />
-      )}
+      {res && <CategoryInputBox initialValue={res} isEditing />}
     </div>
   )
 }

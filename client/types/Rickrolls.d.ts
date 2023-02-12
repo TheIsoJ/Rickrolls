@@ -15,6 +15,14 @@ type ProductResponseData = {
     product: Product
 }
 
+type CategoryResponseData = {
+    category: Category
+}
+
+type CategoriesResponseData = {
+    categoryOptions: CategoryOptions[]
+}
+
 // type SessionsResponseData = {
 //     sessions: Sessions
 // }
@@ -51,6 +59,11 @@ type Category = {
     description?: string
 }
 
+type CategoryOptions = {
+    label: string
+    value: string
+}
+
 type Rickroll = {
     id?: string
     name?: string
@@ -60,7 +73,7 @@ type Rickroll = {
     video_id?: string
     rickroll_cta_link?: string
     tags?: string[]
-    categories?: Category
+    category?: Category
 }
 
 type RickrollDataBody = {
@@ -69,6 +82,9 @@ type RickrollDataBody = {
     videoId?: string
     link?: string
     imageUrl?: string
+    category?: string
+    categoryId?: string
+    tags?: string[]
 }
 
 type SubscriptionBody = {
@@ -76,6 +92,11 @@ type SubscriptionBody = {
     description?: string
     price?: string
     active?: boolean
+}
+
+type CategoryBody = {
+    name: string
+    description?: string
 }
 
 type RickrollError = {

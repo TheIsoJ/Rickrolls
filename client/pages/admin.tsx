@@ -1,6 +1,5 @@
 import { DotPulse } from "@uiball/loaders"
 import Head from "next/head"
-import Link from "next/link"
 import { useRouter } from "next/router"
 import Header from "../components/Header"
 import { useAdminProductsFetch } from "../hooks/admin/useAdminProductsFetch"
@@ -12,7 +11,7 @@ const Admin = () => {
     useAdminRickrollsFetch()
   const { res: resProducts, loading: loadingProducts } = useAdminProductsFetch()
 
-  if (loadingRickrolls) {
+  if (loadingRickrolls && loadingProducts) {
     return (
       <>
         <Head>
@@ -46,6 +45,13 @@ const Admin = () => {
           Lisää uusi rickroll
         </button>
         <button
+          onClick={() => router.push("/admin/category/new")}
+          className="flex items-center uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[0.75rem] transition-all duration-500 ease-in-out hover:bg-teal-700"
+          type="button"
+        >
+          Lisää uusi kategoria
+        </button>
+        <button
           onClick={() => router.push("/admin/subscription/new")}
           className="flex items-center uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] font-bold px-12 py-[0.75rem] transition-all duration-500 ease-in-out hover:bg-teal-700"
           type="button"
@@ -70,22 +76,26 @@ const Admin = () => {
       {resRickrolls?.categories?.map((category) => (
         <>
           <div className="flex flex-col px-8 my-4">
-            <h1 className="max-w-xl font-[Poppins] font-extrabold text-lg lg:text-3xl">
+            <h1 className="max-w-xl text-center sm:text-left font-[Poppins] font-extrabold text-lg lg:text-3xl">
               {category.name}
             </h1>
-            <p className="max-w-xl font-[Poppins] text-sm md:text-lg mt-2">
+            <p className="max-w-xl text-center sm:text-left font-[Poppins] text-sm md:text-lg mt-2">
               {category.description}
             </p>
-            <div className="flex items-center fade-semifast justify-center space-x-4 p-5">
+            <div className="flex flex-col lg:flex-row items-center lg:justify-center fade-semifast justify-center space-y-2 lg:space-y-0 lg:space-x-2 p-5">
               <button
-                onClick={() => router.push(`/admin/rickroll/${category.id}/edit`)}
+                onClick={() =>
+                  router.push(`/admin/category/${category.id}/edit`)
+                }
                 className="flex items-center uppercase justify-center bg-teal-600 text-white hover:shadow-lg hover:shadow-gray-500 rounded-full font-[Poppins] text-sm font-semibold px-5 py-2 transition-all duration-500 ease-in-out hover:bg-teal-600"
                 type="button"
               >
                 Päivitä
               </button>
               <button
-                onClick={() => router.push(`/admin/rickroll/${category.id}/delete`)}
+                onClick={() =>
+                  router.push(`/admin/category/${category.id}/delete`)
+                }
                 className="flex items-center uppercase justify-center shadow-sm shadow-gray-500 bg-white text-black hover:shadow-none rounded-full font-[Poppins] text-sm font-semibold px-5 py-2 transition-all duration-500 ease-in-out hover:bg-red-600 hover:text-white"
                 type="button"
               >
@@ -93,7 +103,7 @@ const Admin = () => {
               </button>
             </div>
             {category.rickrolls.map(
-              ({ id, slug, name, description, rickroll_cta_link }) => (
+              ({ id, slug, name, description, tags, rickroll_cta_link }) => (
                 <>
                   <div
                     key={slug}
@@ -111,12 +121,20 @@ const Admin = () => {
                             <h1 className="text-xl font-[Poppins] font-bold">
                               {name}
                             </h1>
+                            <div className="flex items-center space-x-2 fade-semifast">
+                              <p className="font-[Poppins] text-sm font-bold text-gray-600/75">Tagit:</p>
+                              {tags?.map((tag) => (
+                                <p className="flex bg-teal-400 my-2 px-2 py-1 font-[Poppins] text-xs uppercase rounded-full">
+                                  {tag}
+                                </p>
+                              ))}
+                            </div>
                             <p className="mt-2 text-sm whitespace-pre-wrap font-[Poppins] fade-semifast">
                               {description}
                             </p>
                           </div>
                         </div>
-                        <div className="flex flex-col items-center fade-semifast justify-center space-y-4 bg-white text-black p-5">
+                        <div className="flex flex-col lg:flex-row items-center lg:justify-center fade-semifast justify-center space-y-4 lg:space-y-0 lg:space-x-2 bg-white text-black p-5">
                           <button
                             onClick={() =>
                               router.push(`/admin/rickroll/${slug}/edit`)
