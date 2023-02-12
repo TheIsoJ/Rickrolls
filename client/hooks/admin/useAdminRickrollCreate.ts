@@ -6,8 +6,7 @@ export const useAdminRickrollCreate = async <returnType>(
     description: string,
     videoId: string,
     link: string,
-    imageUrl: string,
-    category: string
+    imageUrl: string
 ): Promise<returnType> => {
     return await basicFetch<returnType>({
         endpoint: NEW_RICKROLL_BASE_URL,
@@ -18,8 +17,7 @@ export const useAdminRickrollCreate = async <returnType>(
                 description,
                 link,
                 videoId,
-                imageUrl,
-                category
+                imageUrl
             },
             params: {
                 api_key: API_KEY
