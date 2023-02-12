@@ -5,6 +5,7 @@ const prisma = new PrismaClient()
 async function seed() {
   const name1 = "Tutoriaali"
   const name2 = "Joku saatanan taikatemppu"
+  const name3 = "Jonnet ei muista"
 
   await prisma.category.deleteMany()
   await prisma.rickroll.deleteMany()
@@ -13,16 +14,16 @@ async function seed() {
   const category1 = await prisma.category.create({
     data: {
       id: "7332da11-374d-4450-9ff5-85f4f29768b1",
-      name: "Vittumaiset memet",
-      description: "Aika lailla vittumaiset memet niin kuin Sohvaperunoissa.",
+      name: "Meemit",
+      description: "YouTuben kaikki meemit.",
     },
   })
 
   const category2 = await prisma.category.create({
     data: {
       id: "ef578ef4-c3b8-4df0-b0b7-84c9d4b452ed",
-      name: "YouTube-memet",
-      description: "Aika lailla vittumaiset memet niin kuin YouTubessa.",
+      name: "Tutoriaalit",
+      description: "YouTuben kaikki tutoriaalit.",
     },
   })
 
@@ -40,7 +41,7 @@ async function seed() {
         strict: true,
       }),
       rickroll_cta_link: "https://i.ytimg.com/vi/UfUbBWIFdJs/maxresdefault.jpg",
-      tags: ["Meemi", "Ei jaksa"],
+      tags: ["Tutoriaalit"],
       category: {
         connect: {
           id: category1?.id
@@ -53,7 +54,7 @@ async function seed() {
     data: {
       name: name2,
       description:
-        "Nyt ei ole sitä vitun motivaatiota kirjoittaa tähän mitään saatanan kuvausta. Tulen päivittämään myöhemmin.",
+        "Nyt ei ole sitä motivaatiota kirjoittaa tähän mitään kuvausta.\n\nTulen päivittämään myöhemmin.",
       link: "https://www.youtube.com/watch?v=4m0XXBeH6Uk",
       video_id: "4m0XXBeH6Uk",
       slug: slugify.default(name2, {
@@ -63,7 +64,30 @@ async function seed() {
         strict: true,
       }),
       rickroll_cta_link: "https://i.ytimg.com/vi/4m0XXBeH6Uk/maxresdefault.jpg",
-      tags: ["Ei jaksa"],
+      tags: ["Meemit", "Ei-niin hauskat meemit"],
+      category: {
+        connect: {
+          id: category2?.id
+        }
+      }
+    },
+  })
+  
+  await prisma.rickroll.create({
+    data: {
+      name: name3,
+      description:
+        "Katso vaikka",
+      link: "https://www.youtube.com/watch?v=e3uFs_AanMU",
+      video_id: "e3uFs_AanMU",
+      slug: slugify.default(name3, {
+        lower: true,
+        locale: "fi",
+        trim: true,
+        strict: true,
+      }),
+      rickroll_cta_link: "https://i.ytimg.com/vi/e3uFs_AanMU/maxresdefault.jpg",
+      tags: ["Meemit", "Tutoriaali", "Olen hassu, olen meemi"],
       category: {
         connect: {
           id: category2?.id
