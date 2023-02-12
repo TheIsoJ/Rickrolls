@@ -12,9 +12,6 @@ type RickrollBody = {
     videoId: string
     link: string
     imageUrl: string
-    category: string
-    categoryId: string
-    tags: string[]
 }
 
 router.get("/rickrolls", async (req, res) => {
@@ -116,9 +113,7 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                 description,
                 videoId,
                 link,
-                imageUrl,
-                category,
-                tags
+                imageUrl
             }: RickrollBody = req.body
 
             if (name === "" || name == null) {
@@ -137,14 +132,6 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                 res.status(400).json({
                     message: "Kuva vaaditaan."
                 })
-            } else if (category === "" || category == null) {
-                res.status(400).json({
-                    message: "Kategoria vaaditaan."
-                })
-            } else if (tags.length === 0) {
-                res.status(400).json({
-                    message: "Tagejä ei ole. Laita ainakin yksi."
-                })
             }
 
             await prisma.rickroll.create({
@@ -159,8 +146,7 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                     }),
                     video_id: videoId,
                     link,
-                    rickroll_cta_link: imageUrl,
-                    tags
+                    rickroll_cta_link: imageUrl
                 }
             })
 
@@ -201,10 +187,7 @@ router.put("/rickrolls/:id", async (req, res) => {
                 description,
                 videoId,
                 link,
-                imageUrl,
-                category,
-                categoryId,
-                tags
+                imageUrl
             }: RickrollBody = req.body
 
             if (name === "" || name == null) {
@@ -223,20 +206,7 @@ router.put("/rickrolls/:id", async (req, res) => {
                 res.status(400).json({
                     message: "Kuva vaaditaan."
                 })
-            } else if (tags.length === 0) {
-                res.status(400).json({
-                    message: "Tagejä ei ole. Laita ainakin yksi."
-                })
             }
-
-            const updateCategory = await prisma.category.update({
-                where: {
-                    id: categoryId
-                },
-                data: {
-                    name: category
-                }
-            })
 
             const rickroll = await prisma.rickroll.update({
                 where: { id },
@@ -251,27 +221,14 @@ router.put("/rickrolls/:id", async (req, res) => {
                     description,
                     video_id: videoId,
                     link,
-                    rickroll_cta_link: imageUrl,
-                    tags,
-                    category: {
-                        connect: {
-                            id: updateCategory?.id
-                        }
-                    }
+                    rickroll_cta_link: imageUrl
                 },
                 select: {
                     name: true,
                     description: true,
                     video_id: true,
                     link: true,
-                    rickroll_cta_link: true,
-                    tags: true,
-                    category: {
-                        select: {
-                            name: true,
-                            description: true
-                        }
-                    }
+                    rickroll_cta_link: true
                 }
             })
 
