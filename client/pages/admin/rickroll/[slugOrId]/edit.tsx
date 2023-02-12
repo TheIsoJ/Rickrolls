@@ -3,20 +3,17 @@ import Head from "next/head"
 import { useRouter } from "next/router"
 import Header from "../../../../components/Header"
 import { useAdminRickrollFetch } from "../../../../hooks/admin/useAdminRickrollFetch"
-import { useAdminCategoriesFetch } from "../../../../hooks/admin/useAdminCategoriesFetch"
 import RickrollInputBox from "../../../../components/RickrollInputBox"
 
 const EditRickroll = () => {
   const router = useRouter()
 
   const { slugOrId } = router.query
-  const { res: resRickroll, loading: loadingRickroll } = useAdminRickrollFetch(
+  const { res, loading } = useAdminRickrollFetch(
     slugOrId as string
   )
-  const { res: resCategories, loading: loadingCategories } =
-    useAdminCategoriesFetch()
 
-  if (loadingRickroll && loadingCategories) {
+  if (loading) {
     return (
       <>
         <Head>
@@ -46,11 +43,9 @@ const EditRickroll = () => {
           Takaisin
         </button>
       </div>
-      {resRickroll && resCategories && (
+      {res && (
         <RickrollInputBox
-          initialValue={resRickroll}
-          categoryData={resCategories}
-          categoryLoading={loadingCategories}
+          initialValue={res}
           isEditing
         />
       )}
