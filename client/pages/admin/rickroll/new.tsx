@@ -2,12 +2,9 @@ import { useRouter } from "next/router"
 import Head from "next/head"
 import Header from "../../../components/Header"
 import RickrollInputBox from "../../../components/RickrollInputBox"
-import { useAdminCategoriesFetch } from "../../../hooks/admin/useAdminCategoriesFetch"
 
 const NewRickroll = () => {
   const router = useRouter()
-
-  const { res, loading } = useAdminCategoriesFetch()
 
   return (
     <div className="bg-teal-800 text-white min-h-screen flex flex-col flex-1">
@@ -27,7 +24,7 @@ const NewRickroll = () => {
         </button>
       </div>
 
-      <RickrollInputBox categoryData={res} categoryLoading={loading} />
+      <RickrollInputBox />
     </div>
   )
 }
