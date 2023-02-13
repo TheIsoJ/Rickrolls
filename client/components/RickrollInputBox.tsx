@@ -102,7 +102,7 @@ const RickrollInputBox = ({
               </h1>
               <textarea
                 ref={descriptionRef}
-                className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2 resize-none"
+                className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
               />
               <h1 className="font-[Poppins] mt-6 text-md font-bold">
                 Rickrollin videotunniste
@@ -157,7 +157,7 @@ const RickrollInputBox = ({
               </h1>
               <textarea
                 ref={descriptionRef}
-                className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2 resize-none"
+                className="flex flex-col flex-1 items-center justify-center border-2 border-black bg-transparent outline-none text-black rounded-md font-[Poppins] px-6 py-[0.75rem] w-full mr-6 mt-2"
               />
               <h1 className="font-[Poppins] mt-6 text-md font-bold">
                 Rickrollin videon tunniste
