@@ -14,7 +14,7 @@
     "start:migrate:prod": "prisma db push && npm run start:prod",
     "start:dev:docker": "npm run build && npm run seed && nodemon dist/server.js",
     "start:dev": "npm run build && nodemon dist/server.js",
-    "start:prod": "npm run build && npm run seed && node dist/server.js",
+    "start:prod": "npm run build && node dist/server.js",
     "start:pm2-instance": "npm run build"
   },
   "prisma": {
