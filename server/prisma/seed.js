@@ -44,7 +44,7 @@ async function seed() {
       tags: ["Tutoriaalit"],
       category: {
         connect: {
-          id: category1?.id
+          id: category2?.id
         }
       }
     },
@@ -64,10 +64,10 @@ async function seed() {
         strict: true,
       }),
       rickroll_cta_link: "https://i.ytimg.com/vi/4m0XXBeH6Uk/maxresdefault.jpg",
-      tags: ["Meemit", "Ei-niin hauskat meemit"],
+      tags: ["Meemit"],
       category: {
         connect: {
-          id: category2?.id
+          id: category1?.id
         }
       }
     },
@@ -77,7 +77,7 @@ async function seed() {
     data: {
       name: name3,
       description:
-        "Katso vaikka",
+        "Katso vaikka.",
       link: "https://www.youtube.com/watch?v=e3uFs_AanMU",
       video_id: "e3uFs_AanMU",
       slug: slugify.default(name3, {
@@ -87,10 +87,10 @@ async function seed() {
         strict: true,
       }),
       rickroll_cta_link: "https://i.ytimg.com/vi/e3uFs_AanMU/maxresdefault.jpg",
-      tags: ["Meemit", "Tutoriaali", "Olen hassu, olen meemi"],
+      tags: ["Meemit"],
       category: {
         connect: {
-          id: category2?.id
+          id: category1?.id
         }
       }
     },
