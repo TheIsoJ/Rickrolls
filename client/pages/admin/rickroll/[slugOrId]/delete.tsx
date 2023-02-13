@@ -24,7 +24,7 @@ const DeleteRickroll = () => {
       <Header sticky />
       <div className="flex items-center fade-semifast justify-center space-y-8 space-x-2 bg-white text-black p-5">
         <div>
-          <h1 className="text-2xl font-[Poppins] font-bold">
+          <h1 className="text-2xl text-center font-[Poppins] font-bold">
             Haluatko varmasti poistaa tämän rickrollin?
           </h1>
         </div>
