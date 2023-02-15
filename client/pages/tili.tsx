@@ -26,7 +26,7 @@ const Account = () => {
           )}
           {!user ? (
             <>
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center space-y-3">
                 <h1 className="font-[Poppins] font-bold text-2xl text-white">
                   Odotappas... et ole kirjautunut palveluun.
                 </h1>
