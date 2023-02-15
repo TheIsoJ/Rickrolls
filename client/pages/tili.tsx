@@ -31,7 +31,7 @@ const Account = () => {
                   Odotappas... et ole kirjautunut palveluun.
                 </h1>
                 <a
-                  className="mt-4 bg-white rounded-full font-[Poppins] font-bold w-[256px] px-4 py-4 transition-all duration-200 ease-in-out hover:opacity-60"
+                  className="bg-white rounded-full font-[Poppins] font-bold w-full px-4 py-4 transition-all duration-200 ease-in-out hover:opacity-60"
                   href="/api/auth/login"
                 >
                   Kirjaudu sisään
