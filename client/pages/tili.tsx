@@ -53,7 +53,7 @@ const Account = () => {
           )}
 
           <div className="flex flex-col justify-center space-y-3">
-            {user.email?.startsWith("juiceneblueyt") ? (
+            {user?.email?.startsWith("juiceneblueyt") ? (
               <>
                 <Link
                   className="bg-white rounded-full font-[Poppins] font-bold w-full px-4 py-4 transition-all duration-200 ease-in-out hover:opacity-60"
