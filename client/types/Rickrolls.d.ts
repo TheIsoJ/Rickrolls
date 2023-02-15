@@ -82,6 +82,7 @@ type RickrollDataBody = {
     videoId?: string
     link?: string
     imageUrl?: string
+    categoryId: string
 }
 
 type SubscriptionBody = {

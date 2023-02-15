@@ -64,6 +64,7 @@ const RickrollInputBox = ({
     e.preventDefault()
 
     const id: string = initialValue?.rickroll?.id as string
+    const categoryId: string = initialValue?.rickroll?.category?.id as string
 
     try {
       useAdminRickrollEdit<void>(
@@ -72,7 +73,8 @@ const RickrollInputBox = ({
         descriptionRef.current!.value,
         videoIdRef.current!.value,
         linkRef.current!.value,
-        imageUrlRef.current!.value
+        imageUrlRef.current!.value,
+        categoryId
       ).then(() => {
         return router.replace("/admin")
       })

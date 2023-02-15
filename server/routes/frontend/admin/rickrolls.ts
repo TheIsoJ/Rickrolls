@@ -12,6 +12,7 @@ type RickrollBody = {
     videoId: string
     link: string
     imageUrl: string
+    categoryId: string
 }
 
 router.get("/rickrolls", async (req, res) => {
@@ -144,6 +145,11 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                         trim: true,
                         strict: true
                     }),
+                    category: {
+                        connect: {
+                            id: "7332da11-374d-4450-9ff5-85f4f29768b1"
+                        }
+                    },
                     video_id: videoId,
                     link,
                     rickroll_cta_link: imageUrl
@@ -187,7 +193,8 @@ router.put("/rickrolls/:id", async (req, res) => {
                 description,
                 videoId,
                 link,
-                imageUrl
+                imageUrl,
+                categoryId
             }: RickrollBody = req.body
 
             if (name === "" || name == null) {
@@ -221,7 +228,12 @@ router.put("/rickrolls/:id", async (req, res) => {
                     description,
                     video_id: videoId,
                     link,
-                    rickroll_cta_link: imageUrl
+                    rickroll_cta_link: imageUrl,
+                    category: {
+                        connect: {
+                            id: categoryId
+                        }
+                    }
                 },
                 select: {
                     name: true,
