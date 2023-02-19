@@ -13,21 +13,7 @@ const Admin = () => {
   const { res: resRickrolls, loading: loadingRickrolls } =
     useAdminRickrollsFetch()
   const { res: resProducts, loading: loadingProducts } = useAdminProductsFetch()
-  const { user, isLoading } = useUser()
-
-  if (loadingRickrolls && loadingProducts) {
-    return (
-      <>
-        <Head>
-          <title>Ladataan...</title>
-        </Head>
-
-        <div className="bg-teal-900 flex items-center justify-center min-h-[75.1vh]">
-          <DotPulse speed={1} size={96} color="white" />
-        </div>
-      </>
-    )
-  }
+  const { user } = useUser()
 
   return (
     <div className="bg-teal-800 text-white d-flex items-center justify-center min-h-screen">
@@ -37,37 +23,37 @@ const Admin = () => {
 
       <Header sticky />
 
-      {isLoading ? (
+      {!user ? (
         <>
-          <div className="bg-teal-900 flex items-center justify-center min-h-[75.1vh]">
-            <DotPulse speed={1} size={96} color="white" />
+          <div className="flex items-center justify-center h-auto w-full py-16 lg:py-16">
+            <div className="space-y-3 px-10 flex flex-col items-center lg:items-center lg:justify-between text-center">
+              <div className="w-48 h-48 m-4 md:inline rounded-[20%]">
+                <ShieldExclamationIcon />
+              </div>
+              <div className="flex flex-col items-center space-y-4">
+                <h1 className="max-w-xl font-[Poppins] font-extrabold text-4xl">
+                  Tämä sivu vaatii kirjautumisen.
+                </h1>
+                <span className="font-[Poppins] whitespace-pre-wrap text-sm md:text-lg font-normal">
+                  Hupsista keikkaa!{"\n"}
+                  <span className="font-[Poppins] text-sm md:text-lg font-normal">
+                    Vaikuttaa siltä, että et ole kirjautunut palveluun.{"\n\n"}
+                    Käyttääksesi palvelun suojattuja toimintoja, sinun tulee kirjautua sisään.
+                  </span>
+                </span>
+                <Link
+                  className="bg-white text-black rounded-full font-[Poppins] font-semibold text-sm w-auto px-4 py-2 transition-all duration-200 ease-in-out hover:opacity-60"
+                  href={`/api/auth/login?returnTo=${router.pathname}`}
+                >
+                  Kirjaudu
+                </Link>
+              </div>
+            </div>
           </div>
         </>
-      ) : !user ? (
-        <div className="flex items-center justify-center h-auto w-full py-16 lg:py-16">
-          <div className="space-y-3 px-10 flex flex-col items-center lg:items-center lg:justify-between text-center">
-            <div className="w-48 h-48 m-4 md:inline rounded-[20%]">
-              <ShieldExclamationIcon />
-            </div>
-            <div className="flex flex-col items-center space-y-4">
-              <h1 className="max-w-xl font-[Poppins] font-extrabold text-4xl">
-                Tämä sivu vaatii kirjautumisen.
-              </h1>
-              <span className="font-[Poppins] whitespace-pre-wrap text-sm md:text-lg font-normal">
-                Hupsista keikkaa!{"\n"}
-                <span className="font-[Poppins] text-sm md:text-lg font-normal">
-                  Vaikuttaa siltä, että et ole kirjautunut palveluun
-                  käyttääksesi palvelun suojattuja toimintoja.
-                </span>
-              </span>
-              <Link
-                className="bg-white text-black rounded-full font-[Poppins] font-bold w-auto px-4 py-4 transition-all duration-200 ease-in-out hover:opacity-60"
-                href={`/api/auth/login?returnTo=/admin`}
-              >
-                Kirjaudu sisään
-              </Link>
-            </div>
-          </div>
+      ) : loadingProducts || loadingRickrolls ? (
+        <div className="bg-teal-900 flex items-center justify-center min-h-screen">
+          <DotPulse speed={1} size={96} color="white" />
         </div>
       ) : (
         <>

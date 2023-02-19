@@ -64,7 +64,7 @@ const Home: NextPage = () => {
 
       {res?.categories?.map((category) => (
         <>
-          <div className="flex flex-col px-8 my-4">
+          <div className="flex flex-col px-8 mt-4">
             <h1 className="max-w-xl font-[Poppins] font-extrabold text-lg lg:text-3xl">
               {category.name}
             </h1>

@@ -6,6 +6,7 @@ import Header from "../components/Header"
 
 const Account = () => {
   const { user, isLoading } = useUser()
+  
   return (
     <>
       <Head>
@@ -17,7 +18,7 @@ const Account = () => {
       <div
         className={`flex items-center justify-center flex-1 min-h-[75.1vh] w-full py-32 lg:py-0 bg-teal-800`}
       >
-        <div className="space-y-5 px-10 text-center">
+        <div className="space-y-5 px-3 sm:px-10 text-center">
           {isLoading && (
             <>
               <h2 className="font-[Poppins] font-bold text-white">
@@ -35,7 +36,7 @@ const Account = () => {
                   Odotappas... et ole kirjautunut palveluun.
                 </h1>
                 <a
-                  className="bg-white rounded-full font-[Poppins] font-bold w-full px-4 py-4 transition-all duration-200 ease-in-out hover:opacity-60"
+                  className="bg-white rounded-full font-[Poppins] text-sm md:text-base font-bold w-auto px-4 py-2 md:py-4 transition-all duration-200 ease-in-out hover:opacity-60"
                   href="/api/auth/login"
                 >
                   Kirjaudu sisään
@@ -47,26 +48,26 @@ const Account = () => {
               <h1 className="font-[Poppins] font-extrabold text-5xl text-white">
                 Tili
               </h1>
-              <div className="flex flex-col justify-center items-center space-y-2">
+              <div className="flex flex-col md:flex-row md:items-center md:space-x-2 justify-center items-center space-y-2">
                 <img
-                  className="w-18 h-18 rounded-full object-cover"
+                  className="w-18 h-18 md:w-12 md:h-12 rounded-full object-cover"
                   src={user?.picture as string}
                 />
-                <span className="font-[Poppins] font-bold text-lg sm:text-xl text-white">
+                <span className="font-[Poppins] font-bold text-sm md:text-lg text-white">
                   {user.name}
                 </span>
-                <span className="font-[Poppins] text-sm sm:text-xl text-white">
+                <span className="font-[Poppins] text-xs md:text-sm text-white">
                   {user.email}
                 </span>
               </div>
             </>
           )}
 
-          <div className="flex flex-col justify-center my-5 space-y-3">
+          <div className="flex flex-col justify-center my-5 space-y-2">
             {user?.email?.startsWith("juiceneblueyt") ? (
               <>
                 <Link
-                  className="bg-white rounded-full font-[Poppins] font-bold w-full px-4 py-4 transition-all duration-200 ease-in-out hover:opacity-60"
+                  className="bg-white rounded-full font-[Poppins] text-sm md:text-base font-bold w-full px-4 py-2 md:py-4 transition-all duration-200 ease-in-out hover:opacity-60"
                   href="/admin"
                 >
                   Hallinta
@@ -77,17 +78,19 @@ const Account = () => {
               <>
                 <a
                   href="/api/auth/logout"
-                  className="bg-white rounded-full font-[Poppins] font-bold w-full px-4 py-4 transition-all duration-200 ease-in-out hover:opacity-60"
+                  className="bg-white rounded-full font-[Poppins] text-sm md:text-base font-bold w-full px-4 py-2 md:py-4 transition-all duration-200 ease-in-out hover:opacity-60"
                 >
                   Kirjaudu ulos
                 </a>
               </>
             )}
-            <Link href="/plus">
-              <h3 className="bg-white rounded-full font-[Poppins] font-bold w-full px-4 py-4 transition-all duration-200 ease-in-out hover:opacity-60">
-                Tilaa Rickrolls+
-              </h3>
-            </Link>
+            <div className="flex justify-center">
+              <Link href="/plus">
+                <h3 className="bg-white rounded-full font-[Poppins] text-sm md:text-base font-bold w-auto px-4 py-2 md:py-4 transition-all duration-200 ease-in-out hover:opacity-60">
+                  Tilaa Rickrolls+
+                </h3>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

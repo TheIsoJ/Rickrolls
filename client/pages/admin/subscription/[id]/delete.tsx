@@ -19,7 +19,7 @@ const DeleteRickroll = () => {
   return (
     <>
       <Head>
-        <title>Poista rickroll - Rickrolls</title>
+        <title>Poista tilaus - Rickrolls</title>
       </Head>
       <Header sticky />
       <div className="flex items-center fade-semifast justify-center space-y-8 space-x-2 bg-white text-black p-5">
