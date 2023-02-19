@@ -36,7 +36,7 @@ router.get("/rickrolls", async (req, res) => {
                         name: true,
                         description: true,
                         slug: true,
-                        rickroll_cta_link: true,
+                        imageUrl: true,
                         tags: true
                     }
                 }
@@ -79,12 +79,13 @@ router.get("/rickrolls/:slug", async (req, res) => {
                 video_id: true,
                 category: {
                     select: {
+                        id: true,
                         name: true,
                         description: true
                     }
                 },
                 tags: true,
-                rickroll_cta_link: true
+                imageUrl: true
             }
         })
 
@@ -152,7 +153,7 @@ router.post("/rickrolls", async (req: Request, res: Response) => {
                     },
                     video_id: videoId,
                     link,
-                    rickroll_cta_link: imageUrl
+                    imageUrl
                 }
             })
 
@@ -228,7 +229,7 @@ router.put("/rickrolls/:id", async (req, res) => {
                     description,
                     video_id: videoId,
                     link,
-                    rickroll_cta_link: imageUrl,
+                    imageUrl,
                     category: {
                         connect: {
                             id: categoryId
@@ -240,7 +241,7 @@ router.put("/rickrolls/:id", async (req, res) => {
                     description: true,
                     video_id: true,
                     link: true,
-                    rickroll_cta_link: true
+                    imageUrl: true
                 }
             })
 

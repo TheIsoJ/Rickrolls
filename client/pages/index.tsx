@@ -53,7 +53,7 @@ const Home: NextPage = () => {
               <div className="hidden m-16 md:inline md:w-80 md:h-80 md:object-cover bg-gray-400 lg:w-96 lg:h-96 lg:object-cover rounded-2xl shadow-2xl overflow-hidden">
                 <img
                   className="hidden md:inline md:w-80 md:h-80 object-cover lg:w-96 lg:h-96 fade-semifast-text"
-                  src={`${res.categories[0].rickrolls[0].rickroll_cta_link}`}
+                  src={`${res.categories[0].rickrolls[0].imageUrl}`}
                   alt=""
                 />
               </div>
@@ -72,17 +72,23 @@ const Home: NextPage = () => {
               {category.description}
             </p>
             {category.rickrolls.map(
-              ({ slug, name, description, rickroll_cta_link, tags }) => (
+              ({ slug, name, description, imageUrl, tags }) => (
                 <>
-                  <div
+                  <Link
                     key={slug}
-                    className="grid grid-cols-1 gap-3 p-4 sm:grid-cols-2 md:gap-6 md:p-6 lg:grid-cols-3"
+                    href={{
+                      pathname: `/[category]/[slug]`,
+                      query: {
+                        category: `${category.name.toLowerCase()}`,
+                        slug,
+                      },
+                    }}
                   >
-                    <div className="hover:scale-95 hover:shadow-xl hover:shadow-gray-400 transition-all duration-500 ease-in-out cursor-pointer overflow-hidden rounded-xl border shadow-md bg-gray-400 fade">
-                      <Link href={`/rickroll/${slug}`}>
+                    <div className="grid grid-cols-1 gap-3 p-4 sm:grid-cols-2 md:gap-6 md:p-6 lg:grid-cols-3">
+                      <div className="hover:scale-95 hover:shadow-xl hover:shadow-gray-400 transition-all duration-500 ease-in-out cursor-pointer overflow-hidden rounded-xl border shadow-md bg-gray-400 fade">
                         <img
                           className="w-full object-contain fade-semifast"
-                          src={rickroll_cta_link}
+                          src={imageUrl}
                           alt=""
                         />
                         <div className="flex items-center justify-between bg-white text-black p-5">
@@ -102,9 +108,9 @@ const Home: NextPage = () => {
                             </div>
                           </div>
                         </div>
-                      </Link>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </>
               )
             )}

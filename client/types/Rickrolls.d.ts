@@ -71,7 +71,7 @@ type Rickroll = {
     link?: string
     slug?: string
     video_id?: string
-    rickroll_cta_link?: string
+    imageUrl?: string
     tags?: string[]
     category?: Category
 }

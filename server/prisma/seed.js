@@ -40,7 +40,7 @@ async function seed() {
         trim: true,
         strict: true,
       }),
-      rickroll_cta_link: "https://i.ytimg.com/vi/UfUbBWIFdJs/maxresdefault.jpg",
+      imageUrl: "https://i.ytimg.com/vi/UfUbBWIFdJs/maxresdefault.jpg",
       tags: ["Tutoriaalit"],
       category: {
         connect: {
@@ -63,7 +63,7 @@ async function seed() {
         trim: true,
         strict: true,
       }),
-      rickroll_cta_link: "https://i.ytimg.com/vi/4m0XXBeH6Uk/maxresdefault.jpg",
+      imageUrl: "https://i.ytimg.com/vi/4m0XXBeH6Uk/maxresdefault.jpg",
       tags: ["Meemit"],
       category: {
         connect: {
@@ -86,7 +86,7 @@ async function seed() {
         trim: true,
         strict: true,
       }),
-      rickroll_cta_link: "https://i.ytimg.com/vi/e3uFs_AanMU/maxresdefault.jpg",
+      imageUrl: "https://i.ytimg.com/vi/e3uFs_AanMU/maxresdefault.jpg",
       tags: ["Meemit"],
       category: {
         connect: {

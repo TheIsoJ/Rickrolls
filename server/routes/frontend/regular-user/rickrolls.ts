@@ -23,7 +23,7 @@ router.get("/rickrolls", async (req, res) => {
                         slug: true,
                         name: true,
                         description: true,
-                        rickroll_cta_link: true,
+                        imageUrl: true,
                         tags: true
                     }
                 }
@@ -63,7 +63,7 @@ router.get("/rickrolls/:slug", async (req, res) => {
                 description: true,
                 link: true,
                 video_id: true,
-                rickroll_cta_link: true,
+                imageUrl: true,
                 category: {
                     select: {
                         name: true,

@@ -14,7 +14,7 @@ CREATE TABLE "Rickroll" (
     "description" TEXT,
     "link" TEXT NOT NULL,
     "video_id" TEXT NOT NULL,
-    "rickroll_cta_link" TEXT NOT NULL,
+    "imageUrl" TEXT NOT NULL,
     "slug" TEXT,
     "categoryId" TEXT,
     "tags" TEXT[],

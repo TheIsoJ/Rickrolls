@@ -18,6 +18,7 @@ const Product = () => {
         <Head>
           <title>Ladataan...</title>
         </Head>
+        <Header sticky />
         <h1 className="text-center mt-16 font-[Poppins] font-bold text-5xl">
           Tuote
         </h1>

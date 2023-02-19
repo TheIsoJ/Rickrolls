@@ -1,4 +1,5 @@
 import { useUser } from "@auth0/nextjs-auth0/client"
+import { DotPulse } from "@uiball/loaders"
 import Head from "next/head"
 import Link from "next/link"
 import Header from "../components/Header"
@@ -22,11 +23,14 @@ const Account = () => {
               <h2 className="font-[Poppins] font-bold text-white">
                 Ladataan käyttäjätiliä...
               </h2>
+              <div className="flex flex-col items-center">
+                <DotPulse speed={1} size={96} color="white" />
+              </div>
             </>
           )}
           {!user ? (
             <>
-              <div className="flex flex-col items-center space-y-3">
+              <div className="flex flex-col items-center space-y-8">
                 <h1 className="font-[Poppins] font-bold text-2xl text-white">
                   Odotappas... et ole kirjautunut palveluun.
                 </h1>
@@ -40,19 +44,25 @@ const Account = () => {
             </>
           ) : (
             <>
-              <h1 className="max-w-xl mx-auto font-[Poppins] font-extrabold text-5xl text-white">
+              <h1 className="font-[Poppins] font-extrabold text-5xl text-white">
                 Tili
               </h1>
-              <h2 className="font-[Poppins] font-normal text-white">
-                Olet kirjautunut sisään nimellä:
-              </h2>
-              <span className="font-[Poppins] font-bold text-white">
-                {user.name}
-              </span>
+              <div className="flex flex-col justify-center items-center space-y-2">
+                <img
+                  className="w-18 h-18 rounded-full object-cover"
+                  src={user?.picture as string}
+                />
+                <span className="font-[Poppins] font-bold text-lg sm:text-xl text-white">
+                  {user.name}
+                </span>
+                <span className="font-[Poppins] text-sm sm:text-xl text-white">
+                  {user.email}
+                </span>
+              </div>
             </>
           )}
 
-          <div className="flex flex-col justify-center space-y-3">
+          <div className="flex flex-col justify-center my-5 space-y-3">
             {user?.email?.startsWith("juiceneblueyt") ? (
               <>
                 <Link

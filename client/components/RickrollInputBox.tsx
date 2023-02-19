@@ -29,7 +29,7 @@ const RickrollInputBox = ({
         videoIdRef.current!.value = initialValue?.rickroll?.video_id as string
         linkRef.current!.value = initialValue?.rickroll?.link as string
         imageUrlRef.current!.value = initialValue?.rickroll
-          ?.rickroll_cta_link as string
+          ?.imageUrl as string
       }, [initialValue])
     } else {
       useEffect(() => {

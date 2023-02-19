@@ -24,7 +24,7 @@ router.get("/rickrolls", async (req, res) => {
                     select: {
                         name: true,
                         description: true,
-                        rickroll_cta_link: true,
+                        imageUrl: true,
                         slug: true,
                         tags: true
                     }
@@ -61,7 +61,7 @@ router.get("/rickrolls/:slug", async (req, res) => {
                 name: true,
                 description: true,
                 video_id: true,
-                rickroll_cta_link: true,
+                imageUrl: true,
                 category: {
                     select: {
                         name: true,
@@ -134,7 +134,7 @@ router.post("/rickrolls", async (req, res) => {
                     }),
                     link,
                     video_id: videoId,
-                    rickroll_cta_link: imageUrl
+                    imageUrl: imageUrl
                 }
             })
 

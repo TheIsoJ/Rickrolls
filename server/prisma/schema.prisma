@@ -15,18 +15,18 @@ model Category {
 }
 
 model Rickroll {
-  id                String    @id @default(uuid())
-  name              String    @db.Text
-  description       String?   @db.Text
-  link              String    @db.Text
-  video_id          String    @db.Text
-  rickroll_cta_link String    @db.Text
-  slug              String?   @db.Text
-  category          Category? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  categoryId        String?
-  tags              String[]
-  likedBy           User?     @relation("LikedRickrolls", fields: [userId], references: [id], onDelete: Cascade)
-  userId            String?
+  id          String    @id @default(uuid())
+  name        String    @db.Text
+  description String?   @db.Text
+  link        String    @db.Text
+  video_id    String    @db.Text
+  imageUrl    String    @db.Text
+  slug        String?   @db.Text
+  category    Category? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId  String?
+  tags        String[]
+  likedBy     User?     @relation("LikedRickrolls", fields: [userId], references: [id], onDelete: Cascade)
+  userId      String?
 }
 
 model User {
