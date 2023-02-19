@@ -34,7 +34,7 @@ const Home: NextPage = () => {
         <>
           <a
             key={res.categories[0].rickrolls[0].slug}
-            href={`/rickroll/${res.categories[0].rickrolls[0].slug}`}
+            href={`/${res.categories[0].name.toLowerCase()}/${res.categories[0].rickrolls[0].slug}`}
             target="_blank"
           >
             <div
