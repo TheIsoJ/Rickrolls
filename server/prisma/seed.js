@@ -1,13 +1,18 @@
+import { config } from "dotenv"
+config()
+
 import { PrismaClient } from "@prisma/client"
 import slugify from "slugify"
 const prisma = new PrismaClient()
 
 async function seed() {
   const name1 = "Tutoriaali"
-  const name2 = "Joku saatanan taikatemppu"
+  const name2 = "Mielenterveys Reiskattu 100%"
   const name3 = "Jonnet ei muista"
+  const imageUrl = "https://images.jesunmaailma.ml/rickrolls-api-images/risitas.jpg"
 
   await prisma.category.deleteMany()
+  await prisma.promoItems.deleteMany()
   await prisma.rickroll.deleteMany()
   await prisma.user.deleteMany()
 
@@ -25,6 +30,17 @@ async function seed() {
       name: "Tutoriaalit",
       description: "YouTuben kaikki tutoriaalit.",
     },
+  })
+
+  await prisma.promoItems.create({
+    data: {
+      id: "55f3122e-37fa-4915-83b1-62e6827d9988",
+      name: "\"Huono peli.exe\" on parasta tavaraa.",
+      description: null,
+      link: "https://rickrolls.vercel.app/meemit/mielenterveys-reiskattu-100percent",
+      imageUrl,
+      backdropUrl: imageUrl
+    }
   })
 
   await prisma.rickroll.create({
@@ -100,11 +116,11 @@ async function seed() {
     data: {
       name: "Jesse Keskelä",
       email: "juiceneblueyt@gmail.com",
-      api_key: "1A4mgi2rBHCJdqggsYVx",
+      api_key: process.env.API_KEY,
       username: "@theisoj",
       profile_picture:
         "https://images.jesunmaailma.ml/rickrolls-api-images/profile-pictures/rickroll.png",
-      password: "$2a$12$rpMQmYQeZ0VckYqjBPuBTOqDF2SwR8crRxH9/bTRoyt6nwBdxGRBW",
+      password: process.env.USER_PASSWORD,
       stripe_publishable_key:
         "pk_test_51ML4pRBbS7O9ZyvwBEWZ1SjJzTOIusK9S02J1efJCxG61TeVyygh4Njz7k1qYMVwGBCrEOoIHICC7amMeQxh5zmf00nG7QYZwu",
       stripe_secret_key: process.env.STRIPE_SECRET_KEY,

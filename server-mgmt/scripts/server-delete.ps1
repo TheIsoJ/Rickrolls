@@ -1,5 +1,7 @@
-Set-Location ..\..\server
+param ( [Parameter(Mandatory = $true)] $path )
+
+Set-Location $path\server
 pm2 delete server
 Remove-Item -Path .\dist\ -Recurse
-Set-Location ..\server-mgmt\scripts\
+Set-Location ..
 Clear-Host

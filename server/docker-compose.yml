@@ -18,25 +18,25 @@ services:
 
   rickrolls_db:
     container_name: rickrolls_db
-    image: mysql:latest
+    image: postgres:latest
     restart: always
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - ./data:/var/lib/mysql
+      - ./data:/usr/share/postgresql/data
     environment:
-      - MYSQL_ROOT_PASSWORD=salasana
-      - MYSQL_DATABASE=rickrolls
+      - POSTGRES_PASSWORD=salasana
+      - POSTGRES_DB=rickrolls
 
-  phpmyadmin:
-    container_name: phpmyadmin
-    image: phpmyadmin:latest
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
     restart: always
     ports:
       - 8080:80
     environment:
-      - PMA_HOST=rickrolls_db
-      - MYSQL_ROOT_PASSWORD=salasana
+      - PGADMIN_DEFAULT_EMAIL=juiceneblueyt@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=salasana
 
 networks:
   default:

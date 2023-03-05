@@ -6,6 +6,14 @@ type RickrollBody = {
     link: string
 }
 
+type PromoItemsBody = {
+    name: string
+    description: string
+    link: string
+    imageUrl: string
+    backdropUrl: string
+}
+
 type Tag = {
     id: string
     label: string
