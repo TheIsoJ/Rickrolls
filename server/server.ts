@@ -40,27 +40,27 @@ app.use(cors())
 app.use(express.json());
 
 // Verkkosivua varten
-app.use(`/api/${API_VERSION}`, frontendCreateCheckoutSessionRoute)
-app.use(`/api/${API_VERSION}`, frontendCreateCustomerPortalSessionRoute)
-app.use(`/api/${API_VERSION}`, frontendCustomerRoute)
-app.use(`/api/${API_VERSION}/config`, frontendGetStripeConfigRoute)
-app.use(`/api/${API_VERSION}`, frontendProductsRoute)
-app.use(`/api/${API_VERSION}`, frontendPromoItemsRoute)
-app.use(`/api/${API_VERSION}`, frontendRickrollsRoute)
-app.use(`/api/${API_VERSION}`, frontendUsersRoute)
+app.use(`/${API_VERSION}`, frontendCreateCheckoutSessionRoute)
+app.use(`/${API_VERSION}`, frontendCreateCustomerPortalSessionRoute)
+app.use(`/${API_VERSION}`, frontendCustomerRoute)
+app.use(`/${API_VERSION}/config`, frontendGetStripeConfigRoute)
+app.use(`/${API_VERSION}`, frontendProductsRoute)
+app.use(`/${API_VERSION}`, frontendPromoItemsRoute)
+app.use(`/${API_VERSION}`, frontendRickrollsRoute)
+app.use(`/${API_VERSION}`, frontendUsersRoute)
 
 // Admin-reitit
-app.use(`/api/${API_VERSION}/admin`, frontendAdminCategoriesRoute)
-app.use(`/api/${API_VERSION}/admin`, frontendAdminRickrollsRoute)
-app.use(`/api/${API_VERSION}/admin`, frontendAdminProductsRoute)
-app.use(`/api/${API_VERSION}/admin`, frontendAdminPromoItemsRoute)
+app.use(`/${API_VERSION}/admin`, frontendAdminCategoriesRoute)
+app.use(`/${API_VERSION}/admin`, frontendAdminRickrollsRoute)
+app.use(`/${API_VERSION}/admin`, frontendAdminProductsRoute)
+app.use(`/${API_VERSION}/admin`, frontendAdminPromoItemsRoute)
 
 // Mobiilisovellusta varten
-app.use(`/api/${API_VERSION}/mobile-app/config`, mobileAppGetStripeConfigRoute)
-app.use(`/api/${API_VERSION}/mobile-app/payments`, mobileAppPaymentSheetRoute)
-app.use(`/api/${API_VERSION}/mobile-app`, mobileAppProductsRoute)
-app.use(`/api/${API_VERSION}/mobile-app`, mobileAppPromoItemsRoute)
-app.use(`/api/${API_VERSION}/mobile-app`, mobileAppRickrollsRoute)
+app.use(`/${API_VERSION}/mobile-app/config`, mobileAppGetStripeConfigRoute)
+app.use(`/${API_VERSION}/mobile-app/payments`, mobileAppPaymentSheetRoute)
+app.use(`/${API_VERSION}/mobile-app`, mobileAppProductsRoute)
+app.use(`/${API_VERSION}/mobile-app`, mobileAppPromoItemsRoute)
+app.use(`/${API_VERSION}/mobile-app`, mobileAppRickrollsRoute)
 
 app.get("/", (_, res) => {
   res.json({
