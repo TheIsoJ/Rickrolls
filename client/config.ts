@@ -1,4 +1,4 @@
-const API_URL: string = `${process.env.NEXT_PUBLIC_SERVER_URL as string}/api/v1/`;
+const API_URL: string = `${process.env.NEXT_PUBLIC_SERVER_URL as string}/v1/`;
 const API_KEY: string = process.env.NEXT_PUBLIC_API_KEY as string;
 
 const HOME_BASE_URL: string = `${API_URL}rickrolls?api_key=${API_KEY}`;
