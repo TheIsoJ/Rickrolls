@@ -64,12 +64,6 @@ router.get("/rickrolls/:slug", async (req, res) => {
                 link: true,
                 video_id: true,
                 imageUrl: true,
-                category: {
-                    select: {
-                        name: true,
-                        description: true
-                    }
-                },
                 tags: true
             }
         })
